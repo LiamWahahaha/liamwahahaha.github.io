@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
-<link rel="stylesheet" href="/photos/photos.css">
-<script type="text/javascript" src="/photos/photo.js"></script>
-
 
 
   
@@ -102,14 +98,14 @@
 <meta name="description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
 <meta name="keywords" content="Prolog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prolog Programming for AI - Chapter 3 Exercises">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/13/Prolog-Programming-for-AI-Chapter-3-Exercises/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-08-12T23:43:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prolog Programming for AI - Chapter 3 Exercises">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises">
 <meta name="twitter:description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
 
 
@@ -145,7 +141,7 @@
 
 
 
-  <title>Prolog Programming for AI - Chapter 3 Exercises | Liam's Blog</title>
+  <title>Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises | Liam's Blog</title>
   
 
 
@@ -315,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 3 Exercises</h1>
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises</h1>
         
 
         <div class="post-meta">
@@ -408,6 +404,9 @@
 <li><strong><a href="#exercise-2">Last</a></strong></li>
 <li><strong><a href="#add">Add</a></strong></li>
 <li><strong><a href="#del">Delete</a></strong></li>
+<li><strong><a href="#insert">Insert</a></strong></li>
+<li><strong><a href="#sublist">Sublist</a></strong></li>
+<li><strong><a href="#permutation">Permutation</a></strong></li>
 </ul>
 <hr>
 <h4 id="Membership"><a href="#Membership" class="headerlink" title="Membership"></a><a name="member1">Membership</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">member(X, [X | Tail]).</span><br><span class="line">member(X, [Head | Tail]) :-</span><br><span class="line">    member(X, Tail).</span><br></pre></td></tr></table></figure>
@@ -513,7 +512,7 @@
 <p>Goal: del(X, L, L1) is true if L1 equal to the list L with the item X removed</p>
 <ul>
 <li>For example:<ul>
-<li>?- del(a, [a,b,a,a], L).<br>L = [b,a,a];<br>L = [a,b,a];<br>L = [a,b,a];<br>no.</li>
+<li>?- del(a, [a,b,a,a], L).<br>L = [b,a,a];<br>L = [a,b,a];<br>L = [a,b,a];<br>false.</li>
 </ul>
 </li>
 </ul>
@@ -529,14 +528,78 @@
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-<h4 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a><a name="insert">Insert</a></h4><p><code>`</code></p>
+<h4 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a><a name="insert">Insert</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert(X, List, BiggerList):</span><br><span class="line">    del(X, BiggerList, List).</span><br></pre></td></tr></table></figure>
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-<h4 id="Sublist"><a href="#Sublist" class="headerlink" title="Sublist"></a><a name="sublist">Sublist</a></h4><p style="text-align: right;"> <a href="#head">back to top</a> </p>
+<h4 id="Sublist"><a href="#Sublist" class="headerlink" title="Sublist"></a><a name="sublist">Sublist</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sublist(S, L) :-</span><br><span class="line">    conc(L1, L2, L),</span><br><span class="line">    conc(S, L3, L2).</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Relation: sublist(S, L)</p>
+<ul>
+<li>where S and L are lists</li>
+</ul>
+<p>Goal: sublist(S, L) is true if S is the sublist of list L</p>
+<ul>
+<li><p>For example:</p>
+<ul>
+<li><p>?- sublist([c,d,e], [a,b,c,d,e,f]).</p>
+<p>true.</p>
+</li>
+<li><p>?- sublist([c,e], [a,b,c,d,e,f]).</p>
+<p>false.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>How to approach:</p>
+<ul>
+<li>S is a sublist of L if:<ul>
+<li>L can be decomposed into two lists, L1 and L2, and</li>
+<li>L2 can be decomposed into two lists, S and some L3.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h4 id="Permutation"><a href="#Permutation" class="headerlink" title="Permutation"></a><a name="permutation">Permutation</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permutation([], []).</span><br><span class="line">permutation([X|L], P) :-</span><br><span class="line">    permutation(L, L1),</span><br><span class="line">    insert(X, L1, P).</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Relation: permutation(L, P)</p>
+<ul>
+<li>Where L and P are lists</li>
+</ul>
+<p>Goal:</p>
+<ul>
+<li><p>For example:</p>
+<ul>
+<li><p>?- permutation([a,b,c], P).</p>
+<p>P = [a,b,c];</p>
+<p>P = [a,c,b];</p>
+<p>P = [b,a,c];</p>
+<p>…</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>How to approach:</p>
+<ul>
+<li><p>The program for <strong>permutation</strong> can be based on the consideration of two cases:</p>
+<ul>
+<li><p>if the first list is empty then the second list must be empty too</p>
+</li>
+<li><p>if the first list is not empty then it has the form [X|L], and a permutation of such a list can be constructed as:</p>
+<p>first permute L obtaining L1 and then insert X at any position into L1.</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>or using delete to generate permutation as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permutation2([], []).</span><br><span class="line">permutation2(L, [X|P]) :-</span><br><span class="line">    del(X, L, L1),</span><br><span class="line">    permutation2(L1, P).</span><br></pre></td></tr></table></figure>
+<p><strong>Permutation might get into an infinite loop. Be careful.</strong></p>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-
+<p style="text-align:right;"> to be continued </p> 
       
     </div>
     
@@ -712,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Permutation</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -819,6 +882,8 @@
 
 
   
+
+
 
 
   <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
