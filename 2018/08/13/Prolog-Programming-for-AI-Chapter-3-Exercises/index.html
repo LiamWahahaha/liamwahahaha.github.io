@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
+<meta name="description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
 <meta name="keywords" content="Prolog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 3 Exercises">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/13/Prolog-Programming-for-AI-Chapter-3-Exercises/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
+<meta property="og:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-08-12T23:43:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises">
-<meta name="twitter:description" content="Relations Membership (has more procedural meaning) Membership (has more declarative meaning) Concatenation Delete the last three emelemts Delete the first three and the last three elements Last Add D">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 3 Exercises">
+<meta name="twitter:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises | Liam's Blog</title>
+  <title>Prolog Programming for AI - Chapter 3 Exercises | Liam's Blog</title>
   
 
 
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 3.1 ~ 3.2 Exercises</h1>
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 3 Exercises</h1>
         
 
         <div class="post-meta">
@@ -396,17 +396,47 @@
       
         <p><a name="head"></a></p>
 <h1 id="Relations"><a href="#Relations" class="headerlink" title="Relations"></a>Relations</h1><ul>
-<li><strong><a href="#member1">Membership (has more procedural meaning)</a></strong></li>
-<li><strong><a href="#member2">Membership (has more declarative meaning)</a></strong></li>
-<li><strong><a href="#conc">Concatenation</a></strong></li>
-<li><strong><a href="#exercise-1-a">Delete the last three emelemts</a></strong></li>
-<li><strong><a href="#exercise-1-b">Delete the first three and the last three elements</a></strong></li>
-<li><strong><a href="#exercise-2">Last</a></strong></li>
-<li><strong><a href="#add">Add</a></strong></li>
-<li><strong><a href="#del">Delete</a></strong></li>
-<li><strong><a href="#insert">Insert</a></strong></li>
-<li><strong><a href="#sublist">Sublist</a></strong></li>
-<li><strong><a href="#permutation">Permutation</a></strong></li>
+<li><p><strong><a href="#member1">Membership (has more procedural meaning)</a></strong></p>
+</li>
+<li><p><strong><a href="#member2">Membership (has more declarative meaning)</a></strong></p>
+</li>
+<li><p><strong><a href="#conc">Concatenation</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-1-a">Delete the last three emelemts</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-1-b">Delete the first three and the last three elements</a></strong></p>
+<a id="more"></a> 
+</li>
+<li><p><strong><a href="#exercise-2">Last</a></strong></p>
+</li>
+<li><p><strong><a href="#add">Add</a></strong></p>
+</li>
+<li><p><strong><a href="#del">Delete</a></strong></p>
+</li>
+<li><p><strong><a href="#insert">Insert</a></strong></p>
+</li>
+<li><p><strong><a href="#sublist">Sublist</a></strong></p>
+</li>
+<li><p><strong><a href="#permutation">Permutation</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-3">Evenlength and Oddlength</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-4">Reverse</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-5">Palindrome</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-6">Shift</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-7">Translate</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-8">Subset</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-9">Dividelist</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-10">Canget</a></strong></p>
+</li>
+<li><p><strong><a href="#exercise-11">Flatten</a></strong></p>
+</li>
 </ul>
 <hr>
 <h4 id="Membership"><a href="#Membership" class="headerlink" title="Membership"></a><a name="member1">Membership</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">member(X, [X | Tail]).</span><br><span class="line">member(X, [Head | Tail]) :-</span><br><span class="line">    member(X, Tail).</span><br></pre></td></tr></table></figure>
@@ -599,7 +629,93 @@
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-<p style="text-align:right;"> to be continued </p> 
+<h4 id="Exercise-3-3"><a href="#Exercise-3-3" class="headerlink" title="Exercise 3.3"></a><a name="exercise-3">Exercise 3.3</a></h4><blockquote>
+<p>Define two predicates evenlength(List) and oddlength(List) so that they are true if their argument is a list of even or odd length respectively.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">evenlength([]).</span><br><span class="line">evenlength([X|L]) :-</span><br><span class="line">    oddlength(L).</span><br><span class="line">oddlength([_]).</span><br><span class="line">oddlength([X|L]) :-</span><br><span class="line">    evenlength(L).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-4"><a href="#Exercise-3-4" class="headerlink" title="Exercise 3.4"></a><a name="exercise-4">Exercise 3.4</a></h4><blockquote>
+<p>Define the relation reverse(List, ReversedList) that reverses lists.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reverse(L, Res) :-</span><br><span class="line">    reverse_helper(L, [], Res).</span><br><span class="line"></span><br><span class="line">reverse_helper([],L, L).</span><br><span class="line"></span><br><span class="line">reverse_helper([X|Y], Accumulater, Res) :-</span><br><span class="line">    reverse(Y, [X|Accumulater], Res).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-5"><a href="#Exercise-3-5" class="headerlink" title="Exercise 3.5"></a><a name="exercise-5">Exercise 3.5</a></h4><blockquote>
+<p>Define the predicate palindrome(List).</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Palindrome(List) :-</span><br><span class="line">    reverse(List, List).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-6"><a href="#Exercise-3-6" class="headerlink" title="Exercise 3.6"></a><a name="exercise-6">Exercise 3.6</a></h4><blockquote>
+<p>Define the relation shift(List1, List2) so that List 2 is List1 shifted rotationally’ by one element to the left.</p>
+<p>For example,</p>
+<p>​    ?- shift([1,2,3,4,5], L1),</p>
+<p>​        shift(L1, L2).</p>
+<p>​    L1 = [2,3,4,5,1]</p>
+<p>​    L2 = [3,4,5,1,2]</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shift([],[]).</span><br><span class="line">shift([X|L], Res) :-</span><br><span class="line">    conc(L, [X], Res).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-7"><a href="#Exercise-3-7" class="headerlink" title="Exercise 3.7"></a><a name="exercise-7">Exercise 3.7</a></h4><blockquote>
+<p>Define the relation translate(List1, List2) to translate a list of numbers between 0 and 9 to a list of the corresponding words. For example:</p>
+<p>​    translate([3,5,1,3], [three, five, one, three]).</p>
+<p>Use the following as an auxiliary relation:</p>
+<p>​    means(0, zero). means(1, one). means(2, two). …</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">means(1, one).</span><br><span class="line">means(2, two).</span><br><span class="line">means(3, three).</span><br><span class="line">means(4, four).</span><br><span class="line">means(5, five).</span><br><span class="line">means(6, six).</span><br><span class="line">means(7, seven).</span><br><span class="line">means(8, eight).</span><br><span class="line">means(9, nine).</span><br><span class="line">means(0, zero).</span><br><span class="line"></span><br><span class="line">translate([], []).</span><br><span class="line">translate([X|Xs], [Y|Ys]) :-</span><br><span class="line">    means(X, Y),</span><br><span class="line">    translate(Xs, Ys).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-8"><a href="#Exercise-3-8" class="headerlink" title="Exercise 3.8"></a><a name="exercise-8">Exercise 3.8</a></h4><blockquote>
+<p>Define the relation subset(Set, Subset) where Set and Subset are two lists representing two sets. We would like to be able to use this relation not only to check for the subset relation, but also to generate all possible subsets of a given set. For example:</p>
+<p>​    ?- subset([a,b,c], S).</p>
+<p>​    S = [a,b,c];</p>
+<p>​    S = [b,c];</p>
+<p>​    S = [c];</p>
+<p>​    S = [];</p>
+<p>​    S = [a,c];</p>
+<p>​    S = [a];</p>
+<p>​    …</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">subset([], []).</span><br><span class="line">subset([First|Rest], [First|Sub]) :- % Retain First in subset</span><br><span class="line">    subset(Rest, Sub).</span><br><span class="line">subset([First|Rest], Sub) :-         % Remove First</span><br><span class="line">    subset(Rest, Sub).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-9"><a href="#Exercise-3-9" class="headerlink" title="Exercise 3.9"></a><a name="exercise-9">Exercise 3.9</a></h4><blockquote>
+<p>Define the relation dividelist(List, List1, List2) so that the elements of List are partitioned between List1 and List2, and List1 and List2 are of approximately the same length. For example, dividelist([a,b,c,d,e], [a,c,e], [b,d])</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dividelist([], [], []).   % Nothing to divide</span><br><span class="line">dividelist([X], [X], []). % Divide one-element list</span><br><span class="line">dividelist([X, Y| List], [X|List1], [Y|List2]) :-</span><br><span class="line">    dividelist(List, List1, List2).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-10"><a href="#Exercise-3-10" class="headerlink" title="Exercise 3.10"></a><a name="exercise-10">Exercise 3.10</a></h4><blockquote>
+<p>Rewrite the monkey and banana program of Chapter 2 as the relation canget(State, Actions) to answer not just ‘yes’ or ‘no’, but to produce a sequence of monkey’s actions that lead to success. Let Actions be such a sequence represented as a list of moves:</p>
+<p>​    Actions = [walk(door, window), push(window, middle), climb, grasp]</p>
+</blockquote>
+<p>Original algorithm:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">% Legal moves</span><br><span class="line">% Grasp banana</span><br><span class="line">move(state(middle, onbox, middle, hasnot),</span><br><span class="line">     grasp,</span><br><span class="line">     state(middle, onbox, middle, has)).</span><br><span class="line"></span><br><span class="line">% Climb box</span><br><span class="line">move(state(P, onfloor, P, H),</span><br><span class="line">     climb,</span><br><span class="line">     state(P, onbox, P, H)).</span><br><span class="line"></span><br><span class="line">% Push box</span><br><span class="line">move(state(P1, onfloor, P1, H),</span><br><span class="line">     push(P1, P2),</span><br><span class="line">     state(P2, onfloor, P2, H)).</span><br><span class="line"></span><br><span class="line">% Walk around</span><br><span class="line">move(state(P1, onfloor, B, H),</span><br><span class="line">     walk(P1, P2),</span><br><span class="line">     state(P2, onfloor, B, H)).</span><br><span class="line"></span><br><span class="line">% canget(State): monkey can get banana in State</span><br><span class="line">canget(state(_, _, _, has)).</span><br><span class="line">canget(State1) :-</span><br><span class="line">    move(Statel, Move, State2),</span><br><span class="line">    canget(State2).</span><br></pre></td></tr></table></figure>
+<p>New algorithm:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">% Legal moves</span><br><span class="line"></span><br><span class="line">% Grasp banana</span><br><span class="line">move(state(middle, onbox, middle, hasnot),</span><br><span class="line">     grasp,</span><br><span class="line">     state(middle, onbox, middle, has)).</span><br><span class="line"></span><br><span class="line">% Climb box</span><br><span class="line">move(state(P, onfloor, P, H),</span><br><span class="line">     climb,</span><br><span class="line">     state(P, onbox, P, H)).</span><br><span class="line"></span><br><span class="line">% Push box</span><br><span class="line">move(state(P1, onfloor, P1, H),</span><br><span class="line">     push(P1, P2),</span><br><span class="line">     state(P2, onfloor, P2, H)).</span><br><span class="line"></span><br><span class="line">% Walk around</span><br><span class="line">move(state(P1, onfloor, B, H),</span><br><span class="line">     walk(P1, P2),</span><br><span class="line">     state(P2, onfloor, B, H)).</span><br><span class="line"></span><br><span class="line">% canget(State): monkey can get banana in State</span><br><span class="line">canget(state(_, _, _, has)).</span><br><span class="line">canget(State1) :-</span><br><span class="line">    move(State1, _, State2),</span><br><span class="line">    canget(State2).</span><br><span class="line"></span><br><span class="line">% Get plan</span><br><span class="line">canget(state(_, _, _, has), []).</span><br><span class="line">canget(State, [Action|Actions]) :-</span><br><span class="line">    move(State, Action, New_State),</span><br><span class="line">    canget(New_State, Actions).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Exercise-3-11"><a href="#Exercise-3-11" class="headerlink" title="Exercise 3.11"></a><a name="exercise-11">Exercise 3.11</a></h4><blockquote>
+<p>Define the relation flatten(List, FlatList) where List can be a list of lists, and FlatList is List ‘flattened’ so that the elements of List’s sublists (or sub-sublists) are reorganized as one plain list. For example:</p>
+<p>​    ?- flatten([a,b,[c,d],[],[[[e]]],f], L).</p>
+<p>​    L = [a,b,c,d,e,f]</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flatten([X|L], Flatten) :-</span><br><span class="line">    flatten(X, Flatten_Head),</span><br><span class="line">    flatten(L, Flatten_Tail),</span><br><span class="line">    conc(Flatten_Head, Flatten_Tail, Flatten).</span><br><span class="line">flatten([], []).</span><br><span class="line">flatten(X, [X]).</span><br></pre></td></tr></table></figure>
+<p>Don’t backtrack this program.</p>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+
       
     </div>
     
@@ -775,7 +891,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Permutation</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Permutation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-3"><span class="nav-number">1.0.0.11.</span> <span class="nav-text">Exercise 3.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-4"><span class="nav-number">1.0.0.12.</span> <span class="nav-text">Exercise 3.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-5"><span class="nav-number">1.0.0.13.</span> <span class="nav-text">Exercise 3.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-6"><span class="nav-number">1.0.0.14.</span> <span class="nav-text">Exercise 3.6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-7"><span class="nav-number">1.0.0.15.</span> <span class="nav-text">Exercise 3.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-8"><span class="nav-number">1.0.0.16.</span> <span class="nav-text">Exercise 3.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-9"><span class="nav-number">1.0.0.17.</span> <span class="nav-text">Exercise 3.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-10"><span class="nav-number">1.0.0.18.</span> <span class="nav-text">Exercise 3.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-11"><span class="nav-number">1.0.0.19.</span> <span class="nav-text">Exercise 3.11</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
