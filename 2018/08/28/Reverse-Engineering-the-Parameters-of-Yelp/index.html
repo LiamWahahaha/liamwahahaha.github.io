@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Scraper,Python,Classifier," />
 
 
 
@@ -95,16 +95,18 @@
 
 
 
-<meta name="description" content="Liam&apos;s Personal Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liam&#39;s Blog">
-<meta property="og:url" content="http://liamwahahaha.github.io/categories/Side-Projects/index.html">
+<meta name="description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
+<meta name="keywords" content="Scraper,Python,Classifier">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse-Engineering-the-Parameters-of-Yelp">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/08/28/Reverse-Engineering-the-Parameters-of-Yelp/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Liam&apos;s Personal Blog">
+<meta property="og:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-28T20:55:56.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liam&#39;s Blog">
-<meta name="twitter:description" content="Liam&apos;s Personal Blog">
+<meta name="twitter:title" content="Reverse-Engineering-the-Parameters-of-Yelp">
+<meta name="twitter:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
 
 
 
@@ -133,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://liamwahahaha.github.io/categories/Side-Projects/"/>
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/08/28/Reverse-Engineering-the-Parameters-of-Yelp/"/>
 
 
 
 
 
-  <title>Category: Side Projects | Liam's Blog</title>
+  <title>Reverse-Engineering-the-Parameters-of-Yelp | Liam's Blog</title>
   
 
 
@@ -164,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,83 +280,197 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Side Projects<small>Category</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/08/28/Reverse-Engineering-the-Parameters-of-Yelp/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/28/Reverse-Engineering-the-Parameters-of-Yelp/" itemprop="url">
-              
-                <span itemprop="name">Reverse-Engineering-the-Parameters-of-Yelp</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Reverse-Engineering-the-Parameters-of-Yelp</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-28T16:43:54-04:00"
-              content="2018-08-28" >
-          08-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-28T16:43:54-04:00">
+                2018-08-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Side-Projects/" itemprop="url" rel="index">
+                    <span itemprop="name">Side Projects</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Side-Projects/Coffee-Scraper/" itemprop="url" rel="index">
+                    <span itemprop="name">Coffee Scraper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/coffee-with-latte-art-scraper/" itemprop="url">
-              
-                <span itemprop="name">coffee-with-latte-art scraper</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T13:25:00-04:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p><strong>Base_URL:</strong></p>
+<p><a href="https://www.yelp.com/search" target="_blank" rel="noopener">https://www.yelp.com/search</a>?</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p>open_time:</p>
+<p>(day_of_the_week - 1) <em> 24 </em> 60 + what_time_in_minutes, day_of_the_week starts from Monday</p>
+<p>e.g.</p>
+<ul>
+<li>open at 8:00 pm, Mon =&gt; open_time= 1200 (0 <em> 24 </em> 60 + 20 * 60)</li>
+<li>open at 8:00 pm, Tue =&gt; open_time= 2640 (1 <em> 24 </em> 60 + 20 * 60)</li>
+<li>open at 8:00 pm, Wed =&gt; open_time= 4080 (2 <em> 24 </em> 60 + 20 * 60)</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Scraper/" rel="tag"># Scraper</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Classifier/" rel="tag"># Classifier</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/28/Edit-Distance/" rel="next" title="Edit Distance">
+                <i class="fa fa-chevron-left"></i> Edit Distance
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -362,6 +478,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -560,10 +680,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
