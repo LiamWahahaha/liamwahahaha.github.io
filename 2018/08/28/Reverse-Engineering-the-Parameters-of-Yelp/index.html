@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
+<meta name="description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + minute_of_the_day, where day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1">
 <meta name="keywords" content="Scraper,Python,Classifier">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reverse-Engineering-the-Parameters-of-Yelp">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/28/Reverse-Engineering-the-Parameters-of-Yelp/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
+<meta property="og:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + minute_of_the_day, where day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-28T20:55:56.235Z">
+<meta property="og:updated_time" content="2018-08-29T03:44:33.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reverse-Engineering-the-Parameters-of-Yelp">
-<meta name="twitter:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + what_time_in_minutes, day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1200">
+<meta name="twitter:description" content="Base_URL: https://www.yelp.com/search? Parameters:  open_time: (day_of_the_week - 1)  24  60 + minute_of_the_day, where day_of_the_week starts from Monday e.g.  open at 8:00 pm, Mon =&amp;gt; open_time= 1">
 
 
 
@@ -399,7 +399,7 @@
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><p>open_time:</p>
-<p>(day_of_the_week - 1) <em> 24 </em> 60 + what_time_in_minutes, day_of_the_week starts from Monday</p>
+<p>(day_of_the_week - 1) <em> 24 </em> 60 + minute_of_the_day, where day_of_the_week starts from Monday</p>
 <p>e.g.</p>
 <ul>
 <li>open at 8:00 pm, Mon =&gt; open_time= 1200 (0 <em> 24 </em> 60 + 20 * 60)</li>
