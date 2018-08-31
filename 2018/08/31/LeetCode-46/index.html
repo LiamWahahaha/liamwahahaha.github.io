@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Algorithm1234567891011121314151617from combinatorial_search import Backtrackingclass Permutation(Backtracking):    def is_a_solution(self, current_answer, kth, info):        return kth == len(info)">
+<meta name="description" content="ProblemGiven a collection of distinct integers, return all possible permutations. Example12345678910Input: [1,2,3]Output:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]">
 <meta name="keywords" content="Backtracking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Constructing all permutations">
-<meta property="og:url" content="http://liamwahahaha.github.io/2018/08/31/permutation/index.html">
+<meta property="og:title" content="LeetCode #46 Permutations">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/08/31/LeetCode-46/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Algorithm1234567891011121314151617from combinatorial_search import Backtrackingclass Permutation(Backtracking):    def is_a_solution(self, current_answer, kth, info):        return kth == len(info)">
+<meta property="og:description" content="ProblemGiven a collection of distinct integers, return all possible permutations. Example12345678910Input: [1,2,3]Output:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-31T21:37:45.259Z">
+<meta property="og:updated_time" content="2018-08-31T22:01:59.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Constructing all permutations">
-<meta name="twitter:description" content="Algorithm1234567891011121314151617from combinatorial_search import Backtrackingclass Permutation(Backtracking):    def is_a_solution(self, current_answer, kth, info):        return kth == len(info)">
+<meta name="twitter:title" content="LeetCode #46 Permutations">
+<meta name="twitter:description" content="ProblemGiven a collection of distinct integers, return all possible permutations. Example12345678910Input: [1,2,3]Output:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://liamwahahaha.github.io/2018/08/31/permutation/"/>
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/08/31/LeetCode-46/"/>
 
 
 
 
 
-  <title>Constructing all permutations | Liam's Blog</title>
+  <title>LeetCode #46 Permutations | Liam's Blog</title>
   
 
 
@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/08/31/permutation/">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/08/31/LeetCode-46/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Constructing all permutations</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode #46 Permutations</h1>
         
 
         <div class="post-meta">
@@ -323,7 +323,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-31T17:00:15-04:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-31T17:54:45-04:00">
                 2018-08-31
               </time>
             
@@ -339,7 +339,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-08-31T17:37:45-04:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2018-08-31T18:01:59-04:00">
                 2018-08-31
               </time>
             
@@ -380,8 +380,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -391,8 +391,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Backtracking/" itemprop="url" rel="index">
+                    <span itemprop="name">Backtracking</span>
                   </a>
                 </span>
 
@@ -428,10 +439,15 @@
       
 
       
-        <h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from combinatorial_search import Backtracking</span><br><span class="line"></span><br><span class="line">class Permutation(Backtracking):</span><br><span class="line">    def is_a_solution(self, current_answer, kth, info):</span><br><span class="line">        return kth == len(info)</span><br><span class="line"></span><br><span class="line">    def generate_candidates(self, current_answer, kth, info):</span><br><span class="line">        return [candidate for candidate in info if candidate not in current_answer]</span><br><span class="line"></span><br><span class="line">    def process_solution(self, current_answer, kth, info):</span><br><span class="line">        print(current_answer)</span><br><span class="line"></span><br><span class="line">    def permute(self, info):</span><br><span class="line">        self.backtrack([], 0, info)</span><br><span class="line"></span><br><span class="line"># test case</span><br><span class="line">Permutation().permute([1,2,3])</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://en.wikipedia.org/wiki/Permutation" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Permutation</a></li>
-</ul>
+        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given a collection of <strong>distinct</strong> integers, return all possible permutations.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3,2],</span><br><span class="line">  [2,1,3],</span><br><span class="line">  [2,3,1],</span><br><span class="line">  [3,1,2],</span><br><span class="line">  [3,2,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><blockquote>
+<p>Method: Backtracking</p>
+<p>Time Complexity: </p>
+<p>Space Complexity:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permute</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        ret = []</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">is_a_solution</span><span class="params">(answer, kth, info)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> kth == len(info)</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">process_solution</span><span class="params">(answer, kth, info)</span>:</span></span><br><span class="line">            ret.append(answer[:])</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">construct_candidates</span><span class="params">(answer, kth, info)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> [elem <span class="keyword">for</span> elem <span class="keyword">in</span> info <span class="keyword">if</span> elem <span class="keyword">not</span> <span class="keyword">in</span> answer]</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(answer, kth, info)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> is_a_solution(answer, kth, info):</span><br><span class="line">                process_solution(answer, kth, info)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                kth += <span class="number">1</span></span><br><span class="line">                candidates = construct_candidates(answer, kth, info)</span><br><span class="line">                <span class="keyword">for</span> candidate <span class="keyword">in</span> candidates:</span><br><span class="line">                    answer.append(candidate)</span><br><span class="line">                    backtrack(answer, kth, info)</span><br><span class="line">                    answer.pop()</span><br><span class="line">        </span><br><span class="line">        backtrack([], <span class="number">0</span>, nums)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -462,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/31/Rat-in-a-Maze-Problem/" rel="next" title="Rat in a Maze Problem">
-                <i class="fa fa-chevron-left"></i> Rat in a Maze Problem
+              <a href="/2018/08/31/Constructing-all-subsets/" rel="next" title="Constructing all subsets">
+                <i class="fa fa-chevron-left"></i> Constructing all subsets
               </a>
             
           </div>
@@ -472,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/31/Constructing-all-subsets/" rel="prev" title="Constructing all subsets">
-                Constructing all subsets <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/31/LeetCode-784/" rel="prev" title="LeetCode #784 Letter Case Permutation">
+                LeetCode #784 Letter Case Permutation <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">3.</span> <span class="nav-text">Solution</span></a></li></ol></div>
             
 
           </div>
