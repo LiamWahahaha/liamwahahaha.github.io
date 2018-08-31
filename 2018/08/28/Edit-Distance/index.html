@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Problem: Given two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All">
+<meta name="description" content="ProblemGiven two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All of">
 <meta name="keywords" content="Dynamic Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Edit Distance">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/28/Edit-Distance/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Problem: Given two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All">
+<meta property="og:description" content="ProblemGiven two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All of">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-29T03:39:34.017Z">
+<meta property="og:updated_time" content="2018-08-31T21:08:33.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Edit Distance">
-<meta name="twitter:description" content="Problem: Given two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All">
+<meta name="twitter:description" content="ProblemGiven two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.  Insert Remove Replace  All of">
 
 
 
@@ -416,19 +416,16 @@
       
 
       
-        <p><strong>Problem:</strong></p>
-<p>Given two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.</p>
+        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given two strings str1 and str2 and below operations that can performed on str1. Find minimum number of edits (operations) required to convert ‘str1’ into ‘str2’.</p>
 <ol>
 <li>Insert</li>
 <li>Remove</li>
 <li>Replace</li>
 </ol>
 <p>All of the above operations are of equal cost.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input:   str1 = &quot;geek&quot;, str2 = &quot;gesek&quot;</span><br><span class="line">Output:  1</span><br><span class="line">We can convert str1 into str2 by inserting a &apos;s&apos;.</span><br><span class="line"></span><br><span class="line">Input:   str1 = &quot;cat&quot;, str2 = &quot;cut&quot;</span><br><span class="line">Output:  1</span><br><span class="line">We can convert str1 into str2 by replacing &apos;a&apos; with &apos;u&apos;.</span><br><span class="line"></span><br><span class="line">Input:   str1 = &quot;sunday&quot;, str2 = &quot;saturday&quot;</span><br><span class="line">Output:  3</span><br><span class="line">Last three and first characters are same.  We basically</span><br><span class="line">need to convert &quot;un&quot; to &quot;atur&quot;.  This can be done using</span><br><span class="line">below three operations. </span><br><span class="line">Replace &apos;n&apos; with &apos;r&apos;, insert t, insert a</span><br></pre></td></tr></table></figure>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input:   str1 = &quot;geek&quot;, str2 = &quot;gesek&quot;</span><br><span class="line">Output:  1</span><br><span class="line">We can convert str1 into str2 by inserting a &apos;s&apos;.</span><br><span class="line"></span><br><span class="line">Input:   str1 = &quot;cat&quot;, str2 = &quot;cut&quot;</span><br><span class="line">Output:  1</span><br><span class="line">We can convert str1 into str2 by replacing &apos;a&apos; with &apos;u&apos;.</span><br><span class="line"></span><br><span class="line">Input:   str1 = &quot;sunday&quot;, str2 = &quot;saturday&quot;</span><br><span class="line">Output:  3</span><br><span class="line">Last three and first characters are same.  We basically</span><br><span class="line">need to convert &quot;un&quot; to &quot;atur&quot;.  This can be done using</span><br><span class="line">below three operations. </span><br><span class="line">Replace &apos;n&apos; with &apos;r&apos;, insert t, insert a</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><strong>Algorithm:</strong></p>
-<blockquote>
+<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h3><blockquote>
 <p>Method: Dynamic Programming</p>
 <p>Problem Structure:</p>
 <ul>
@@ -451,12 +448,10 @@
 <p>Time Complexity: O(mn), where m is the length of string x and n is the length of string y</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit_distance_dp</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    opt = [[<span class="number">0</span>] * (len(y) + <span class="number">1</span>)<span class="keyword">for</span> _ <span class="keyword">in</span> range(len(x) + <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> idx_x <span class="keyword">in</span> range(len(x) + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> idx_y <span class="keyword">in</span> range(len(y) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> idx_x == <span class="number">0</span>:</span><br><span class="line">                opt[idx_x][idx_y] = idx_y</span><br><span class="line">            <span class="keyword">elif</span> idx_y == <span class="number">0</span>:</span><br><span class="line">                opt[idx_x][idx_y] = idx_x</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                alpha = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> x[idx_x - <span class="number">1</span>] == y[idx_y - <span class="number">1</span>]:</span><br><span class="line">                    alpha = <span class="number">0</span></span><br><span class="line">                opt[idx_x][idx_y] = min(opt[idx_x - <span class="number">1</span>][idx_y - <span class="number">1</span>] + alpha,\</span><br><span class="line">                                            opt[idx_x - <span class="number">1</span>][idx_y] + <span class="number">1</span>,\</span><br><span class="line">                                            opt[idx_x][idx_y - <span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> opt[len(x)][len(y)]</span><br></pre></td></tr></table></figure>
-<p><strong>Weird Bug:</strong></p>
-<p>The following two scripts will produce different answers.</p>
+<h3 id="Weird-Bug"><a href="#Weird-Bug" class="headerlink" title="Weird Bug"></a>Weird Bug</h3><p>The following two scripts will produce different answers.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opt = [[0] * (len(y) + 1)for _ in range(len(x) + 1)]</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opt = [[0] * (len(y) + 1)] * (len(x) + 1)</span><br></pre></td></tr></table></figure>
-<p><strong>Reference:</strong></p>
-<ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
 <li><a href="https://www.geeksforgeeks.org/edit-distance-dp-5/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/edit-distance-dp-5/</a></li>
 </ul>
 
@@ -553,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -569,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -580,7 +584,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -591,7 +595,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -616,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm"><span class="nav-number">3.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weird-Bug"><span class="nav-number">4.</span> <span class="nav-text">Weird Bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
