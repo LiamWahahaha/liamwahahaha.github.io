@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Logic,Prolog," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Rewrite the following statements in formal way:  All real numbers have nonnegative squares. (Equivalent to Every Real number has a nonnegative square) $\forall X \in R, x^2 \geq 0$   All real numbers">
+<meta name="keywords" content="Logic,Prolog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computing With Logic Quiz (3)">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/05/Computing-With-Logic-Quiz/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Rewrite the following statements in formal way:  All real numbers have nonnegative squares. (Equivalent to Every Real number has a nonnegative square) $\forall X \in R, x^2 \geq 0$   All real numbers">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-06T01:52:39.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Computing With Logic Quiz (3)">
+<meta name="twitter:description" content="Rewrite the following statements in formal way:  All real numbers have nonnegative squares. (Equivalent to Every Real number has a nonnegative square) $\forall X \in R, x^2 \geq 0$   All real numbers">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/05/Computing-With-Logic-Quiz/"/>
+
+
+
+
+
+  <title>Computing With Logic Quiz (3) | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/05/Computing-With-Logic-Quiz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Computing With Logic Quiz (3)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T18:22:36-04:00">
+                2018-09-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-05T21:52:39-04:00">
+                2018-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p>Rewrite the following statements in formal way:</p>
+<ul>
+<li><p><code>All real numbers have nonnegative squares.</code> (Equivalent to <code>Every Real number has a nonnegative square</code>)</p>
+<p>$\forall X \in R, x^2 \geq 0$ </p>
+</li>
+<li><p><code>All real numbers have squares not equal to -1.</code> (Equivalent to <code>No real numbers have squares equal to -1</code>)</p>
+<p>$\forall X \in R, X^2 \text{ \}= -1$ </p>
+</li>
+<li><p><code>There is a positive integer whose square is equal to itself.</code> (Equivalent to <code>Some positive integer equals its own square.</code>)</p>
+<p>$\exist X \in Z^+ \text{ such that} X^2 = X$ </p>
+<a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p>Consider the Tarski world, write the following statements using the formal logical notation:</p>
+<ul>
+<li><p><code>There is a triangle x such that for all squares y, x is above y.</code></p>
+<p>$\exist X \text{ s.t. } \forall Y, triangle(X) \and (square(Y)\rightarrow above(X, Y))$ </p>
+<p>$\exist X \text{ s.t. } triangle(X) \and (\forall Y, square(Y) \rightarrow above(X, Y))$  </p>
+</li>
+<li><p><code>There is a triangle x such that for all circles y, x is above y.</code></p>
+<p>$\exist X, \text{ s.t. } triangle(X) \and (\forall Y, circle(Y)\rightarrow above(X, Y))$ </p>
+<p>$\exist X \text{ s.t. } \forall Y, triangle(X) \and (circle(Y)\rightarrow above(X, Y))$    </p>
+</li>
+<li><p><code>For all circles x, there is a square y such that y is to the right of x.</code></p>
+<p>$\forall X \text{ s.t. } circle(X)\rightarrow (\exist Y \text{ s.t. } square(Y) \and rightOf(Y, X))$   </p>
+</li>
+<li><p><code>For all circles x and for all triangles y, x is to the right of y.</code></p>
+<p>$\forall X, \forall Y, (\text{ s.t. } circle(X) \and triangle(Y) \rightarrow rightOf(X, Y))$ </p>
+</li>
+<li><p><code>There is a circle x and there is a square y such that x and y have  the same color.</code></p>
+<p>$\exist X, \exist Y, \text{ s.t. } circle(X) \and triangle(Y) \and sameColor(X, Y)$ </p>
+<p>$\exist X, \exist Y, \exist C, \text{ s.t. } circle(X) \and square(Y) \and color(X, C) \and color(Y, C)$  </p>
+<p>$\exist X, \exist Y, \exist C, \text{ s.t. } circle(X) \and square(Y) \and C(X) \and C(Y) \and color(C)$  </p>
+</li>
+<li><p><code>There is a circle x and there is a triangle y such that x and y have the same color.</code></p>
+<p>$\exist X, \exist Y, \text{ s.t. } circle(X) \and triangle(Y) \and sameColor(X, Y)$ </p>
+</li>
+</ul>
+</li>
+<li><p>Let D = {-48, -14, -8, 0, 1, 3, 16, 23, 26, 32, 36}. Determine which of the following statements are true and which are false. Provide counterexamples for those statements that are false.</p>
+<ul>
+<li><p>$\forall X \in D, \text{ if X is odd then } X &gt; 0$</p>
+<p>True</p>
+</li>
+<li><p>$\forall X \in D, \text{ if X is less than 0 then X is even}$ </p>
+<p>True</p>
+</li>
+<li><p>$\forall X \in D, \text{ if X is even then X &lt; 0}$</p>
+<p>False, counterexample: for 16, true $\rightarrow$ false =&gt; false</p>
+</li>
+<li><p>$\forall X \in D, \text{ if the ones digit of X is 2, then the tens digit is 3 or 4}$ </p>
+<p>True</p>
+</li>
+<li><p>$\forall X \in D, \text{ if the ones digit of X is 6, then the tens digit is 1 or 2}$ </p>
+<p>False, counterexample: 36</p>
+</li>
+</ul>
+</li>
+<li><p>Write a negation for each statement:</p>
+<ul>
+<li><p>$\forall  X \in R, \text{ if } X^2 \geq 1 \text{ then } X &gt; 0$ </p>
+<p>$\exist X \in R, \text{ s.t. } X^2 \geq 1 \and X \leq 0$  </p>
+</li>
+<li><p>$\forall D \in Z, \text{6/D is } \in Z \text{ then } D = 3$ </p>
+<p>$\exist D \in Z, \text{ s.t. 6/D} is \in Z \and D \text{  \}= 3 $ </p>
+</li>
+<li><p>$\forall X \in R, \text{ if } X(X+1) &gt; 0 \text{ then } X &gt; 0 \text{ or } X &lt; -1$ </p>
+<p>$\exist X \in R, \text{ s.t. } X(X+1)&gt;0 \and (X\leq0 \and X\geq -1)$ </p>
+</li>
+<li><p>$\forall X \in Z, \text{if X is prime then X is odd or X = 2}$ </p>
+<p>$\exist X \in Z, \text{ s.t. X is prime} \and (X \text{ is even} \and X \text{ \}=2)$   </p>
+</li>
+<li><p>$\forall A, B, C \in Z, \text{ if A - B is even and B - C is even then A - C is even}$</p>
+<p>$\exist A, B, C \in Z, \text{ s.t. } (\text{ A - B is even and B - C is even}) \and \text{ A - C is odd}$ </p>
+</li>
+<li><p>$\forall X \in Z, \text{ if X is divisible by 6, then X is divisible by 2 and X is divisible by 3}$ </p>
+<p>$\exist X \in Z, \text{ s.t. X is divisible by 6} \and (\text{ X is not divisible by 2 } \or \text{ X is not divisible by 3})$  </p>
+</li>
+<li><p>If the square of an integer is odd, then the integer is odd.</p>
+<p>$\exist X \in Z, \text{ s.t. } X^2 \text{ is odd } \and \text{ X is even}$ </p>
+</li>
+<li><p>If a function is differentiable then it is continuous</p>
+<p>$\exist \text{F a function, s.t. F is differentiable} \and \text{F is not continuous}$ </p>
+</li>
+</ul>
+</li>
+<li><p>Write the negation for each statement:</p>
+<ul>
+<li><p>$\forall \text{ colors C,}\exist \text{ an animal A s.t. A is colored C}$ </p>
+<p>$\exist \text{ color C}, \forall \text{ animals A, s.t. A is not colored C}$ </p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Logic/" rel="tag"># Logic</a>
+          
+            <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/05/LeetCode-102/" rel="next" title="LeetCode #102 Binary Tree Level Order Traversal">
+                <i class="fa fa-chevron-left"></i> LeetCode #102 Binary Tree Level Order Traversal
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
