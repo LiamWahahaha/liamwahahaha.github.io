@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Computer Vision,Vocabularies," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
+<meta name="keywords" content="Computer Vision,Vocabularies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Vision: Image Formation I">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/augment.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/conic.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/affine.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/interpolate.png">
+<meta property="og:updated_time" content="2018-09-13T17:43:52.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Computer Vision: Image Formation I">
+<meta name="twitter:description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/augment.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/"/>
+
+
+
+
+
+  <title>Computer Vision: Image Formation I | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Computer Vision: Image Formation I</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-13T11:45:22-04:00">
+                2018-09-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T13:43:52-04:00">
+                2018-09-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Vision/Image-Formation/" itemprop="url" rel="index">
+                    <span itemprop="name">Image Formation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Geometric-primitives-and-transformations"><a href="#Geometric-primitives-and-transformations" class="headerlink" title="Geometric primitives and transformations"></a>Geometric primitives and transformations</h3><h4 id="Geometric-primitives"><a href="#Geometric-primitives" class="headerlink" title="Geometric primitives"></a>Geometric primitives</h4><ul>
+<li>2D points</li>
+<li>2D lines</li>
+<li>2D conics</li>
+<li>3D points</li>
+<li>3D planes</li>
+<li>3D lines</li>
+<li>3D quadrics</li>
+</ul>
+<a id="more"></a>
+<h4 id="2D-transformations"><a href="#2D-transformations" class="headerlink" title="2D transformations"></a>2D transformations</h4><ul>
+<li><p>Translation</p>
+<p>2D translations can be written as $\bold{x’} = \bold{x} +\bold{t}$</p>
+</li>
+<li><p>Rotation + translation</p>
+<p>This transformation is also known as 2D <em>rigid body motion</em> or the 2D <em>Euclidean transformation</em> (since Euclidean distances are preserved). It can be written as $\bold{x’} = \bold{Rx} + \bold{t}$</p>
+</li>
+<li><p>Scaled rotation</p>
+<p>Also known as the <em>similarity transform</em>, this transformation can be expressed as $\bold{x’}=s\bold{Rx}+\bold{t}$ where s is an arbitrary scale factor.</p>
+<p>The similarity transform preserves angles between lines.</p>
+</li>
+<li><p>Affine</p>
+<p>The affine transformation is written as $\bold{x’} = \bold{A \bar{x}}$, where $\bold{A}$ is an arbitrary $2 \times 3$ matrix.</p>
+<p>Parallel lines remain parallel under affine transformations.</p>
+<p>An affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line.[<a href="#https://en.wikipedia.org/wiki/Affine_transformation">2</a>]</p>
+</li>
+<li><p>Projective</p>
+<p>This transformation, also known as a <em>perspective transform</em> or <em>homography</em>, operates on homogeneous coordinates, $\bold{\tilde{x’}} = \bold{\tilde{H}\tilde{x}}$, where $\bold{\tilde{H}}$ is an $3 \times 3$ matrix.</p>
+<p>Perspective transformations preserve straight lines (i.e., they remain straight after the transformation).</p>
+</li>
+<li><p>Hierarchy of 2D transformations</p>
+</li>
+<li><p>Stretch/squash</p>
+<p>This transformation changes the aspect ratio of an image,</p>
+<p>$$x’ = s_xx+t_x$$</p>
+<p>$$y’ = s_yy+t_y$$ </p>
+<p>, and is retricted form of an affine transformation. </p>
+</li>
+<li><p>Planar surface flow</p>
+<ul>
+<li><p>This eight-parrameter transformation arises when a planar surface undergoes a small 3D motion.</p>
+</li>
+<li><p>It can be thought of as a small motion approximation to a full homography.</p>
+</li>
+</ul>
+</li>
+<li><p>Bilinear interpolant</p>
+<p>This eight-parameter transform can be used to interpolate the deformation due to the motion of the four corner points of a square.</p>
+</li>
+</ul>
+<h4 id="3D-transformations"><a href="#3D-transformations" class="headerlink" title="3D transformations"></a>3D transformations</h4><ul>
+<li>Translation</li>
+<li>Rotation + translation</li>
+<li>Scaled rotation</li>
+<li>Affine</li>
+<li>Projective</li>
+</ul>
+<h4 id="3D-rotations"><a href="#3D-rotations" class="headerlink" title="3D rotations"></a>3D rotations</h4><h4 id="3D-to-2D-projections"><a href="#3D-to-2D-projections" class="headerlink" title="3D to 2D projections"></a>3D to 2D projections</h4><h4 id="Lens-distortions"><a href="#Lens-distortions" class="headerlink" title="Lens distortions"></a>Lens distortions</h4><h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><p>[1] <img src="/2018/09/13/Computer-Vision-Image-Formation/augment.png"></p>
+<p>[2] <img src="/2018/09/13/Computer-Vision-Image-Formation/conic.png"></p>
+<p>[3] <img src="/2018/09/13/Computer-Vision-Image-Formation/affine.png"></p>
+<p>[4] <img src="/2018/09/13/Computer-Vision-Image-Formation/interpolate.png"></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1] Computer Vision: Algorithms and Applications by Richard Szeliski (2010)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/Data-Science-Assembling-Data-Sets/" rel="next" title="Data Science Assembling Data Sets">
+                <i class="fa fa-chevron-left"></i> Data Science Assembling Data Sets
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Geometric-primitives-and-transformations"><span class="nav-number">1.</span> <span class="nav-text">Geometric primitives and transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Geometric-primitives"><span class="nav-number">1.1.</span> <span class="nav-text">Geometric primitives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2D-transformations"><span class="nav-number">1.2.</span> <span class="nav-text">2D transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-transformations"><span class="nav-number">1.3.</span> <span class="nav-text">3D transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-rotations"><span class="nav-number">1.4.</span> <span class="nav-text">3D rotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-to-2D-projections"><span class="nav-number">1.5.</span> <span class="nav-text">3D to 2D projections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lens-distortions"><span class="nav-number">1.6.</span> <span class="nav-text">Lens distortions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">2.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
