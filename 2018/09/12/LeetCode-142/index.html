@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list. Solution Method: Time Complexity: Space Complexity:  123456789">
+<meta name="description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list.">
 <meta name="keywords" content="Linked List,Two Pointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode #142 Linked List Cycle II">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/12/LeetCode-142/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list. Solution Method: Time Complexity: Space Complexity:  123456789">
+<meta property="og:description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-12T19:36:15.172Z">
+<meta property="og:updated_time" content="2018-09-13T17:50:11.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode #142 Linked List Cycle II">
-<meta name="twitter:description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list. Solution Method: Time Complexity: Space Complexity:  123456789">
+<meta name="twitter:description" content="ProblemGiven a linked list, return the node where the cycle begins. If there is no cycle, return null. NoteDo not modify the linked list.">
 
 
 
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-12T15:36:15-04:00">
-                2018-09-12
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T13:50:11-04:00">
+                2018-09-13
               </time>
             
           </span>
@@ -380,8 +380,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -402,8 +402,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -413,8 +413,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -485,13 +485,15 @@
       
         <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
 <h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>Do not modify the linked list.</p>
+<a id="more"></a>
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><blockquote>
-<p>Method:</p>
+<p>Method: Two Pointers</p>
 <p>Time Complexity:</p>
 <p>Space Complexity:</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># Definition for singly-linked list.</span><br><span class="line"># class ListNode(object):</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.next = None</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def detectCycle(self, head):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        param head, a ListNode   </span><br><span class="line">        return a list node</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            fast = head.next</span><br><span class="line">            slow = head</span><br><span class="line">            while fast is not slow:</span><br><span class="line">                fast = fast.next.next</span><br><span class="line">                slow = slow.next</span><br><span class="line">        except:</span><br><span class="line">            # if there is an exception, we reach the end and there is no cycle</span><br><span class="line">            return None</span><br><span class="line"></span><br><span class="line">        # since fast starts at head.next, we need to move slow one step forward</span><br><span class="line">        slow = slow.next</span><br><span class="line">        while head is not slow:</span><br><span class="line">            head = head.next</span><br><span class="line">            slow = slow.next</span><br><span class="line"></span><br><span class="line">        return head</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://leetcode.com/problems/linked-list-cycle-ii/discuss/44902/Sharing-my-Python-solution" target="_blank" rel="noopener">https://leetcode.com/problems/linked-list-cycle-ii/discuss/44902/Sharing-my-Python-solution</a></p>
+
       
     </div>
     
@@ -612,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -623,7 +625,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -634,7 +636,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
