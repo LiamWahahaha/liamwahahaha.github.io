@@ -294,6 +294,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/14/Analysis-of-Algorithms-Lecture-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/Analysis-of-Algorithms-Lecture-1/" itemprop="url">Analysis of Algorithms Lecture 1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-14T21:19:37-04:00">
+                2018-09-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T23:07:05-04:00">
+                2018-09-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/Basic-Concepts/" itemprop="url" rel="index">
+                    <span itemprop="name">Basic Concepts</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="What-should-we-focus-on-when-we-are-designing-an-algorithm"><a href="#What-should-we-focus-on-when-we-are-designing-an-algorithm" class="headerlink" title="What should we focus on when we are designing an algorithm?"></a>What should we focus on when we are designing an algorithm?</h3><ul>
+<li><p>No. 1 focus of algorithm is <strong>correctness</strong></p>
+</li>
+<li><p>No. 2 focus of algorithm is the <strong>running time</strong> (how fast can this algorithm be)</p>
+<ul>
+<li><p>This depends on input size too.</p>
+</li>
+<li><p>So how do we compare?</p>
+<blockquote>
+<ul>
+<li><p>We first fix input size and then</p>
+</li>
+<li><p>Typically we use n as the size of input</p>
+</li>
+<li><p>And use f(n) as the function with input size n</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>e.g.</p>
+<blockquote>
+<ul>
+<li><p>Linear running time: f(n) = 2n</p>
+</li>
+<li><p>Quadratic running time: f(n) = n^2</p>
+</li>
+<li><p>Polynomial running time: f(n) = n, n^2, n^3, n^4, ….</p>
+</li>
+<li><p>Exponential running time: f(n) = 2^n, 3^n, e^n, …</p>
+<p>Exponential running time grow a lot faster</p>
+</li>
+<li><p>Logarithm running time: f(n) = log n, ln n, log_3 n, log^2 n, log (log n), log^* n</p>
+<p>(log^* n =&gt; the bnumber of logs taken before we get a value is less than 1)</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Rule of thumb:</p>
+<p>We don’t want exponential running time.</p>
+<p>We really care how does an algorithm scale with size of input.</p>
+</li>
+<li><p>n! approximately equals to (2 Pi n)^(0.5)(n/e)^n (1 + O(1))</p>
+<p>=&gt; log (n!) approximately equals to n log n</p>
+</li>
+<li><p>Asymptotic behavior</p>
+<ul>
+<li>Upper bound: big O</li>
+<li>Lower bound: big Omega </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Running-time-exercises"><a href="#Running-time-exercises" class="headerlink" title="Running time exercises"></a>Running time exercises</h3><h4 id="Find-max"><a href="#Find-max" class="headerlink" title="Find max"></a>Find max</h4><ul>
+<li><p>Input: n numbers (not sorted)</p>
+</li>
+<li><p>Running time: O(n)</p>
+</li>
+</ul>
+<h4 id="Merge-two-sorted-lists"><a href="#Merge-two-sorted-lists" class="headerlink" title="Merge two sorted lists"></a>Merge two sorted lists</h4><ul>
+<li>Input: A, B are two lists of n numbers in increasing order</li>
+<li>Output: one single sorted list</li>
+<li>Running time: O(2n)</li>
+</ul>
+<h4 id="Charging-scheme"><a href="#Charging-scheme" class="headerlink" title="Charging scheme"></a>Charging scheme</h4><ul>
+<li>When you cannot charge something based on original scheme, you charge something related</li>
+</ul>
+<h4 id="Merge-sort-divide-and-conquer-techniques"><a href="#Merge-sort-divide-and-conquer-techniques" class="headerlink" title="Merge sort (divide and conquer techniques)"></a>Merge sort (divide and conquer techniques)</h4><ul>
+<li><p>Input: n numbers (not sorted)</p>
+</li>
+<li><p>Output: n numbers (sorted)</p>
+</li>
+<li><p>Running Time: O(n log n)</p>
+</li>
+<li><p>Strategy:</p>
+<blockquote>
+<p>divide original list into two lists A and B</p>
+<p>mergesort(A)</p>
+<p>mergesort(B)</p>
+<p>merge(A and B)</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Closest-pair-problem"><a href="#Closest-pair-problem" class="headerlink" title="Closest pair problem"></a>Closest pair problem</h4><ul>
+<li><p>Problem: n points in the plane with (x, y) coordinates, find 2 points closest in distance</p>
+</li>
+<li><p>Solution: find all distance and find max of them</p>
+<p>i.e. C(n, 2) =&gt; O(n^2)</p>
+</li>
+</ul>
+<h4 id="Independent-set-problem"><a href="#Independent-set-problem" class="headerlink" title="Independent set problem"></a>Independent set problem</h4><ul>
+<li><p>What are independent sets? They are subset of points which do not conflict. i.e. set of vertices that have edges in between. </p>
+</li>
+<li><p>Problem: Check if the given graph G has k independent vertices.</p>
+</li>
+<li><p>Solution: </p>
+<ol>
+<li>Find all possible subsets with k vertices</li>
+<li>Check if each set satisifies</li>
+</ol>
+<p>No. of subsets = C(n, k) = n!/()(n - k)! k!) =&gt; O(n^k)</p>
+</li>
+</ul>
+<h4 id="Maximum-independent-set-problem"><a href="#Maximum-independent-set-problem" class="headerlink" title="Maximum independent set problem"></a>Maximum independent set problem</h4><ul>
+<li>Problem: Give the largest independent set of k vertices.</li>
+<li>Solution: use previous algorithm and try for all k. i.e. C(n, 1) + C(n, 2) + … + C(n, n) = 2^n (exponential running time)</li>
+</ul>
+<h4 id="Traveling-salesman-problem"><a href="#Traveling-salesman-problem" class="headerlink" title="Traveling salesman problem"></a>Traveling salesman problem</h4><ul>
+<li>Problem: A sales man travels to n cities. The distances between the cities are given. Find shortest tour of n cities.</li>
+<li>Solution: Enumerate all possible paths, i.e. n! ~ n^n</li>
+</ul>
+<h4 id="Binary-search-Sublinear-algorithm-grows-slower-than-linear"><a href="#Binary-search-Sublinear-algorithm-grows-slower-than-linear" class="headerlink" title="Binary search (Sublinear algorithm, grows slower than linear)"></a>Binary search (Sublinear algorithm, grows slower than linear)</h4><ul>
+<li>Problem: Is a number q in the sorted n numbers?</li>
+<li>Solution: Each comparison throws away half the numbers. =&gt; O(log n)</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/14/LeetCode-112/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -341,7 +620,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:11:42-04:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:17:00-04:00">
                 2018-09-14
               </time>
             
@@ -373,6 +652,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/" itemprop="url" rel="index">
                     <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -415,17 +705,6 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/Easy/" itemprop="url" rel="index">
                     <span itemprop="name">Easy</span>
                   </a>
@@ -448,7 +727,18 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Depth-first-Search/" itemprop="url" rel="index">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/" itemprop="url" rel="index">
+                    <span itemprop="name">Graph Traversal</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/Depth-first-Search/" itemprop="url" rel="index">
                     <span itemprop="name">Depth-first Search</span>
                   </a>
                 </span>
@@ -591,7 +881,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T17:38:49-04:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:17:33-04:00">
                 2018-09-14
               </time>
             
@@ -632,8 +922,30 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
                     <span itemprop="name">Difficulties</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -654,30 +966,41 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Depth-first-Search/" itemprop="url" rel="index">
-                    <span itemprop="name">Depth-first Search</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
                     <span itemprop="name">Binary Tree</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Recursive/" itemprop="url" rel="index">
+                    <span itemprop="name">Recursive</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/" itemprop="url" rel="index">
+                    <span itemprop="name">Graph Traversal</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/Depth-first-Search/" itemprop="url" rel="index">
+                    <span itemprop="name">Depth-first Search</span>
                   </a>
                 </span>
 
@@ -827,7 +1150,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T16:56:07-04:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:17:53-04:00">
                 2018-09-14
               </time>
             
@@ -859,6 +1182,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/" itemprop="url" rel="index">
                     <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -901,17 +1235,6 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/Medium/" itemprop="url" rel="index">
                     <span itemprop="name">Medium</span>
                   </a>
@@ -945,7 +1268,18 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Depth-first-Search/" itemprop="url" rel="index">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/" itemprop="url" rel="index">
+                    <span itemprop="name">Graph Traversal</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/Depth-first-Search/" itemprop="url" rel="index">
                     <span itemprop="name">Depth-first Search</span>
                   </a>
                 </span>
@@ -1333,6 +1667,17 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
                     <span itemprop="name">Difficulties</span>
                   </a>
@@ -1346,17 +1691,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
                     <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -2030,6 +2364,17 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
                     <span itemprop="name">Difficulties</span>
                   </a>
@@ -2043,17 +2388,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
                     <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -2248,8 +2582,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T21:43:30-04:00">
-                2018-09-13
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:18:18-04:00">
+                2018-09-14
               </time>
             
           </span>
@@ -2289,6 +2623,17 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
                     <span itemprop="name">Difficulties</span>
                   </a>
@@ -2313,17 +2658,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
                     <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -2373,28 +2707,6 @@
 
                 
                 
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Built-in/" itemprop="url" rel="index">
-                    <span itemprop="name">Built-in</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Built-in/Sort/" itemprop="url" rel="index">
-                    <span itemprop="name">Sort</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -2432,278 +2744,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/13/LeetCode-215/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/13/LeetCode-226/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/13/LeetCode-226/" itemprop="url">LeetCode #226 Invert Binary Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-13T14:19:50-04:00">
-                2018-09-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T16:27:59-04:00">
-                2018-09-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Breadth-First-Search/" itemprop="url" rel="index">
-                    <span itemprop="name">Breadth First Search</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/Easy/" itemprop="url" rel="index">
-                    <span itemprop="name">Easy</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
-                    <span itemprop="name">Binary Tree</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Recursive/" itemprop="url" rel="index">
-                    <span itemprop="name">Recursive</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Depth-First-Search/" itemprop="url" rel="index">
-                    <span itemprop="name">Depth First Search</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Invert a binary tree.</p>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Input:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br></pre></td></tr></table></figure>
-<p>Output:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/13/LeetCode-226/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -2791,7 +2831,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2802,7 +2842,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2813,7 +2853,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
