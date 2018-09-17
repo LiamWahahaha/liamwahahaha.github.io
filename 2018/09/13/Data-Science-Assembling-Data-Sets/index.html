@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Vocabularies,Data Science," />
+  <meta name="keywords" content="Data Science,Vocabularies," />
 
 
 
@@ -96,7 +96,7 @@
 
 
 <meta name="description" content="Data Munging Good data scientists spend most of their time cleaning and formatting data. The rest spend most of their time complainging there is no data available. Data munging or data wrangling is th">
-<meta name="keywords" content="Vocabularies,Data Science">
+<meta name="keywords" content="Data Science,Vocabularies">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Science Assembling Data Sets">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/13/Data-Science-Assembling-Data-Sets/index.html">
@@ -106,7 +106,8 @@
 <meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Data-Science-Assembling-Data-Sets/munge.png">
 <meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Data-Science-Assembling-Data-Sets/wrangle.png">
 <meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Data-Science-Assembling-Data-Sets/artifact.png">
-<meta property="og:updated_time" content="2018-09-13T17:49:18.516Z">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Data-Science-Assembling-Data-Sets/whiff.png">
+<meta property="og:updated_time" content="2018-09-17T17:48:39.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Science Assembling Data Sets">
 <meta name="twitter:description" content="Data Munging Good data scientists spend most of their time cleaning and formatting data. The rest spend most of their time complainging there is no data available. Data munging or data wrangling is th">
@@ -343,8 +344,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T13:49:18-04:00">
-                2018-09-13
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-17T13:48:39-04:00">
+                2018-09-17
               </time>
             
           </span>
@@ -405,7 +406,7 @@
 <li><code>Data munging</code> or <code>data wrangling</code> is the art of acquiring data and preparing it for analysis.</li>
 </ul>
 <a id="more"></a>
-<h3 id="Language-for-Data-Science"><a href="#Language-for-Data-Science" class="headerlink" title="Language for Data Science"></a>Language for Data Science</h3><ul>
+<h4 id="Language-for-Data-Science"><a href="#Language-for-Data-Science" class="headerlink" title="Language for Data Science"></a>Language for Data Science</h4><ul>
 <li><p>Python: contains libraries and features (e.g. regular expressions) for easier munging</p>
 <ul>
 <li><p>Notebook Environments: Mixing code, data, computational results, and text are essential for projects to be:</p>
@@ -419,7 +420,12 @@
 </li>
 </ul>
 </li>
-<li><p>R: programming language of statisticians</p>
+<li><p>Perl: used to be the go to language for data munging on the web, before Python ate it for lunch.</p>
+<ul>
+<li>Don’t be surprised if you encounter it in some legacy project.</li>
+</ul>
+</li>
+<li><p>R: a programming language of statisticians with the deepest libraries available for data analysis and visualization</p>
 </li>
 <li><p>Matlab: fast and efficient matrix operations</p>
 </li>
@@ -434,9 +440,30 @@
 <li><p>Excel: bread and butter tool for exploration</p>
 </li>
 </ul>
-<h3 id="Data-Pipelines"><a href="#Data-Pipelines" class="headerlink" title="Data Pipelines"></a>Data Pipelines</h3><p>Notebooks make it easier to maintain data pipelines, the sequence of processing steps from start to finish.</p>
+<h5 id="The-Importance-of-Notebook-Environments"><a href="#The-Importance-of-Notebook-Environments" class="headerlink" title="The Importance of Notebook Environments"></a>The Importance of Notebook Environments</h5><p>The deliverable result of every data science project should be a <strong>computable notebook</strong> tying together the <strong>code</strong>, <strong>data</strong>, <strong>computational results</strong>, and <strong>written analysis</strong> of what you have learned in the process.</p>
+<p>The reason this is so important is that computational results are the product of long chains of <strong>parameter selections</strong> and <strong>design decisions</strong>. This creates several problems that are solved by notebook computing environments:</p>
+<ul>
+<li><p>Computations need to be <code>reproducible</code></p>
+<p>We must be able to run the same programs again from scratch, and get exactly the same result.</p>
+</li>
+<li><p>Computations must be <code>tweakable</code></p>
+<p>Often reconsideration or evaluation will prompt a change to one or more parameters or algorithms.</p>
+<ul>
+<li>A notebook is never finished until after the entire project is done.</li>
+</ul>
+</li>
+<li><p>Data pipelines need to be <code>documented</code></p>
+<p>Notebooks make it easier to maintain data pipelines, the sequence of processing steps from start to finish.</p>
 <p><strong>Expect</strong> to have to redo your analysis from scratch, so build your code to make it possible!</p>
-<h3 id="Standard-Data-Formats"><a href="#Standard-Data-Formats" class="headerlink" title="Standard Data Formats"></a>Standard Data Formats</h3><p>Accepted standards are now available:</p>
+</li>
+</ul>
+<h5 id="Standard-Data-Formats"><a href="#Standard-Data-Formats" class="headerlink" title="Standard Data Formats"></a>Standard Data Formats</h5><p>The best computational data formats have several useful properties:</p>
+<ul>
+<li>They are easy for computers to parse</li>
+<li>They are easy for people to read</li>
+<li>They are widely used by other tools and systems</li>
+</ul>
+<p>Accepted standards are now available:</p>
 <ul>
 <li><p>CSV files: for tables like spreadsheets</p>
 <ul>
@@ -455,13 +482,24 @@
 <li>human unreadable</li>
 </ul>
 </li>
-<li>JSON: Javascript Object Notation for APIs<ul>
+<li><p>JSON: Javascript Object Notation for APIs</p>
+<ul>
 <li>human readable</li>
 </ul>
 </li>
-<li>SQL databases: for multiple related tables</li>
+<li><p>SQL databases: for multiple related tables</p>
+<ul>
+<li>stands for structured query language</li>
 </ul>
-<h3 id="Where-Does-Data-Come-From"><a href="#Where-Does-Data-Come-From" class="headerlink" title="Where Does Data Come From?"></a>Where Does Data Come From?</h3><ul>
+</li>
+<li><p>Protocol buffers: a language/platform-neutral way of serializing structured data for communications and storage across applications</p>
+<ul>
+<li>essentially lighter weight versions of XML</li>
+<li>designed to communicate small amounts of data across programs like JSON</li>
+</ul>
+</li>
+</ul>
+<h4 id="Collecting-Data"><a href="#Collecting-Data" class="headerlink" title="Collecting Data"></a>Collecting Data</h4><h5 id="Where-Does-Data-Come-From"><a href="#Where-Does-Data-Come-From" class="headerlink" title="Where Does Data Come From?"></a>Where Does Data Come From?</h5><ul>
 <li><p>The critical issue in any modeling project is finding the right data set.</p>
 </li>
 <li><p>Large data sets often come with valuable metadata:</p>
@@ -474,8 +512,8 @@
 <li><p>Repurposing metadata requires imagination.</p>
 </li>
 </ul>
-<h3 id="Sources-of-Data"><a href="#Sources-of-Data" class="headerlink" title="Sources of Data"></a>Sources of Data</h3><ul>
-<li><p>Proprietary data sources</p>
+<h5 id="Sources-of-Data"><a href="#Sources-of-Data" class="headerlink" title="Sources of Data"></a>Sources of Data</h5><ul>
+<li><p>Companies and Proprietary data sources</p>
 <ul>
 <li>Facebook, Google, Amazon, Blue Cross, etc. have exciting user/transaction/log data sets.</li>
 <li>Most organizations have/ should have internal data sets of interest to their business.</li>
@@ -500,6 +538,13 @@
 </ul>
 </li>
 <li><p>Web search</p>
+<blockquote>
+<p>What is the difference between spidering and scraping?</p>
+<ul>
+<li>Spidering is the process of downloading the right set of pages for analysis.</li>
+<li>Scraping is the fine art of stripping this content from each page to prepare it for computational analysis.</li>
+</ul>
+</blockquote>
 <ul>
 <li><p>Scraping is the fine art of stripping text/data from a webpage.</p>
 </li>
@@ -566,9 +611,10 @@
 </li>
 </ul>
 </li>
-<li><a href="#https://toolbox.google.com/datasetsearch">Dataset search</a></li>
+<li><p><a href="#https://toolbox.google.com/datasetsearch">Dataset search</a></p>
+</li>
 </ul>
-<h3 id="Cleaning-Data-Garbage-In-Garbage-Out"><a href="#Cleaning-Data-Garbage-In-Garbage-Out" class="headerlink" title="Cleaning Data: Garbage In, Garbage Out"></a>Cleaning Data: Garbage In, Garbage Out</h3><p>Many issues arise in ensuring the sensible analysis of data from the field, including:</p>
+<h4 id="Cleaning-Data-Garbage-In-Garbage-Out"><a href="#Cleaning-Data-Garbage-In-Garbage-Out" class="headerlink" title="Cleaning Data: Garbage In, Garbage Out"></a>Cleaning Data: Garbage In, Garbage Out</h4><p>Many issues arise in ensuring the sensible analysis of data from the field, including:</p>
 <ul>
 <li>Distinguishing errors from artifacts</li>
 <li>Data compatibility/unification</li>
@@ -576,11 +622,20 @@
 <li>Estimating unobserved (zero) counts</li>
 <li>Outlier detection</li>
 </ul>
-<h3 id="Errors-vs-Artifacts"><a href="#Errors-vs-Artifacts" class="headerlink" title="Errors vs. Artifacts"></a>Errors vs. Artifacts</h3><ul>
-<li><code>Data errors</code> represent information that is fundamentally lost in acquisition.</li>
-<li><code>Artifacts</code> are systematic problems arising from processing done to data.</li>
+<h5 id="Errors-vs-Artifacts"><a href="#Errors-vs-Artifacts" class="headerlink" title="Errors vs. Artifacts"></a>Errors vs. Artifacts</h5><ul>
+<li><p><code>Data errors</code> represent information that is fundamentally lost in acquisition.</p>
+</li>
+<li><p><code>Artifacts</code> are systematic problems arising from processing done to data.</p>
+<blockquote>
+<p>The good news is that processing artifacts can be corrected, so long as the original raw data set remains available.</p>
+<p>The bad news is that these artifacts must be detected before they can be corrected.</p>
+<p>The key to detecting artifacts is the <strong>sniff test</strong>, examining the product closely enough to get a whiff of something bad. Something bad is usually something unexpected or surprising, because people are naturally optimists. Surprising observations are what data scientists live for.</p>
+<ul>
+<li>Such insights are the primary reason we do what we do. However, most surprises turn out to be artifacts, so we must look at them skeptically.</li>
 </ul>
-<p>The key to detecting artifacts is the <strong>sniff test</strong>, examining the product closely enough to get a whiff of something bad.</p>
+</blockquote>
+</li>
+</ul>
 <h3 id="First-time-Scientific-Authors-by-Years"><a href="#First-time-Scientific-Authors-by-Years" class="headerlink" title="First-time Scientific Authors by Years?"></a>First-time Scientific Authors by Years?</h3><p>In a bibliographic study, we analyzed PubMed data to identify the year of first publication for the $10^5$ most frequently cited authors.</p>
 <p><strong>What should the distribution of new top authors by year look like?</strong></p>
 <p>It is important to have a preconception of any result to help detect anomalies.</p>
@@ -588,6 +643,7 @@
 <h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><p>[1] <img src="/2018/09/13/Data-Science-Assembling-Data-Sets/munge.png"></p>
 <p>[2] <img src="/2018/09/13/Data-Science-Assembling-Data-Sets/wrangle.png"></p>
 <p>[3] <img src="/2018/09/13/Data-Science-Assembling-Data-Sets/artifact.png"></p>
+<p>[4] <img src="/2018/09/13/Data-Science-Assembling-Data-Sets/whiff.png"></p>
 
       
     </div>
@@ -605,9 +661,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
-          
             <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
           
         </div>
       
@@ -630,8 +686,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/13/Computer-Vision-Image-Formation/" rel="prev" title="Computer Vision: Image Formation I">
-                Computer Vision: Image Formation I <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/13/LeetCode-234/" rel="prev" title="LeetCode #234 Palindrome Linked List">
+                LeetCode #234 Palindrome Linked List <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -709,7 +765,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -720,7 +776,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -766,7 +822,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Munging"><span class="nav-number">1.</span> <span class="nav-text">Data Munging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Language-for-Data-Science"><span class="nav-number">2.</span> <span class="nav-text">Language for Data Science</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Pipelines"><span class="nav-number">3.</span> <span class="nav-text">Data Pipelines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-Data-Formats"><span class="nav-number">4.</span> <span class="nav-text">Standard Data Formats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Where-Does-Data-Come-From"><span class="nav-number">5.</span> <span class="nav-text">Where Does Data Come From?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sources-of-Data"><span class="nav-number">6.</span> <span class="nav-text">Sources of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cleaning-Data-Garbage-In-Garbage-Out"><span class="nav-number">7.</span> <span class="nav-text">Cleaning Data: Garbage In, Garbage Out</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Errors-vs-Artifacts"><span class="nav-number">8.</span> <span class="nav-text">Errors vs. Artifacts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#First-time-Scientific-Authors-by-Years"><span class="nav-number">9.</span> <span class="nav-text">First-time Scientific Authors by Years?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">10.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">11.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Munging"><span class="nav-number">1.</span> <span class="nav-text">Data Munging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Language-for-Data-Science"><span class="nav-number">1.1.</span> <span class="nav-text">Language for Data Science</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Importance-of-Notebook-Environments"><span class="nav-number">1.1.1.</span> <span class="nav-text">The Importance of Notebook Environments</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Standard-Data-Formats"><span class="nav-number">1.1.2.</span> <span class="nav-text">Standard Data Formats</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collecting-Data"><span class="nav-number">1.2.</span> <span class="nav-text">Collecting Data</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Where-Does-Data-Come-From"><span class="nav-number">1.2.1.</span> <span class="nav-text">Where Does Data Come From?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sources-of-Data"><span class="nav-number">1.2.2.</span> <span class="nav-text">Sources of Data</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cleaning-Data-Garbage-In-Garbage-Out"><span class="nav-number">1.3.</span> <span class="nav-text">Cleaning Data: Garbage In, Garbage Out</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Errors-vs-Artifacts"><span class="nav-number">1.3.1.</span> <span class="nav-text">Errors vs. Artifacts</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#First-time-Scientific-Authors-by-Years"><span class="nav-number">2.</span> <span class="nav-text">First-time Scientific Authors by Years?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">4.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
             
 
           </div>

@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Computer Vision,Vocabularies," />
+  <meta name="keywords" content="String," />
 
 
 
@@ -95,23 +95,18 @@
 
 
 
-<meta name="description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
-<meta name="keywords" content="Computer Vision,Vocabularies">
+<meta name="description" content="ProblemGiven an input string, reverse the string word by word. Example12Input: &amp;quot;the sky is blue&amp;quot;,Output: &amp;quot;blue is sky the&amp;quot;. Note A word is defined as a sequence of non-space charac">
+<meta name="keywords" content="String">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Computer Vision: Image Formation I">
-<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/index.html">
+<meta property="og:title" content="LeetCode #151 Reverse Words in a String">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/15/LeetCode-151/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
+<meta property="og:description" content="ProblemGiven an input string, reverse the string word by word. Example12Input: &amp;quot;the sky is blue&amp;quot;,Output: &amp;quot;blue is sky the&amp;quot;. Note A word is defined as a sequence of non-space charac">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/augment.png">
-<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/conic.png">
-<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/affine.png">
-<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/interpolate.png">
-<meta property="og:updated_time" content="2018-09-13T17:43:52.948Z">
+<meta property="og:updated_time" content="2018-09-15T14:45:57.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Computer Vision: Image Formation I">
-<meta name="twitter:description" content="Geometric primitives and transformationsGeometric primitives 2D points 2D lines 2D conics 3D points 3D planes 3D lines 3D quadrics">
-<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/augment.png">
+<meta name="twitter:title" content="LeetCode #151 Reverse Words in a String">
+<meta name="twitter:description" content="ProblemGiven an input string, reverse the string word by word. Example12Input: &amp;quot;the sky is blue&amp;quot;,Output: &amp;quot;blue is sky the&amp;quot;. Note A word is defined as a sequence of non-space charac">
 
 
 
@@ -140,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/"/>
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/15/LeetCode-151/"/>
 
 
 
 
 
-  <title>Computer Vision: Image Formation I | Liam's Blog</title>
+  <title>LeetCode #151 Reverse Words in a String | Liam's Blog</title>
   
 
 
@@ -299,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/13/Computer-Vision-Image-Formation/">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/15/LeetCode-151/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -316,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Computer Vision: Image Formation I</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode #151 Reverse Words in a String</h1>
         
 
         <div class="post-meta">
@@ -328,8 +323,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-13T11:45:22-04:00">
-                2018-09-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-15T09:37:28-04:00">
+                2018-09-15
               </time>
             
 
@@ -344,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T13:43:52-04:00">
-                2018-09-13
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-15T10:45:57-04:00">
+                2018-09-15
               </time>
             
           </span>
@@ -363,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Vision/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Vision</span>
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
                   </a>
                 </span>
 
@@ -374,8 +369,63 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Vision/Image-Formation/" itemprop="url" rel="index">
-                    <span itemprop="name">Image Formation</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/Medium/" itemprop="url" rel="index">
+                    <span itemprop="name">Medium</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Data-Structures/String/" itemprop="url" rel="index">
+                    <span itemprop="name">String</span>
                   </a>
                 </span>
 
@@ -411,68 +461,20 @@
       
 
       
-        <h3 id="Geometric-primitives-and-transformations"><a href="#Geometric-primitives-and-transformations" class="headerlink" title="Geometric primitives and transformations"></a>Geometric primitives and transformations</h3><h4 id="Geometric-primitives"><a href="#Geometric-primitives" class="headerlink" title="Geometric primitives"></a>Geometric primitives</h4><ul>
-<li>2D points</li>
-<li>2D lines</li>
-<li>2D conics</li>
-<li>3D points</li>
-<li>3D planes</li>
-<li>3D lines</li>
-<li>3D quadrics</li>
+        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given an input string, reverse the string word by word.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;the sky is blue&quot;,</span><br><span class="line">Output: &quot;blue is sky the&quot;.</span><br></pre></td></tr></table></figure>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ul>
+<li>A word is defined as a sequence of non-space characters.</li>
+<li>Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.</li>
+<li>You need to reduce multiple spaces between two words to a single space in the reversed string.</li>
 </ul>
 <a id="more"></a>
-<h4 id="2D-transformations"><a href="#2D-transformations" class="headerlink" title="2D transformations"></a>2D transformations</h4><ul>
-<li><p>Translation</p>
-<p>2D translations can be written as $\bold{x’} = \bold{x} +\bold{t}$</p>
-</li>
-<li><p>Rotation + translation</p>
-<p>This transformation is also known as 2D <em>rigid body motion</em> or the 2D <em>Euclidean transformation</em> (since Euclidean distances are preserved). It can be written as $\bold{x’} = \bold{Rx} + \bold{t}$</p>
-</li>
-<li><p>Scaled rotation</p>
-<p>Also known as the <em>similarity transform</em>, this transformation can be expressed as $\bold{x’}=s\bold{Rx}+\bold{t}$ where s is an arbitrary scale factor.</p>
-<p>The similarity transform preserves angles between lines.</p>
-</li>
-<li><p>Affine</p>
-<p>The affine transformation is written as $\bold{x’} = \bold{A \bar{x}}$, where $\bold{A}$ is an arbitrary $2 \times 3$ matrix.</p>
-<p>Parallel lines remain parallel under affine transformations.</p>
-<p>An affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line.[<a href="#https://en.wikipedia.org/wiki/Affine_transformation">2</a>]</p>
-</li>
-<li><p>Projective</p>
-<p>This transformation, also known as a <em>perspective transform</em> or <em>homography</em>, operates on homogeneous coordinates, $\bold{\tilde{x’}} = \bold{\tilde{H}\tilde{x}}$, where $\bold{\tilde{H}}$ is an $3 \times 3$ matrix.</p>
-<p>Perspective transformations preserve straight lines (i.e., they remain straight after the transformation).</p>
-</li>
-<li><p>Hierarchy of 2D transformations</p>
-</li>
-<li><p>Stretch/squash</p>
-<p>This transformation changes the aspect ratio of an image,</p>
-<p>$$x’ = s_xx+t_x$$</p>
-<p>$$y’ = s_yy+t_y$$ </p>
-<p>, and is retricted form of an affine transformation. </p>
-</li>
-<li><p>Planar surface flow</p>
-<ul>
-<li><p>This eight-parrameter transformation arises when a planar surface undergoes a small 3D motion.</p>
-</li>
-<li><p>It can be thought of as a small motion approximation to a full homography.</p>
-</li>
-</ul>
-</li>
-<li><p>Bilinear interpolant</p>
-<p>This eight-parameter transform can be used to interpolate the deformation due to the motion of the four corner points of a square.</p>
-</li>
-</ul>
-<h4 id="3D-transformations"><a href="#3D-transformations" class="headerlink" title="3D transformations"></a>3D transformations</h4><ul>
-<li>Translation</li>
-<li>Rotation + translation</li>
-<li>Scaled rotation</li>
-<li>Affine</li>
-<li>Projective</li>
-</ul>
-<h4 id="3D-rotations"><a href="#3D-rotations" class="headerlink" title="3D rotations"></a>3D rotations</h4><h4 id="3D-to-2D-projections"><a href="#3D-to-2D-projections" class="headerlink" title="3D to 2D projections"></a>3D to 2D projections</h4><h4 id="Lens-distortions"><a href="#Lens-distortions" class="headerlink" title="Lens distortions"></a>Lens distortions</h4><h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><p>[1] <img src="/2018/09/13/Computer-Vision-Image-Formation/augment.png"></p>
-<p>[2] <img src="/2018/09/13/Computer-Vision-Image-Formation/conic.png"></p>
-<p>[3] <img src="/2018/09/13/Computer-Vision-Image-Formation/affine.png"></p>
-<p>[4] <img src="/2018/09/13/Computer-Vision-Image-Formation/interpolate.png"></p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1] Computer Vision: Algorithms and Applications by Richard Szeliski (2010)</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><blockquote>
+<p>Method:</p>
+<p>Time Complexity: O(n)</p>
+<p>Space Complexity: O(n)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def reverseWords(self, s):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        t = s.split()</span><br><span class="line">        res = &apos;&apos;</span><br><span class="line">        idx = len(t) - 1</span><br><span class="line">        </span><br><span class="line">        while idx &gt; 0:</span><br><span class="line">            res += t[idx] + &apos; &apos;</span><br><span class="line">            idx -= 1</span><br><span class="line">        if t:</span><br><span class="line">            res += t[0]</span><br><span class="line"></span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -490,9 +492,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
-          
-            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+            <a href="/tags/String/" rel="tag"># String</a>
           
         </div>
       
@@ -505,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/13/Data-Science-Assembling-Data-Sets/" rel="next" title="Data Science Assembling Data Sets">
-                <i class="fa fa-chevron-left"></i> Data Science Assembling Data Sets
+              <a href="/2018/09/14/Analysis-of-Algorithms-Lecture-1/" rel="next" title="Analysis of Algorithms Lecture 1">
+                <i class="fa fa-chevron-left"></i> Analysis of Algorithms Lecture 1
               </a>
             
           </div>
@@ -515,8 +515,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/13/LeetCode-234/" rel="prev" title="LeetCode #234 Palindrome Linked List">
-                LeetCode #234 Palindrome Linked List <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/17/LeetCode-518/" rel="prev" title="LeetCode ＃518 Coin Change 2">
+                LeetCode ＃518 Coin Change 2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -594,7 +594,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -605,7 +605,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -651,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Geometric-primitives-and-transformations"><span class="nav-number">1.</span> <span class="nav-text">Geometric primitives and transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Geometric-primitives"><span class="nav-number">1.1.</span> <span class="nav-text">Geometric primitives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2D-transformations"><span class="nav-number">1.2.</span> <span class="nav-text">2D transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-transformations"><span class="nav-number">1.3.</span> <span class="nav-text">3D transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-rotations"><span class="nav-number">1.4.</span> <span class="nav-text">3D rotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-to-2D-projections"><span class="nav-number">1.5.</span> <span class="nav-text">3D to 2D projections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lens-distortions"><span class="nav-number">1.6.</span> <span class="nav-text">Lens distortions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">2.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">3.</span> <span class="nav-text">Note</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">4.</span> <span class="nav-text">Solution</span></a></li></ol></div>
             
 
           </div>
