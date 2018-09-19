@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data Science,Vocabularies," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Cleaning Data: Garbage In, Garbage OutMany issues arise in ensuring the sensible analysis of data from the field, including:  Distinguishing errors from artifacts Data compatibility/unification Imputa">
+<meta name="keywords" content="Data Science,Vocabularies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Science Data Cleaning">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Cleaning Data: Garbage In, Garbage OutMany issues arise in ensuring the sensible analysis of data from the field, including:  Distinguishing errors from artifacts Data compatibility/unification Imputa">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/outlandish.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/impute.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/vertebra.png">
+<meta property="og:updated_time" content="2018-09-18T13:47:01.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Data Science Data Cleaning">
+<meta name="twitter:description" content="Cleaning Data: Garbage In, Garbage OutMany issues arise in ensuring the sensible analysis of data from the field, including:  Distinguishing errors from artifacts Data compatibility/unification Imputa">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/outlandish.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/"/>
+
+
+
+
+
+  <title>Data Science Data Cleaning | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/18/Data-Science-Data-Cleaning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Data Science Data Cleaning</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T08:32:18-04:00">
+                2018-09-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-18T09:47:01-04:00">
+                2018-09-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Cleaning-Data-Garbage-In-Garbage-Out"><a href="#Cleaning-Data-Garbage-In-Garbage-Out" class="headerlink" title="Cleaning Data: Garbage In, Garbage Out"></a>Cleaning Data: Garbage In, Garbage Out</h3><p>Many issues arise in ensuring the sensible analysis of data from the field, including:</p>
+<ul>
+<li>Distinguishing errors from artifacts</li>
+<li>Data compatibility/unification</li>
+<li>Imputation of missing values</li>
+<li>Estimating unobserved (zero) counts</li>
+<li>Outlier detection</li>
+</ul>
+<a id="more"></a>
+<h4 id="Data-Compatibility"><a href="#Data-Compatibility" class="headerlink" title="Data Compatibility"></a>Data Compatibility</h4><p>Data needs to be carefully massaged to make “apple to apple” comparisons:</p>
+<h5 id="Unit-conversions"><a href="#Unit-conversions" class="headerlink" title="Unit conversions"></a>Unit conversions</h5><p>NASA’s Mars Climate Orbiter exploded in 1999 due to a metric-to-English conversion issue.</p>
+<ul>
+<li>Even sticking to the metric system has potential inconsistencies: cm, m, km?</li>
+<li>Bimodal distributions can indicate trouble.</li>
+<li>Z-scores are dimensionless quantities.</li>
+</ul>
+<p>Vigilance in data integration is essential.</p>
+<h5 id="Number-character-code-representations"><a href="#Number-character-code-representations" class="headerlink" title="Number/character code representations"></a>Number/character code representations</h5><p>The Ariane 5 rocket exploded in 1996 due to a bad 64-bit float to 16-bit integer conversion.</p>
+<ul>
+<li>Measurements should be integers.</li>
+<li>Counts should be integers.</li>
+<li>Fractional quantities should be decimal, not (q, r) like (pounds, oz) or (feet, inches)</li>
+</ul>
+<h5 id="Character-Representations"><a href="#Character-Representations" class="headerlink" title="Character Representations"></a>Character Representations</h5><p>A particularly nasty cleaning issue in textual data is unifying character code representations:</p>
+<ul>
+<li>ISO 8859-1 is a single byte code for ASCII</li>
+<li>UTF-8 is a multibyte encoding for all Unicode characters</li>
+</ul>
+<h6 id="Name-unification"><a href="#Name-unification" class="headerlink" title="Name unification"></a>Name unification</h6><ul>
+<li>Use simple transformations to unify names, like lower case, removing middle names, etc.</li>
+<li>Consider phonetic hashing methods like Soundex and Metaphone.</li>
+</ul>
+<p>Tradeoff between <code>false positives</code> and <code>negatives</code>.</p>
+<h6 id="Time-date-unification"><a href="#Time-date-unification" class="headerlink" title="Time/date unification"></a>Time/date unification</h6><p>Aligning temporal events from different datasets/systems can be problematic.</p>
+<ul>
+<li>Use Coordinated Universal Time (UTC), a modern standard subsuming GMT.</li>
+<li>Financial time series are tricky because of weekends and holidays: how do you correlate stock prices and temperatures?</li>
+</ul>
+<h6 id="Financial-unification"><a href="#Financial-unification" class="headerlink" title="Financial unification"></a>Financial unification</h6><ul>
+<li>Currency conversion uses exchange rates.</li>
+<li>Correct stock prices for splits and dividends.</li>
+<li>Use returns/percentage change instead of absolute price changes.</li>
+<li>The time value of money needs correction for inflation for fair long-term comparisons.</li>
+</ul>
+<p><strong>Why do stock/oil prices correlate over 30 years?</strong></p>
+<h4 id="Dealing-with-Missing-Data"><a href="#Dealing-with-Missing-Data" class="headerlink" title="Dealing with Missing Data"></a>Dealing with Missing Data</h4><p>An important aspect of data cleaning is properly representing missing data:</p>
+<ul>
+<li>What is the year of death of a living person?</li>
+<li>What about a field left blank or filled with an obviously outlandish value?</li>
+<li>The frequency of events too rare to see?</li>
+</ul>
+<p><strong>Setting such values to zero is generally wrong</strong></p>
+<h4 id="Imputing-Missing-Values"><a href="#Imputing-Missing-Values" class="headerlink" title="Imputing Missing Values"></a>Imputing Missing Values</h4><p>With enough training data, one might drop all records with missing values, but we may want to use the model on records with missing fields.</p>
+<p>Often it is better to estimate or <code>imput</code> missing values instead of leaving them blank.</p>
+<p>A good guess for your death year is <code>birth + 80</code>.</p>
+<h4 id="Imputation-Methods"><a href="#Imputation-Methods" class="headerlink" title="Imputation Methods"></a>Imputation Methods</h4><ul>
+<li><p>Mean value imputation - </p>
+<p>​    leaves mean same.</p>
+</li>
+<li><p>Random value imputation - </p>
+<p>​    repreatedly selecting random values permits statistical evaluation of the impact of imputation.</p>
+</li>
+<li><p>Imputation by interpolation -</p>
+<p>​    using linear regression to predict missing values works well if few fields are missing per record.</p>
+</li>
+</ul>
+<h4 id="Outlier-Detection"><a href="#Outlier-Detection" class="headerlink" title="Outlier Detection"></a>Outlier Detection</h4><p>The largest reported dinosaur vertebra is 50% larger than all others: presumably a data error.</p>
+<ul>
+<li>Look critically at the maximum and minimum values for all variables.</li>
+<li>Normally distributed data should not have large outliers, k sigma from the mean.</li>
+</ul>
+<p><strong>Fix why you have an outlier. Don’t just delete.</strong></p>
+<h4 id="Detecting-Outliers"><a href="#Detecting-Outliers" class="headerlink" title="Detecting Outliers"></a>Detecting Outliers</h4><ul>
+<li>Visually, it is easy to detect outliers, but only in low dimensional spaces.</li>
+<li>It can be thought of as an unsupervised learning problem, like clustering.</li>
+<li>Points which are far from their cluster center are good candidates for outliers.</li>
+</ul>
+<h4 id="Dekete-Outliers-Prior-to-Fitting"><a href="#Dekete-Outliers-Prior-to-Fitting" class="headerlink" title="Dekete Outliers Prior to Fitting?"></a>Dekete Outliers Prior to Fitting?</h4><ul>
+<li>Deleting outliers prior to fitting can <code>yield better models</code>, e.g. if these points correspond to measurement error.</li>
+<li>Deleting outliers prior to fitting can <code>yield worse models</code>. e.g., if you are simply deleting points which are not explained by your simple model.</li>
+</ul>
+<h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><p>[1] <img src="/2018/09/18/Data-Science-Data-Cleaning/outlandish.png"></p>
+<p>[2] <img src="/2018/09/18/Data-Science-Data-Cleaning/impute.png"></p>
+<p>[3] <img src="/2018/09/18/Data-Science-Data-Cleaning/vertebra.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/17/Computing-with-Logic-Notes-Structures-Lists-Difference-Lists-Part-2/" rel="next" title="Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2">
+                <i class="fa fa-chevron-left"></i> Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/18/LeetCode-3/" rel="prev" title="LeetCode #3 Longest Substring Without Repeating Characters">
+                LeetCode #3 Longest Substring Without Repeating Characters <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cleaning-Data-Garbage-In-Garbage-Out"><span class="nav-number">1.</span> <span class="nav-text">Cleaning Data: Garbage In, Garbage Out</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Compatibility"><span class="nav-number">1.1.</span> <span class="nav-text">Data Compatibility</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Unit-conversions"><span class="nav-number">1.1.1.</span> <span class="nav-text">Unit conversions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-character-code-representations"><span class="nav-number">1.1.2.</span> <span class="nav-text">Number/character code representations</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Character-Representations"><span class="nav-number">1.1.3.</span> <span class="nav-text">Character Representations</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Name-unification"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Name unification</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Time-date-unification"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Time/date unification</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Financial-unification"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">Financial unification</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dealing-with-Missing-Data"><span class="nav-number">1.2.</span> <span class="nav-text">Dealing with Missing Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Imputing-Missing-Values"><span class="nav-number">1.3.</span> <span class="nav-text">Imputing Missing Values</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Imputation-Methods"><span class="nav-number">1.4.</span> <span class="nav-text">Imputation Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Outlier-Detection"><span class="nav-number">1.5.</span> <span class="nav-text">Outlier Detection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Detecting-Outliers"><span class="nav-number">1.6.</span> <span class="nav-text">Detecting Outliers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dekete-Outliers-Prior-to-Fitting"><span class="nav-number">1.7.</span> <span class="nav-text">Dekete Outliers Prior to Fitting?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">2.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
