@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
+<meta name="description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation (or append)  Delete the last three emelemts  Delete the first three and the last three ele">
 <meta name="keywords" content="Prolog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog Programming for AI - Chapter 3 Exercises">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/13/Prolog-Programming-for-AI-Chapter-3-Exercises/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
+<meta property="og:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation (or append)  Delete the last three emelemts  Delete the first three and the last three ele">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-08-12T23:43:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prolog Programming for AI - Chapter 3 Exercises">
-<meta name="twitter:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation  Delete the last three emelemts  Delete the first three and the last three elements">
+<meta name="twitter:description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation (or append)  Delete the last three emelemts  Delete the first three and the last three ele">
 
 
 
@@ -412,7 +412,7 @@
 </li>
 <li><p><strong><a href="#member2">Membership (has more declarative meaning)</a></strong></p>
 </li>
-<li><p><strong><a href="#conc">Concatenation</a></strong></p>
+<li><p><strong><a href="#conc">Concatenation (or append)</a></strong></p>
 </li>
 <li><p><strong><a href="#exercise-1-a">Delete the last three emelemts</a></strong></p>
 </li>
@@ -449,6 +449,10 @@
 </li>
 <li><p><strong><a href="#exercise-11">Flatten</a></strong></p>
 </li>
+<li><p><strong><a href="#kth">Kth</a></strong></p>
+</li>
+<li><p><strong><a href="#quicksort">Quicksort</a></strong></p>
+</li>
 </ul>
 <hr>
 <h4 id="Membership"><a href="#Membership" class="headerlink" title="Membership"></a><a name="member1">Membership</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">member(X, [X | Tail]).</span><br><span class="line">member(X, [Head | Tail]) :-</span><br><span class="line">    member(X, Tail).</span><br></pre></td></tr></table></figure>
@@ -480,7 +484,7 @@
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-<h4 id="Concatenation"><a href="#Concatenation" class="headerlink" title=" Concatenation"></a><a name="conc"> Concatenation</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conc( [], L, L).</span><br><span class="line">conc( [X | L1], L2, [X | L3]) :-</span><br><span class="line">    conc(L1, L2, L3).</span><br></pre></td></tr></table></figure>
+<h4 id="Concatenation-or-append"><a href="#Concatenation-or-append" class="headerlink" title=" Concatenation (or append)"></a><a name="conc"> Concatenation (or append)</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conc( [], L, L).</span><br><span class="line">conc( [X | L1], L2, [X | L3]) :-</span><br><span class="line">    conc(L1, L2, L3).</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Relation: conc(L1, L2, L3)</p>
 <ul>
@@ -651,7 +655,8 @@
 <h4 id="Exercise-3-4"><a href="#Exercise-3-4" class="headerlink" title="Exercise 3.4"></a><a name="exercise-4">Exercise 3.4</a></h4><blockquote>
 <p>Define the relation reverse(List, ReversedList) that reverses lists.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reverse(L, Res) :-</span><br><span class="line">    reverse_helper(L, [], Res).</span><br><span class="line"></span><br><span class="line">reverse_helper([],L, L).</span><br><span class="line"></span><br><span class="line">reverse_helper([X|Y], Accumulater, Res) :-</span><br><span class="line">    reverse(Y, [X|Accumulater], Res).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">reverse([], []).</span><br><span class="line"></span><br><span class="line">reverse([H|T],L) :-</span><br><span class="line">    reverse(T, L2),</span><br><span class="line">    append(L2, [H], L).</span><br><span class="line"></span><br><span class="line">% T(N) = T(N - 1)         + N - 1</span><br><span class="line">       = T(N - 2) + N - 2 + N - 1</span><br><span class="line">       = 1 + 2 + 3 + ...  + N - 1</span><br><span class="line">       = N * (N - 1) / 2</span><br><span class="line">       = O(N^2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reverse(L, Res) :-</span><br><span class="line">    reverse_helper(L, [], Res).</span><br><span class="line"></span><br><span class="line">reverse_helper([], L, L).</span><br><span class="line"></span><br><span class="line">reverse_helper([X|Y], Accumulater, Res) :-</span><br><span class="line">    reverse(Y, [X|Accumulater], Res).</span><br></pre></td></tr></table></figure>
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
@@ -722,8 +727,16 @@
 <p>​    ?- flatten([a,b,[c,d],[],[[[e]]],f], L).</p>
 <p>​    L = [a,b,c,d,e,f]</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flatten([X|L], Flatten) :-</span><br><span class="line">    flatten(X, Flatten_Head),</span><br><span class="line">    flatten(L, Flatten_Tail),</span><br><span class="line">    conc(Flatten_Head, Flatten_Tail, Flatten).</span><br><span class="line">flatten([], []).</span><br><span class="line">flatten(X, [X]).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flatten([], []).</span><br><span class="line">flatten([X|L], Flatten) :-</span><br><span class="line">    flatten(X, Flatten_Head),</span><br><span class="line">    flatten(L, Flatten_Tail),</span><br><span class="line">    conc(Flatten_Head, Flatten_Tail, Flatten).</span><br><span class="line">flatten(X, [X]) :-</span><br><span class="line">    atomic(X);</span><br><span class="line">    var(X).</span><br></pre></td></tr></table></figure>
 <p>Don’t backtrack this program.</p>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Kth"><a href="#Kth" class="headerlink" title="Kth"></a><a name="kth">Kth</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">kth(N, _, 0):-</span><br><span class="line">	N=&lt;0.</span><br><span class="line">kth(_, [], 0).</span><br><span class="line">kth(1, [H|_], H).</span><br><span class="line">kth(N, [_|T], Y) :-</span><br><span class="line">    atomic(N),</span><br><span class="line">    N &gt; 0,</span><br><span class="line">    N2 is N - 1,</span><br><span class="line">    kth(N2, T, Y).</span><br></pre></td></tr></table></figure>
+<p style="text-align: right;"> <a href="#head">back to top</a> </p>
+
+<hr>
+<h4 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a><a name="quicksort">Quicksort</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">kth(N, _, 0):-</span><br><span class="line">	N=&lt;0.</span><br><span class="line">kth(_, [], 0).</span><br><span class="line">kth(1, [H|_], H).</span><br><span class="line">kth(N, [_|T], Y) :-</span><br><span class="line">    atomic(N),</span><br><span class="line">    N &gt; 0,</span><br><span class="line">    N2 is N - 1,</span><br><span class="line">    kth(N2, T, Y).</span><br></pre></td></tr></table></figure>
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
@@ -846,7 +859,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">79</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -857,7 +870,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -868,7 +881,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -903,7 +916,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Permutation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-3"><span class="nav-number">1.0.0.11.</span> <span class="nav-text">Exercise 3.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-4"><span class="nav-number">1.0.0.12.</span> <span class="nav-text">Exercise 3.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-5"><span class="nav-number">1.0.0.13.</span> <span class="nav-text">Exercise 3.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-6"><span class="nav-number">1.0.0.14.</span> <span class="nav-text">Exercise 3.6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-7"><span class="nav-number">1.0.0.15.</span> <span class="nav-text">Exercise 3.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-8"><span class="nav-number">1.0.0.16.</span> <span class="nav-text">Exercise 3.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-9"><span class="nav-number">1.0.0.17.</span> <span class="nav-text">Exercise 3.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-10"><span class="nav-number">1.0.0.18.</span> <span class="nav-text">Exercise 3.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-11"><span class="nav-number">1.0.0.19.</span> <span class="nav-text">Exercise 3.11</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations"><span class="nav-number">1.</span> <span class="nav-text">Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Membership"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concatenation-or-append"><span class="nav-number">1.0.0.2.</span> <span class="nav-text"> Concatenation (or append)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-a"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Exercise 3.1 (a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-1-b"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Exercise 3.1 (b)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Exercise 3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Delete"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublist"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Sublist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Permutation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-3"><span class="nav-number">1.0.0.11.</span> <span class="nav-text">Exercise 3.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-4"><span class="nav-number">1.0.0.12.</span> <span class="nav-text">Exercise 3.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-5"><span class="nav-number">1.0.0.13.</span> <span class="nav-text">Exercise 3.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-6"><span class="nav-number">1.0.0.14.</span> <span class="nav-text">Exercise 3.6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-7"><span class="nav-number">1.0.0.15.</span> <span class="nav-text">Exercise 3.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-8"><span class="nav-number">1.0.0.16.</span> <span class="nav-text">Exercise 3.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-9"><span class="nav-number">1.0.0.17.</span> <span class="nav-text">Exercise 3.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-10"><span class="nav-number">1.0.0.18.</span> <span class="nav-text">Exercise 3.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-3-11"><span class="nav-number">1.0.0.19.</span> <span class="nav-text">Exercise 3.11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kth"><span class="nav-number">1.0.0.20.</span> <span class="nav-text">Kth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quicksort"><span class="nav-number">1.0.0.21.</span> <span class="nav-text">Quicksort</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
