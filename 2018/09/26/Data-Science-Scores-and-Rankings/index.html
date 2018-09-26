@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data Science,Vocabularies," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Scores and RankingsScoring functions are measures that reduce multi-dimensional data to a single value, to highlight some particular property. Rankings order items, usually by sorting scores.">
+<meta name="keywords" content="Data Science,Vocabularies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scores and Rankings">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/26/Data-Science-Scores-and-Rankings/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Scores and RankingsScoring functions are measures that reduce multi-dimensional data to a single value, to highlight some particular property. Rankings order items, usually by sorting scores.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-26T16:47:56.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scores and Rankings">
+<meta name="twitter:description" content="Scores and RankingsScoring functions are measures that reduce multi-dimensional data to a single value, to highlight some particular property. Rankings order items, usually by sorting scores.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/26/Data-Science-Scores-and-Rankings/"/>
+
+
+
+
+
+  <title>Scores and Rankings | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/26/Data-Science-Scores-and-Rankings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scores and Rankings</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-26T11:10:13-04:00">
+                2018-09-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-26T12:47:56-04:00">
+                2018-09-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Scores-and-Rankings"><a href="#Scores-and-Rankings" class="headerlink" title="Scores and Rankings"></a>Scores and Rankings</h3><p><code>Scoring functions</code> are measures that reduce multi-dimensional data to a single value, to highlight some particular property.</p>
+<p><code>Rankings</code> order items, usually by sorting scores.</p>
+<a id="more"></a>
+<h3 id="Assigning-Grades"><a href="#Assigning-Grades" class="headerlink" title="Assigning Grades"></a>Assigning Grades</h3><p>Course grades get assigned by scoring functions.</p>
+<p>Observe that grading systems have:</p>
+<ul>
+<li><code>Degrees of arbitrariness</code>: each teacher differs.</li>
+<li><code>Lack of validation data</code>: there is no <em>right</em> grade.</li>
+<li><code>General robustness</code>: students tend to get similar grades in all their classes anyway.</li>
+</ul>
+<p>Calling scores <em>statistics</em> lends them more dignity.</p>
+<h3 id="Scoring-vs-Regression"><a href="#Scoring-vs-Regression" class="headerlink" title="Scoring vs. Regression"></a>Scoring vs. Regression</h3><p>The critical issue in designing scoring functions is that there is no gold standard/right answer.</p>
+<p>Machine learning techniques like linear regression can learn a scoring function from features if you had training data, which generally you don’t.</p>
+<p>Google’s ranking algorithms train on click data.</p>
+<h3 id="The-Body-Mass-Index-BMI"><a href="#The-Body-Mass-Index-BMI" class="headerlink" title="The Body-Mass Index (BMI)"></a>The Body-Mass Index (BMI)</h3><p>BMI is a score designed to capture whether your weight is under control:</p>
+<p>Mass is in kg and height in meters</p>
+<ul>
+<li>Underweight: below 18.5</li>
+<li>Normal: 18.5 to 25</li>
+<li>Overweight: 25 to 30</li>
+<li>Obese: over 30</li>
+</ul>
+<h3 id="BMI-Pro-Basketball-and-US-Football"><a href="#BMI-Pro-Basketball-and-US-Football" class="headerlink" title="BMI: Pro Basketball and US Football"></a>BMI: Pro Basketball and US Football</h3><p>BMI is easy to interpret, and correlates with body fat. Mass should scale with the square (or cube) of height.</p>
+<h3 id="Gold-Standards-and-Proxies"><a href="#Gold-Standards-and-Proxies" class="headerlink" title="Gold Standards and Proxies"></a>Gold Standards and Proxies</h3><p><code>Gold standards</code> are labels or answers we trust to be correct, reflecting the scoring goal.</p>
+<p><code>Proxies</code> are available quantities correlated with what we want to measure.</p>
+<p>Your GPA or SAT/GRE is a proxy for how you should do in my class.</p>
+<h3 id="Scoring-vs-Machine-Learning"><a href="#Scoring-vs-Machine-Learning" class="headerlink" title="Scoring vs. Machine Learning"></a>Scoring vs. Machine Learning</h3><p>When you have a gold standard, you can train a regression function to accurately predict things.</p>
+<p>When all you have are proxies, all you can do is evaluate your scoring funciton.</p>
+<p>‘Weapons of Math Destruction’ happen when you confuse proxies for gold standards: e.g. student test scores for teaching quality.</p>
+<h3 id="Scores-vs-Rankings"><a href="#Scores-vs-Rankings" class="headerlink" title="Scores vs. Rankings"></a>Scores vs. Rankings</h3><p>Whick is more interpretable depends on:</p>
+<ul>
+<li><p>Will the numbers be presented in isolation?</p>
+<p>Stony Brook ranks 111 of 351 teams RPI=39.18</p>
+</li>
+<li><p>What is the distribution of scores?</p>
+<p>How much better is #1 than #2?</p>
+</li>
+<li><p>Do you care about the middle or extremes?</p>
+<p>Small changes in score can cause big rank diffs</p>
+</li>
+</ul>
+<h3 id="Recognizing-Good-Scoring-Functions"><a href="#Recognizing-Good-Scoring-Functions" class="headerlink" title="Recognizing Good Scoring Functions"></a>Recognizing Good Scoring Functions</h3><ul>
+<li>Easily computable</li>
+<li>Easily understandable</li>
+<li>Monotonic interpretation of variables</li>
+<li>Produces satisfying results on outliers</li>
+<li>Uses systematically normalized variables</li>
+</ul>
+<h3 id="Normalization-and-Z-scores"><a href="#Normalization-and-Z-scores" class="headerlink" title="Normalization and Z-scores"></a>Normalization and Z-scores</h3><p>It is critical to normalize different variavles to make their range/distribution comparable.</p>
+<p>Z-scores are computed: $Z_i = \frac{X_i - \bar X}{\sigma}$</p>
+<p>Z-scores of height measured in inches is the same as height measured in miles.</p>
+<p>Your biggest analysis sins will come in using unnormalized variables for analysis.</p>
+<h3 id="Z-score-Examples"><a href="#Z-score-Examples" class="headerlink" title="Z-score Examples"></a>Z-score Examples</h3><p>Z-scores have mean 0 and sigma = 1.</p>
+<p>Thus Z-scores of different variables are of comparable magnitude.</p>
+<p>The sign identifies if it is above/below the mean.</p>
+<h3 id="Advanced-Ranking-Techniques"><a href="#Advanced-Ranking-Techniques" class="headerlink" title="Advanced Ranking Techniques"></a>Advanced Ranking Techniques</h3><p>Linear combinations of normalized values generally yield reasonable scores, but other techniques include:</p>
+<ul>
+<li>Elo rankings</li>
+<li>Merging rank orderings</li>
+<li>Directed graph orderings</li>
+<li>PageRank</li>
+</ul>
+<h3 id="Binary-Comparisons"><a href="#Binary-Comparisons" class="headerlink" title="Binary Comparisons"></a>Binary Comparisons</h3><p>Rankings are often formed by analyzing series of binary comparisons:</p>
+<ul>
+<li>Team A beats team B</li>
+<li>Expert votes for A instead of B</li>
+<li>Student choses university A over B</li>
+</ul>
+<p>Vote counts fail to pick the best when different teams face different levels of competition.</p>
+<h3 id="Elo-Rankings"><a href="#Elo-Rankings" class="headerlink" title="Elo Rankings"></a>Elo Rankings</h3><p>After starting equally ranked, scores are then adjusted to reflect the surprise of each match.</p>
+<p>$r’(A) = r(A) + k(S_A - \mu_A)$</p>
+<p>S is the actual score (-1, 1) for A, with mu the expected score from the previous r(A) and r(B).</p>
+<p>Parameter k modulates the maximum possible swing in any one match.</p>
+<h3 id="What-is-the-Expected-Match-Score"><a href="#What-is-the-Expected-Match-Score" class="headerlink" title="What is the Expected Match Score?"></a>What is the Expected Match Score?</h3><p>If P(A &gt; B) estimates the probability that A beats B, then:</p>
+<p>$\mu_A = 1\times P_{A&gt;B} + (-1)\times (1 - P_{A&gt;B})$</p>
+<p>If the ranking system is meaningful, this probability shoud be a function of the difference between the scores r(A) and r(B).</p>
+<h3 id="The-Logit-Function"><a href="#The-Logit-Function" class="headerlink" title="The Logit Function"></a>The Logit Function</h3><p>We need a function f(x) that takes x and yields a probability:</p>
+<ul>
+<li>f(0) = 1/2</li>
+<li>f(infinity) = 1</li>
+<li>f(-infinity) = 0</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/LeetCode-461/" rel="next" title="LeetCode">
+                <i class="fa fa-chevron-left"></i> LeetCode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-and-Rankings"><span class="nav-number">1.</span> <span class="nav-text">Scores and Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assigning-Grades"><span class="nav-number">2.</span> <span class="nav-text">Assigning Grades</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Regression"><span class="nav-number">3.</span> <span class="nav-text">Scoring vs. Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Body-Mass-Index-BMI"><span class="nav-number">4.</span> <span class="nav-text">The Body-Mass Index (BMI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BMI-Pro-Basketball-and-US-Football"><span class="nav-number">5.</span> <span class="nav-text">BMI: Pro Basketball and US Football</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gold-Standards-and-Proxies"><span class="nav-number">6.</span> <span class="nav-text">Gold Standards and Proxies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Machine-Learning"><span class="nav-number">7.</span> <span class="nav-text">Scoring vs. Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-vs-Rankings"><span class="nav-number">8.</span> <span class="nav-text">Scores vs. Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recognizing-Good-Scoring-Functions"><span class="nav-number">9.</span> <span class="nav-text">Recognizing Good Scoring Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization-and-Z-scores"><span class="nav-number">10.</span> <span class="nav-text">Normalization and Z-scores</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z-score-Examples"><span class="nav-number">11.</span> <span class="nav-text">Z-score Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Ranking-Techniques"><span class="nav-number">12.</span> <span class="nav-text">Advanced Ranking Techniques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Comparisons"><span class="nav-number">13.</span> <span class="nav-text">Binary Comparisons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elo-Rankings"><span class="nav-number">14.</span> <span class="nav-text">Elo Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-Expected-Match-Score"><span class="nav-number">15.</span> <span class="nav-text">What is the Expected Match Score?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Logit-Function"><span class="nav-number">16.</span> <span class="nav-text">The Logit Function</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
