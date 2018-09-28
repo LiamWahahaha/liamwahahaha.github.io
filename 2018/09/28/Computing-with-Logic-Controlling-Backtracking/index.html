@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Prolog," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Preventing backtrackingProlog will automatically backtrack if this is necessary for satisfying a goal. Now, consider a double-step function. The relation between X and Y can be specified by three rule">
+<meta name="keywords" content="Prolog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2)">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Preventing backtrackingProlog will automatically backtrack if this is necessary for satisfying a goal. Now, consider a double-step function. The relation between X and Y can be specified by three rule">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-28T21:35:32.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2)">
+<meta name="twitter:description" content="Preventing backtrackingProlog will automatically backtrack if this is necessary for satisfying a goal. Now, consider a double-step function. The relation between X and Y can be specified by three rule">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking/"/>
+
+
+
+
+
+  <title>Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2) | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-28T15:49:45-04:00">
+                2018-09-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-28T17:35:32-04:00">
+                2018-09-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Cut/" itemprop="url" rel="index">
+                    <span itemprop="name">Cut</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Preventing-backtracking"><a href="#Preventing-backtracking" class="headerlink" title="Preventing backtracking"></a>Preventing backtracking</h3><p>Prolog will automatically backtrack if this is necessary for satisfying a goal.</p>
+<p>Now, consider a double-step function. The relation between X and Y can be specified by three rules:</p>
+<blockquote>
+<p>Rule 1: if X &lt; 3 then Y = 0</p>
+<p>Rule 2: if 3 &lt;= X and X &lt; 6 then Y = 2</p>
+<p>Rule 3: if 6 &lt;= X then Y = 3</p>
+</blockquote>
+<p>This can be written in Prolog as a binary relation <strong>f(X, Y)</strong> as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(X, 0) :- X &lt; 3.         % Rule 1</span><br><span class="line">f(X, 2) : 3 =&lt; X, X &lt; 6.  % Rule 2</span><br><span class="line">f(X, 3) : 6 =&lt; X.         % Rule 3</span><br></pre></td></tr></table></figure>
+<p>This program assumes that before <strong>f(X, Y)</strong> is executed X is already instantiated to a number as this is required by the comparison operators.</p>
+<a id="more"></a>
+<h4 id="Experiment-1"><a href="#Experiment-1" class="headerlink" title="Experiment 1"></a>Experiment 1</h4><p>What if…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- f(1, Y), 2 &lt; Y.</span><br></pre></td></tr></table></figure>
+<p>When executing the first goal, <strong>f(1, Y)</strong>, <strong>Y</strong> becomes instantiated to 0. So the second goal becomes *<em>2 &lt; 0</em> which fails, and so does the whole goal list. This is straightforward, but before admitting that the goal list is not satisfiable through backtracking.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f(1, Y), 2 &lt; Y.</span><br><span class="line">-&gt; rule 1 1 &lt; 3, 2 &lt; 0 -&gt; 2 &lt; 0 (no) (backtracking)</span><br><span class="line">-&gt; rule 2 3 &lt;= 1, 1 &lt; 6, 2 &lt; 2 (no) (backtracking)</span><br><span class="line">-&gt; rule 3 6 &lt;= 1, 2 &lt; 4 (no) (backtracking)</span><br></pre></td></tr></table></figure>
+<p>Now, our program can be rewritten with cut as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(X, 0) :- X &lt; 3, !.</span><br><span class="line">f(X, 2) :- 3 =&lt; X, X &lt; 6, !.</span><br><span class="line">f(X, 3) :- 6 =&lt; X.</span><br></pre></td></tr></table></figure>
+<p>If we now ask</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- f(1, Y), 2 &lt; Y.</span><br></pre></td></tr></table></figure>
+<p>Prolog will produce the same left-hand branch. This branch will fail at the goal 2 &lt; 0. Now Prolog will try to backtrack, but not beyond the point marked ! in the program. The alternative braches that correspond to ‘rule 2’ and ‘rule 3’ will not be generated.</p>
+<h4 id="Experiment-2"><a href="#Experiment-2" class="headerlink" title="Experiment 2"></a>Experiment 2</h4><p>Suppose we ask:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- f(7, Y).</span><br><span class="line">Y = 4</span><br></pre></td></tr></table></figure>
+<p>All three rules were tried before the answer was obtained. This produced the following sequence of goals:</p>
+<p>Try rule 1: 7 &lt; 3 fails, backtrack and try rule 2 (cut was not reached)</p>
+<p>Try rule 2: 3 &lt;= 7 succeeds, but then 7 &lt; 6 fails, backtrack and try rule 3 (cut was not reached)</p>
+<p>Try rule 3: 6 &lt;= 7 succeeds</p>
+<p><strong>This trace reveals another source of inefficiency.</strong> Because…</p>
+<blockquote>
+<p>First it is established that X &lt; 3 is not true.</p>
+<p>The next goal is bound to succeed as it is the negation of the first.</p>
+</blockquote>
+<p>Therefore the second test is redundant and the corresponding goal can be ommited.</p>
+<p>The same is true about the goal 6=&lt; X in rule 3. This leads to the following, more economical formulation of the three rules:</p>
+<p>if X &lt; 3 then Y = 0,</p>
+<p>otherwise if X &lt; 6 then Y = 2,</p>
+<p>Otherwise Y = 4.</p>
+<p>Now, our program can be written as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(X, 0) :-  X &lt; 3, !.</span><br><span class="line">f(X, 2) :- X &lt; 6, !.</span><br><span class="line">f(X, 4).</span><br></pre></td></tr></table></figure>
+<p><strong>We can not remove the cuts. If we remove the cuts, this may produce multiple solutions some of which are not correct.</strong></p>
+<h3 id="What-is-the-meaning-of-the-cut-mechanism"><a href="#What-is-the-meaning-of-the-cut-mechanism" class="headerlink" title="What is the meaning of the cut mechanism?"></a>What is the meaning of the cut mechanism?</h3><p>A more precise meaning is as follows:</p>
+<blockquote>
+<p>Let us call the <code>parent goal</code> the goal that matched the head of the clause containing the cut. When the cut is encountered as a goal it succeeds immediately, but it commits the system to all choices made between the time the <code>parent goal</code> was invoked and the time the cut was encountered. All the remaining alternatives between the parent goal and the cut are discarded.</p>
+</blockquote>
+<p>To clarify this definition consider a clause of the form:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H :- B1, B2, ..., Bm, !, ..., Bn.</span><br></pre></td></tr></table></figure>
+<p>Let us assume that this clause was invoked by a goal G that matched H. Then G is the parent goal. At the moment that the cut is encountered, the system has already found some solution of the goals <strong>B1, …, Bm</strong>. When the cut is executed, this (current) solution of <strong>B1, …, Bm</strong> becomes frozen and all possible remaining alternatives are discarded. Also, the goal G now becomes committed to this clause: any attempt to match G with the head of some other clause is precluded.</p>
+<h3 id="Examples-using-cut"><a href="#Examples-using-cut" class="headerlink" title="Examples using cut"></a>Examples using cut</h3><h4 id="Computing-maximum"><a href="#Computing-maximum" class="headerlink" title="Computing maximum"></a>Computing maximum</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max(X, Y, X) :- X &gt;= Y, !.</span><br><span class="line">max(X, Y, Y).</span><br></pre></td></tr></table></figure>
+<p>These two rules are mutually exclusive. If the first one succeeds then the second one will fail. If the first one fails then the second must succeed. Therefore a more economical formulation, with <code>otherwise</code> , is possible: If X &gt;= Y then Max = X, otherwise Max = Y.</p>
+<h4 id="Single-solution-membership"><a href="#Single-solution-membership" class="headerlink" title="Single-solution membership"></a>Single-solution membership</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">member(X, [X | L]) :- !.</span><br><span class="line">member(X, [Y | L]) :- member(X, L).</span><br></pre></td></tr></table></figure>
+<h4 id="Adding-an-element-to-a-list-without-duplication"><a href="#Adding-an-element-to-a-list-without-duplication" class="headerlink" title="Adding an element to a list without duplication"></a>Adding an element to a list without duplication</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add(X, L, L) :-</span><br><span class="line">    member(X, L), !.</span><br><span class="line">add(X, L, [X, L]).</span><br></pre></td></tr></table></figure>
+<h4 id="Classification-into-categories"><a href="#Classification-into-categories" class="headerlink" title="Classification into categories"></a>Classification into categories</h4><p>Assume we have a database of results of tennis games played by members of a club. The results are in the program represented as facts like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beat(tom, jim).</span><br><span class="line">beat(ann, tom).</span><br><span class="line">beat(pat, jim).</span><br></pre></td></tr></table></figure>
+<p>We want to define a relation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class(Player, Category)</span><br></pre></td></tr></table></figure>
+<p>that ranks the players into categories.</p>
+<p>We have just three categories:</p>
+<blockquote>
+<p>winner: every player who won all his or her games is a winner</p>
+<p>fighter: any player that won some games and lost some</p>
+<p>sportsman: any player who lost all his or her games</p>
+</blockquote>
+<ul>
+<li><p>It is easy to specify the rule for a fighter:</p>
+<p>X is a fighter if</p>
+<p>​    there is some Y such that X beat Y and</p>
+<p>​    there is some Z such that Z beat X.</p>
+</li>
+<li><p>Now a rule for a winner:</p>
+<p>X is a winner if</p>
+<p>​    X beat some Y and</p>
+<p>​    X was not beaten by anybody.</p>
+<p>This formulation contains <code>not</code> which cannot be directly expressed with our present Prolog facilities. The same problem occurs with sportsman.</p>
+<p>The problem can be circumvented by combining the definition of winner with that of fighter, and using the <code>otherwise</code> connective. Such a formulation is:</p>
+<p>If X beat somebody and X was beaten by somebody</p>
+<p>​    then X is a fighter</p>
+<p>otherwise if X beat somebody</p>
+<p>​    then X is a winner</p>
+<p>​    otherwise if X got beaten by somebody</p>
+<p>​        then X is a sportman.</p>
+<p>This mutual exclusion of the three alternative categories is indicated by the cuts:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class(X, fighter) :-</span><br><span class="line">    beat(X, _),</span><br><span class="line">    beat(_, X),</span><br><span class="line">    !.</span><br><span class="line">class(X, winner) :-</span><br><span class="line">    beat(X, _),</span><br><span class="line">    !.</span><br><span class="line">class(X, sportman) :-</span><br><span class="line">    beat(_, X).</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h3><ol>
+<li><p>Let a program be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p(1).</span><br><span class="line">p(2) :- !.</span><br><span class="line">p(3).</span><br></pre></td></tr></table></figure>
+<p>write all Prolog’s answers to the following questions:</p>
+<p>(a) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?- p(X).</span><br><span class="line">X = 1;</span><br><span class="line">X = 2.</span><br></pre></td></tr></table></figure>
+<p>(b)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?- p(X), p(Y).</span><br><span class="line">X = 1, Y = 1;</span><br><span class="line">X = 1, Y = 2;</span><br><span class="line">X = 2, Y = 1;</span><br><span class="line">X = 2, Y = 2.</span><br></pre></td></tr></table></figure>
+<p>(c)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?- p(X), !, p(Y).</span><br><span class="line">X = 1, Y = 1;</span><br><span class="line">X = 1, Y = 2.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The following relation classifies numbers into three classes: positive, zero and negative:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class(Number, positive) :- Number &gt; 0.</span><br><span class="line">class(0, zero).</span><br><span class="line">class(Number, negative) :- Number &lt; 0.</span><br></pre></td></tr></table></figure>
+<p>Define this procedure in a more efficient way using cuts.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class(Number, positive) :- Number &gt; 0, !.</span><br><span class="line">class(Number, negative) :- Number &lt; 0, !.</span><br><span class="line">class(0, zero).</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Define the procedure <strong>split(Numbers, Positives, Negatives)</strong> which splits a list of numbers into two lists: positive ones (including zero) and negative ones. For example, <strong>split([3, -1, 0, 5, -2], [3, 0, 5], [-1, -2])</strong></p>
+<p>Propose two versions: one with a cut and one without.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">split([], [], []).</span><br><span class="line">split([X|L], [X|L1], L2) :-</span><br><span class="line">    X &gt;= 0,</span><br><span class="line">    !,</span><br><span class="line">    split(L, L1, L2).</span><br><span class="line">split([X|L], L1, [X|L2]) :-</span><br><span class="line">    split(L, L1, L2).</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/LeetCode-108/" rel="next" title="LeetCode #108 Convert Sorted Array to Binary Search Tree">
+                <i class="fa fa-chevron-left"></i> LeetCode #108 Convert Sorted Array to Binary Search Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">94</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Preventing-backtracking"><span class="nav-number">1.</span> <span class="nav-text">Preventing backtracking</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiment-1"><span class="nav-number">1.1.</span> <span class="nav-text">Experiment 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiment-2"><span class="nav-number">1.2.</span> <span class="nav-text">Experiment 2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-meaning-of-the-cut-mechanism"><span class="nav-number">2.</span> <span class="nav-text">What is the meaning of the cut mechanism?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples-using-cut"><span class="nav-number">3.</span> <span class="nav-text">Examples using cut</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Computing-maximum"><span class="nav-number">3.1.</span> <span class="nav-text">Computing maximum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Single-solution-membership"><span class="nav-number">3.2.</span> <span class="nav-text">Single-solution membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adding-an-element-to-a-list-without-duplication"><span class="nav-number">3.3.</span> <span class="nav-text">Adding an element to a list without duplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Classification-into-categories"><span class="nav-number">3.4.</span> <span class="nav-text">Classification into categories</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">4.</span> <span class="nav-text">Exercises</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
