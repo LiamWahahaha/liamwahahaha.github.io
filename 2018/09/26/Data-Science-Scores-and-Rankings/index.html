@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Scores and RankingsScoring functions are measures that reduce multi-dimensional data to a single value, to highlight some particular property. Rankings order items, usually by sorting scores.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-26T16:47:56.671Z">
+<meta property="og:updated_time" content="2018-09-27T13:27:05.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scores and Rankings">
 <meta name="twitter:description" content="Scores and RankingsScoring functions are measures that reduce multi-dimensional data to a single value, to highlight some particular property. Rankings order items, usually by sorting scores.">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-26T12:47:56-04:00">
-                2018-09-26
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-27T09:27:05-04:00">
+                2018-09-27
               </time>
             
           </span>
@@ -477,6 +477,79 @@
 <li>f(infinity) = 1</li>
 <li>f(-infinity) = 0</li>
 </ul>
+<h3 id="Merging-Rankings-Votes"><a href="#Merging-Rankings-Votes" class="headerlink" title="Merging Rankings/Votes"></a>Merging Rankings/Votes</h3><p>Consider determining the winner of an multiparty election where each voter ranks the candidates in order of preference.</p>
+<ol>
+<li>Stony Brook</li>
+<li>MIT</li>
+<li>Illinois</li>
+<li>…</li>
+</ol>
+<p>Equivalently, consider merging rankings independently drawn on different features.</p>
+<h3 id="Borda’s-Method"><a href="#Borda’s-Method" class="headerlink" title="Borda’s Method"></a>Borda’s Method</h3><p>By assigning an increasing score per position, the resulting point total ranks the items:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1| A B A A</span><br><span class="line">2| C A B B</span><br><span class="line">3| B C C D</span><br><span class="line">4| D D E C</span><br><span class="line">5| E E D E</span><br><span class="line"></span><br><span class="line">A:5, B: 8, C: 12, D:16, E:19</span><br></pre></td></tr></table></figure>
+<p>Four voters, each ranking five items.</p>
+<h3 id="Weights-for-Borda’s-Method"><a href="#Weights-for-Borda’s-Method" class="headerlink" title="Weights for Borda’s Method"></a>Weights for Borda’s Method</h3><p>Linear position weights make sense when we have equal confidence across all positions.</p>
+<p>But we presumably trust our distinctions among the best/worst more than the middle elements, suggesting normally distributed weights.</p>
+<h3 id="Directed-Graph-Orderings"><a href="#Directed-Graph-Orderings" class="headerlink" title="Directed Graph Orderings"></a>Directed Graph Orderings</h3><p>Treating the vote (A&gt;B) as am edge (A, B) yields a directed graph.</p>
+<p>If there are no inconsistencies, we get a directed acyclic graph (DAG).</p>
+<p>Topologically sorting this DAG gives a reasonable order, like ABCDEF or GABCDEF.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">edge(A, B)</span><br><span class="line">edge(B, C)</span><br><span class="line">edge(B, D)</span><br><span class="line">edge(B, E)</span><br><span class="line">edge(C, E)</span><br><span class="line">edge(D, E)</span><br><span class="line">edge(G, D)</span><br><span class="line">edge(E, F)</span><br></pre></td></tr></table></figure>
+<h3 id="Ranking-General-Digraphs"><a href="#Ranking-General-Digraphs" class="headerlink" title="Ranking General Digraphs"></a>Ranking General Digraphs</h3><p>For general directed graphs, we seek the order minimizing the number of “wrong way” edges.</p>
+<p>Cutting the minimum number of edges to leave a DAG is NP-complete.</p>
+<p>But reasonable heuristics start by sorting by the difference between in/out degree.</p>
+<h3 id="Arrow’s-Impossibility-Theorem"><a href="#Arrow’s-Impossibility-Theorem" class="headerlink" title="Arrow’s Impossibility Theorem"></a>Arrow’s Impossibility Theorem</h3><p>There is no ranking system that satisfies all desiravle properties:</p>
+<ul>
+<li>The system should be complete: given A and B it must pick one or say equal preference.</li>
+<li>The system must be transitive, meaning that if A &gt; B and B &gt; C then A &gt; C.</li>
+<li>If every voter prefers A to B, then A wins over B.</li>
+<li>Preferences cannot depend only on one dictator.</li>
+<li>The preference of A to B should be independent of preferences for all other candidates.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Voter</th>
+<th>Red</th>
+<th>Green</th>
+<th>Blue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Red beats Blue, Green beats Blue, Blue beats Red</strong></p>
+<h3 id="Ranking-Example-Who’s-Bigger"><a href="#Ranking-Example-Who’s-Bigger" class="headerlink" title="Ranking Example: Who’s Bigger?"></a>Ranking Example: Who’s Bigger?</h3><p>Analyzed Wikipedia to extract measures of historical significance: PageRank, length, hits…</p>
+<ul>
+<li>Mapped values to normal distributions</li>
+<li>Use linear combination (factor analysis)</li>
+<li>Corrected for time by decaying modern figures.</li>
+<li>Separate scores for celebrity/gravitas.</li>
+</ul>
+<h3 id="Who’s-Biggest"><a href="#Who’s-Biggest" class="headerlink" title="Who’s Biggest?"></a>Who’s Biggest?</h3><p>Here are the top 20 most significant historical figures among over 800,000 in the English Wikipedia.</p>
+<h3 id="The-Decline-of-the-Great-Scientist"><a href="#The-Decline-of-the-Great-Scientist" class="headerlink" title="The Decline of the Great Scientist"></a>The Decline of the Great Scientist</h3><p>The magnitude of Nobel Prize scientists is declining, but not literature/peace winners.</p>
+<h3 id="What-can-You-Learn-from-Rankings"><a href="#What-can-You-Learn-from-Rankings" class="headerlink" title="What can You Learn from Rankings?"></a>What can You Learn from Rankings?</h3><ul>
+<li>Women are underrepresented in Wikipedia.</li>
+<li>Halls of Fame/textbooks do not always pick the strongest figures.</li>
+<li>Certain fields (e.g. poetry) are not producing historically significant figures as in the past.</li>
+</ul>
 
       
     </div>
@@ -518,6 +591,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/27/Data-Science-Statistical-Distributions/" rel="prev" title="Statistical Distributions">
+                Statistical Distributions <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -594,7 +671,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">88</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -605,7 +682,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -616,7 +693,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -651,7 +728,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-and-Rankings"><span class="nav-number">1.</span> <span class="nav-text">Scores and Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assigning-Grades"><span class="nav-number">2.</span> <span class="nav-text">Assigning Grades</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Regression"><span class="nav-number">3.</span> <span class="nav-text">Scoring vs. Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Body-Mass-Index-BMI"><span class="nav-number">4.</span> <span class="nav-text">The Body-Mass Index (BMI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BMI-Pro-Basketball-and-US-Football"><span class="nav-number">5.</span> <span class="nav-text">BMI: Pro Basketball and US Football</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gold-Standards-and-Proxies"><span class="nav-number">6.</span> <span class="nav-text">Gold Standards and Proxies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Machine-Learning"><span class="nav-number">7.</span> <span class="nav-text">Scoring vs. Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-vs-Rankings"><span class="nav-number">8.</span> <span class="nav-text">Scores vs. Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recognizing-Good-Scoring-Functions"><span class="nav-number">9.</span> <span class="nav-text">Recognizing Good Scoring Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization-and-Z-scores"><span class="nav-number">10.</span> <span class="nav-text">Normalization and Z-scores</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z-score-Examples"><span class="nav-number">11.</span> <span class="nav-text">Z-score Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Ranking-Techniques"><span class="nav-number">12.</span> <span class="nav-text">Advanced Ranking Techniques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Comparisons"><span class="nav-number">13.</span> <span class="nav-text">Binary Comparisons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elo-Rankings"><span class="nav-number">14.</span> <span class="nav-text">Elo Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-Expected-Match-Score"><span class="nav-number">15.</span> <span class="nav-text">What is the Expected Match Score?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Logit-Function"><span class="nav-number">16.</span> <span class="nav-text">The Logit Function</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-and-Rankings"><span class="nav-number">1.</span> <span class="nav-text">Scores and Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assigning-Grades"><span class="nav-number">2.</span> <span class="nav-text">Assigning Grades</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Regression"><span class="nav-number">3.</span> <span class="nav-text">Scoring vs. Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Body-Mass-Index-BMI"><span class="nav-number">4.</span> <span class="nav-text">The Body-Mass Index (BMI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BMI-Pro-Basketball-and-US-Football"><span class="nav-number">5.</span> <span class="nav-text">BMI: Pro Basketball and US Football</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gold-Standards-and-Proxies"><span class="nav-number">6.</span> <span class="nav-text">Gold Standards and Proxies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scoring-vs-Machine-Learning"><span class="nav-number">7.</span> <span class="nav-text">Scoring vs. Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scores-vs-Rankings"><span class="nav-number">8.</span> <span class="nav-text">Scores vs. Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recognizing-Good-Scoring-Functions"><span class="nav-number">9.</span> <span class="nav-text">Recognizing Good Scoring Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization-and-Z-scores"><span class="nav-number">10.</span> <span class="nav-text">Normalization and Z-scores</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Z-score-Examples"><span class="nav-number">11.</span> <span class="nav-text">Z-score Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Ranking-Techniques"><span class="nav-number">12.</span> <span class="nav-text">Advanced Ranking Techniques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Comparisons"><span class="nav-number">13.</span> <span class="nav-text">Binary Comparisons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elo-Rankings"><span class="nav-number">14.</span> <span class="nav-text">Elo Rankings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-Expected-Match-Score"><span class="nav-number">15.</span> <span class="nav-text">What is the Expected Match Score?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Logit-Function"><span class="nav-number">16.</span> <span class="nav-text">The Logit Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merging-Rankings-Votes"><span class="nav-number">17.</span> <span class="nav-text">Merging Rankings/Votes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Borda’s-Method"><span class="nav-number">18.</span> <span class="nav-text">Borda’s Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weights-for-Borda’s-Method"><span class="nav-number">19.</span> <span class="nav-text">Weights for Borda’s Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Directed-Graph-Orderings"><span class="nav-number">20.</span> <span class="nav-text">Directed Graph Orderings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ranking-General-Digraphs"><span class="nav-number">21.</span> <span class="nav-text">Ranking General Digraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow’s-Impossibility-Theorem"><span class="nav-number">22.</span> <span class="nav-text">Arrow’s Impossibility Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ranking-Example-Who’s-Bigger"><span class="nav-number">23.</span> <span class="nav-text">Ranking Example: Who’s Bigger?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Who’s-Biggest"><span class="nav-number">24.</span> <span class="nav-text">Who’s Biggest?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Decline-of-the-Great-Scientist"><span class="nav-number">25.</span> <span class="nav-text">The Decline of the Great Scientist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-can-You-Learn-from-Rankings"><span class="nav-number">26.</span> <span class="nav-text">What can You Learn from Rankings?</span></a></li></ol></div>
             
 
           </div>
