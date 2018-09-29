@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Prolog," />
+  <meta name="keywords" content="Prolog,Doubt," />
 
 
 
@@ -96,16 +96,16 @@
 
 
 <meta name="description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
-<meta name="keywords" content="Prolog">
+<meta name="keywords" content="Prolog,Doubt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3 ~ 5.4)">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking-2/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-28T23:54:29.256Z">
+<meta property="og:updated_time" content="2018-09-29T19:10:53.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3 ~ 5.4)">
 <meta name="twitter:description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3) | Liam's Blog</title>
+  <title>Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3 ~ 5.4) | Liam's Blog</title>
   
 
 
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)</h1>
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3 ~ 5.4)</h1>
         
 
         <div class="post-meta">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-28T19:54:29-04:00">
-                2018-09-28
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-29T15:10:53-04:00">
+                2018-09-29
               </time>
             
           </span>
@@ -467,13 +467,90 @@
 <li>Define the set substraction relation <strong>difference(Set1, Set2, SetDifference)</strong> where all the three sets are represented as lists. For example: <strong>difference([a,b,c,d], [b,d,e,f], [a, c])</strong></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">difference([], _, []):- !.</span><br><span class="line">difference(L, [], L).:- !.</span><br><span class="line">difference([X | L], Set, [X | Res]) :-</span><br><span class="line">    not(member(X, Set)), !,</span><br><span class="line">    difference(L, Set, Res).</span><br><span class="line">difference([_ | L], Set, Res) :-</span><br><span class="line">    difference(L, Set, Res).</span><br></pre></td></tr></table></figure>
-<ol>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">difference([], _, []).</span><br><span class="line">difference([X | L1], L2, L) :-</span><br><span class="line">    member(X, L2), !,</span><br><span class="line">    differtence(L1, L2, L).</span><br><span class="line">difference([X | L1], L2, [X | L]) : -</span><br><span class="line">    differnece(L1, L2, L).</span><br></pre></td></tr></table></figure>
+<ol start="6">
 <li><p>Define the predicate <strong>unifiable(List1, Term, List2)</strong> where <strong>List2</strong> is the list of all the members of <strong>List1</strong> that match <strong>Term</strong>, but are not instantiated by this matching. For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- unifiable([X, b, t(Y)], t(a), List).</span><br><span class="line">List = [X, t(Y)].</span><br></pre></td></tr></table></figure>
 <p>Note that X and Y have to remain uninstantiated although the matching with t(a) does cause their instantiation.</p>
 <p>Hint: Use not (Term1 = Term2). If Term1 = Term2 succeeds then <strong>not(Term1 = Term2)</strong> fails and the resulting instatiation.</p>
 </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unifiable([], _, []).</span><br><span class="line">unifiable([First | Rest], Term, List) :-</span><br><span class="line">    not(First = Term), !,</span><br><span class="line">    unifiable(Rest, Term, List).</span><br><span class="line">unifiable([First | Rest], Term, [First | List]) :-</span><br><span class="line">    unifiable(Rest, Term, List).</span><br></pre></td></tr></table></figure>
+<h3 id="Problems-with-cut-and-negation"><a href="#Problems-with-cut-and-negation" class="headerlink" title="Problems with cut and negation"></a>Problems with cut and negation</h3><p>The advantages and disadvantages of using cut are listed as follows:</p>
+<h4 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages:"></a>Advantages:</h4><ul>
+<li><p>With cut we can often improve the <strong>efficiency</strong> of the program.</p>
+<p>The idea is to explicitly tell Prolog: do not try other alternatives because they are bound to fail.</p>
+</li>
+<li><p>Using cut we can specify mutually exclusive rules; so we can express rules of the form:</p>
+<blockquote>
+<p>if condition P then conclusion Q,</p>
+<p>otherwise conclusion R.</p>
+</blockquote>
+<p>In this way, cut enhances the expressive power of the language.</p>
+</li>
+</ul>
+<h4 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages:"></a>Disadvantages:</h4><p>The reservations against the use of cut stem from the fact that we can lose the valuable correspondence between the declarative and procedural meaning of programs.</p>
+<p>If there is no cut in the program we can change the order of clauses and goals, and this will only affect the efficiency of the program, not the declarative meaning.</p>
+<p>On the other hand, in programs with cuts, a change in the order of clauses may affect the declarative meaning. This means that we can get different results.</p>
+<p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p :- a, b.</span><br><span class="line">p :- c.</span><br></pre></td></tr></table></figure>
+<p>Tge declarative meaning of this program is: p is true iff a and b are both true of c is true. This can be written as a logic formula:</p>
+<p>p &lt;===&gt; (a &amp; b) $\or$ c</p>
+<p>We can change the order of the two clauses and the declarative meaning remains the same.</p>
+<p>Now, let us insert a cut:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p :- a, !, b.</span><br><span class="line">p :- c.</span><br></pre></td></tr></table></figure>
+<p>The declarative meaning is now:</p>
+<h5 id="Doubt"><a href="#Doubt" class="headerlink" title="Doubt"></a>Doubt</h5><p>p &lt;===&gt; (a &amp; b) $\or$ (~a &amp; c)</p>
+<p>If we swap the clauses,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p :- c.</span><br><span class="line">p :- a, !, b.</span><br></pre></td></tr></table></figure>
+<p>then the meaning becomes:</p>
+<p>p &lt;===&gt; c $\or$ (a &amp; b) </p>
+<p> The important point is that when we use the cut facility we have to pay more attention to the procedural aspects. Unfortunately, this additional difficulty increases the probability of a programming error.</p>
+<h4 id="Green-cuts"><a href="#Green-cuts" class="headerlink" title="Green cuts"></a>Green cuts</h4><p>Sometimes the removal of a cut from the program can change the declarative meaning of the program. But there were also cases in which the cut had no effect on the declarative meaning. The use of cuts of the latter type is less delicate, and therefore cuts of this kind are sometimes called ‘green cuts’. </p>
+<p>From the point of view of readability of programs, green cuts are:</p>
+<ul>
+<li>innocent</li>
+<li>their use is quite acceptable</li>
+</ul>
+<p>When reading a program, green cuts can simply be ignored.</p>
+<h4 id="Red-cuts"><a href="#Red-cuts" class="headerlink" title="Red cuts"></a>Red cuts</h4><p>This kind of cuts do affect the declarative meaning. Red cuts are the ones that make programs:</p>
+<ul>
+<li>hard to understand</li>
+<li>they should be used with special care</li>
+</ul>
+<h4 id="Negation-fail-or-not"><a href="#Negation-fail-or-not" class="headerlink" title="Negation (fail or not)"></a>Negation (fail or not)</h4><p>Cuts is often used in combination with a special goal, <strong>fail</strong>. In particular, we defined the negation of a goal (<strong>not</strong>) as the failure of the goal.</p>
+<p>The negation is just a special (more restricted) way of using cut.</p>
+<p><strong>For reasons of clarity we will prefer to use not instead of the cut-fail combination (whenever possible)</strong>, because the negation is a higher level concept and is intuitively clearer than the cut-fail combination.</p>
+<h4 id="What-the-problem-of-not"><a href="#What-the-problem-of-not" class="headerlink" title="What the problem of not"></a>What the problem of <code>not</code></h4><p>The problem is that <strong>not</strong> does not correspond exactly to negation in mathematics.</p>
+<p>For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- not human(mary).</span><br></pre></td></tr></table></figure>
+<p>Prolog will probably answer ‘yes’. But this should not be understood as Prolog saying ‘Mary is not human’. What Prolog really means to say is: ‘There is not enough information in the program to prove that Mary is human’. This arises because when processing a <strong>not</strong> goal, Prolog does not try to prove this goal directly. Instead, it tries to prove the opposite, and if the opposite cannot be proved then Prolog assumes that the <strong>not</strong> goal succeeds.</p>
+<p>another example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">r(a).</span><br><span class="line">q(b).</span><br><span class="line">p(X) :- not r(X).</span><br><span class="line"></span><br><span class="line">?- q(X), p(X).</span><br><span class="line">X = b.</span><br><span class="line"></span><br><span class="line">?- p(X), q(X).</span><br><span class="line">no.</span><br></pre></td></tr></table></figure>
+<p>The key difference between both question is that the variable X is.</p>
+<ul>
+<li>in the first case, already instantiated when p(X) is executed</li>
+<li>in the second case, at that point X is not yet instantiated</li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li><p>The cut facility prevents backtracking.</p>
+<p>It is used both to improve the efficiency of programs and to enhance the expressive power of the language.</p>
+</li>
+<li><p>Efficiency is improved by explicitly telling Prolog (with cut) not to explore alternatives that we know are bound to fail.</p>
+</li>
+<li><p>Cut make it possible to formulate mutually exclusive conclusions through rules of the form:</p>
+<p>if <strong>Condition</strong> then <strong>Conclusion1</strong> otherwise <strong>Conclusion2</strong></p>
+</li>
+<li><p>Cut makes it possible to introduce negation as failure: <strong>not Goal</strong> is defined through the failure of <strong>Goal</strong>.</p>
+</li>
+<li><p>Two special goals are sometimes useful: <strong>true</strong> always succeeds, <strong>fail</strong> always fails.</p>
+</li>
+<li><p>There are also some reservations against cut: inserting a cut may destroy the correspondence between the declarative and procedural meaning of a program. Therefore, it is part of good programming style to use cut with care and not to use it without reason.</p>
+</li>
+<li><p><strong>not</strong> defined through failure does not exactly correspond to negation in mathematical logic. Therefore, the use of <strong>not</strong> also requires special care.</p>
+</li>
+</ul>
 
       
     </div>
@@ -492,6 +569,8 @@
         <div class="post-tags">
           
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Doubt/" rel="tag"># Doubt</a>
           
         </div>
       
@@ -615,7 +694,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -650,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Negation-as-failure"><span class="nav-number">1.</span> <span class="nav-text">Negation as failure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assume-that-not-is-a-built-in-Prolog-procedure"><span class="nav-number">2.</span> <span class="nav-text">Assume that not is a built-in Prolog procedure</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-if-some-particular-Prolog-implementation-does-not-support-this-notation"><span class="nav-number">2.1.</span> <span class="nav-text">What if some particular Prolog implementation does not support this notation?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Negation-as-failure"><span class="nav-number">1.</span> <span class="nav-text">Negation as failure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assume-that-not-is-a-built-in-Prolog-procedure"><span class="nav-number">2.</span> <span class="nav-text">Assume that not is a built-in Prolog procedure</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-if-some-particular-Prolog-implementation-does-not-support-this-notation"><span class="nav-number">2.1.</span> <span class="nav-text">What if some particular Prolog implementation does not support this notation?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-with-cut-and-negation"><span class="nav-number">4.</span> <span class="nav-text">Problems with cut and negation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Advantages"><span class="nav-number">4.1.</span> <span class="nav-text">Advantages:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disadvantages"><span class="nav-number">4.2.</span> <span class="nav-text">Disadvantages:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Doubt"><span class="nav-number">4.2.1.</span> <span class="nav-text">Doubt</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Green-cuts"><span class="nav-number">4.3.</span> <span class="nav-text">Green cuts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Red-cuts"><span class="nav-number">4.4.</span> <span class="nav-text">Red cuts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Negation-fail-or-not"><span class="nav-number">4.5.</span> <span class="nav-text">Negation (fail or not)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-the-problem-of-not"><span class="nav-number">4.6.</span> <span class="nav-text">What the problem of not</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li></ol></div>
             
 
           </div>
