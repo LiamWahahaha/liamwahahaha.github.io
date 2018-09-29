@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Prolog," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
+<meta name="keywords" content="Prolog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking-2/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-28T23:54:29.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)">
+<meta name="twitter:description" content="Negation as failure‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: likes(ma">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking-2/"/>
+
+
+
+
+
+  <title>Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3) | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/28/Computing-with-Logic-Controlling-Backtracking-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 5 Notes and Exercises (5.3)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-28T18:33:37-04:00">
+                2018-09-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-28T19:54:29-04:00">
+                2018-09-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Negation/" itemprop="url" rel="index">
+                    <span itemprop="name">Negation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Negation-as-failure"><a href="#Negation-as-failure" class="headerlink" title="Negation as failure"></a>Negation as failure</h3><p>‘Mary likes all animals but snakes’. How can we say this in Prolog? It is easy to express one part of this statement: Mary likes any X is X is an animal. This is in Prolog: <strong>likes(mary, X) :- animal(X).</strong></p>
+<p>But we have to exclude snakes. This can be done by using a different formulation:</p>
+<blockquote>
+<p>If X is a snakes then <code>Mary likes X</code> is not true.</p>
+<p>Otherwise if X is an animal then Mary likes X.</p>
+</blockquote>
+<p>That something is not true can be said in Prolog by using a special goal, <strong>fail</strong>, which always fails, thus forcing the parent goal to fail. The above formulation is translated into Prolog, using <strong>fail</strong>, as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">likes(mary, X) :-</span><br><span class="line">    snakes(X), !, fail.</span><br><span class="line">likes(mary, X) :-</span><br><span class="line">    animal(X).</span><br></pre></td></tr></table></figure>
+<p>or </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">likes(mary, X) :-</span><br><span class="line">    snakes(X), !, fail;</span><br><span class="line">    animal(X).</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>We can use the same idea to define the relation <strong>different(X, Y)</strong>, which is true if X and Y are different. But what is ‘different’? ‘different’ can be understood in several ways:</p>
+<ul>
+<li>X and Y are not literally the same;</li>
+<li>X and Y do not match;</li>
+<li>the values of arithmetic expressions X and Y are not equal.</li>
+</ul>
+<p>Now, let us choose here that X and Y are different if they do not match. The key to saying this in Prolog is:</p>
+<blockquote>
+<p>If X and Y match then different(X, Y) fails,</p>
+<p>Otherwise different(X, Y) succeeds.</p>
+</blockquote>
+<p>We again use the cut and <strong>fail</strong> combination:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">different(X, X) :- !, fail.</span><br><span class="line">different(X, Y).</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">different(X, Y) :-</span><br><span class="line">   X = Y, !, fail;</span><br><span class="line">   true.              % true is a goal that always succeeds.</span><br></pre></td></tr></table></figure>
+<p>We will now define the <strong>not</strong> relation as follows:</p>
+<blockquote>
+<p>If <strong>Goal</strong> succeeds then <strong>not(Goal)</strong> fails,</p>
+<p>Otherwise <strong>not(Goal)</strong> succeeds.</p>
+</blockquote>
+<p>This definition can be written in Prolog as:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">not(P) :-</span><br><span class="line">    P, !, fail;</span><br><span class="line">    true.</span><br></pre></td></tr></table></figure>
+<h3 id="Assume-that-not-is-a-built-in-Prolog-procedure"><a href="#Assume-that-not-is-a-built-in-Prolog-procedure" class="headerlink" title="Assume that not is a built-in Prolog procedure"></a>Assume that <code>not</code> is a built-in Prolog procedure</h3><p>We will also assume that <strong>not</strong> is defined as a prefix operator, so that we can also write the goal</p>
+<p><strong>not(snake(X))</strong> as <strong>not snake(X)</strong></p>
+<h4 id="What-if-some-particular-Prolog-implementation-does-not-support-this-notation"><a href="#What-if-some-particular-Prolog-implementation-does-not-support-this-notation" class="headerlink" title="What if some particular Prolog implementation does not support this notation?"></a>What if some particular Prolog implementation does not support this notation?</h4><p>We can always define <strong>not</strong> ourselves.</p>
+<p>Examples with <strong>not</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">likes(mary, X) :-</span><br><span class="line">    animal(X),</span><br><span class="line">    not snake(X).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">different(X, Y) :-</span><br><span class="line">    not (X = Y).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">% tennis classification program</span><br><span class="line">class(X, fighter) :-</span><br><span class="line">    beat(X, _),</span><br><span class="line">    beat(_, X).</span><br><span class="line">class(X, winner) :-</span><br><span class="line">    beat(X, _),</span><br><span class="line">    not beat(_, X).</span><br><span class="line">class(X, sportsman) :-</span><br><span class="line">    beat(_, X),</span><br><span class="line">    not beat(X, _).</span><br></pre></td></tr></table></figure>
+<h3 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h3><ol start="4">
+<li>Given two lists, <strong>Candidates</strong> and <strong>RuledOut</strong>, write a sequence of goals (using <strong>member</strong> and <strong>not</strong>) that will through backtracking find all the items in <strong>Candidates</strong> that are not in <strong>RuledOut</strong>.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">member(Item, Candidates),not member(Item, RuledOut).</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rule_out(L, [], L).</span><br><span class="line">rule_out([], _, []).</span><br><span class="line">rule_out([X | CandidatesL], RuledOut, [X|Res]) :-</span><br><span class="line">    not(member(X, RuledOut)),!,</span><br><span class="line">    rule_out(CandidatesL, RuledOut, Res).</span><br><span class="line">rule_out([X | CandidatesL], RuledOut, Res) :-</span><br><span class="line">    rule_out(CandidatesL, RuledOut, Res).</span><br><span class="line"></span><br><span class="line">% helper function</span><br><span class="line">member(X, [X|_]) :- !.</span><br><span class="line">member(X, [_|L]) :-</span><br><span class="line">    member(X, L).</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Define the set substraction relation <strong>difference(Set1, Set2, SetDifference)</strong> where all the three sets are represented as lists. For example: <strong>difference([a,b,c,d], [b,d,e,f], [a, c])</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">difference([], _, []):- !.</span><br><span class="line">difference(L, [], L).:- !.</span><br><span class="line">difference([X | L], Set, [X | Res]) :-</span><br><span class="line">    not(member(X, Set)), !,</span><br><span class="line">    difference(L, Set, Res).</span><br><span class="line">difference([_ | L], Set, Res) :-</span><br><span class="line">    difference(L, Set, Res).</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>Define the predicate <strong>unifiable(List1, Term, List2)</strong> where <strong>List2</strong> is the list of all the members of <strong>List1</strong> that match <strong>Term</strong>, but are not instantiated by this matching. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- unifiable([X, b, t(Y)], t(a), List).</span><br><span class="line">List = [X, t(Y)].</span><br></pre></td></tr></table></figure>
+<p>Note that X and Y have to remain uninstantiated although the matching with t(a) does cause their instantiation.</p>
+<p>Hint: Use not (Term1 = Term2). If Term1 = Term2 succeeds then <strong>not(Term1 = Term2)</strong> fails and the resulting instatiation.</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/Computing-with-Logic-Controlling-Backtracking/" rel="next" title="Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2)">
+                <i class="fa fa-chevron-left"></i> Prolog Programming for AI - Chapter 5 Notes and Exercises (5.1 ~ 5.2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/29/Analysis-of-Algorithms-Lecture-4/" rel="prev" title="Analysis of Algorithms Lecture 4">
+                Analysis of Algorithms Lecture 4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Negation-as-failure"><span class="nav-number">1.</span> <span class="nav-text">Negation as failure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assume-that-not-is-a-built-in-Prolog-procedure"><span class="nav-number">2.</span> <span class="nav-text">Assume that not is a built-in Prolog procedure</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-if-some-particular-Prolog-implementation-does-not-support-this-notation"><span class="nav-number">2.1.</span> <span class="nav-text">What if some particular Prolog implementation does not support this notation?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
