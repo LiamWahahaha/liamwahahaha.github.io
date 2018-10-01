@@ -294,6 +294,482 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/14/LeetCode-144/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/LeetCode-144/" itemprop="url">LeetCode #144 Binary Tree Preorder Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-14T16:32:06-04:00">
+                2018-09-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T18:17:53-04:00">
+                2018-09-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">Binary Tree</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/Medium/" itemprop="url" rel="index">
+                    <span itemprop="name">Medium</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Recursive/" itemprop="url" rel="index">
+                    <span itemprop="name">Recursive</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/" itemprop="url" rel="index">
+                    <span itemprop="name">Graph Traversal</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Algorithms/Graph-Traversal/Depth-first-Search/" itemprop="url" rel="index">
+                    <span itemprop="name">Depth-first Search</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given a binary tree, return the <em>preorder</em> traversal of its nodes’ values.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [1,2,3]</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/14/LeetCode-144/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/14/The-Order-of-Tree-Traversal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/The-Order-of-Tree-Traversal/" itemprop="url">The Order of Tree Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-14T16:07:42-04:00">
+                2018-09-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-09-14T16:28:32-04:00">
+                2018-09-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/Fundamental-Knowledge/" itemprop="url" rel="index">
+                    <span itemprop="name">Fundamental Knowledge</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/Fundamental-Knowledge/Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">Tree</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Depth-First-Search"><a href="#Depth-First-Search" class="headerlink" title="Depth First Search"></a>Depth First Search</h3><h4 id="Pre-order"><a href="#Pre-order" class="headerlink" title="Pre-order"></a>Pre-order</h4><ul>
+<li>Basic recursive steps (Center =&gt; Center.left =&gt; Center.right)<ol>
+<li>Check if the current node is empty or null.</li>
+<li>Display the data part of the root (or current node).</li>
+<li>Traverse the left subtree by recursively calling the pre-order function.</li>
+<li>Traverse the right subtree by recursively calling the pre-order function.</li>
+</ol>
+</li>
+</ul>
+<h4 id="In-order"><a href="#In-order" class="headerlink" title="In-order"></a>In-order</h4><ul>
+<li>Basic recursive steps (Center.left =&gt; Center =&gt; Center.right)<ol>
+<li>Check if the current node is empty or null.</li>
+<li>Traverse the left subtree by recursively calling the in-order function.</li>
+<li>Display the data part of the root (or current node).</li>
+<li>Traverse the right subtree by recursively calling the in-order function.</li>
+</ol>
+</li>
+<li>In a binary search tree, in-order traversal retrieves data in sorted order.</li>
+</ul>
+<h4 id="Post-order"><a href="#Post-order" class="headerlink" title="Post-order"></a>Post-order</h4><ul>
+<li>Basic recursive steps (Center.left =&gt; Center.right =&gt; Center)<ol>
+<li>Check if the current node is empty or null.</li>
+<li>Traverse the left subtree by recursively calling the post-order function.</li>
+<li>Traverse the right subtree by recursively calling the post-order function.</li>
+<li>Display the data part of the root (or current node).</li>
+</ol>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/14/The-Order-of-Tree-Traversal/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/14/LeetCode-150/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,8 +869,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -404,8 +880,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -825,8 +1301,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -836,8 +1312,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -1090,8 +1566,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -1101,8 +1577,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -1349,8 +1825,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -1360,8 +1836,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -1608,8 +2084,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -1619,8 +2095,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -1880,8 +2356,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -1891,8 +2367,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -2189,543 +2665,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/12/Computing-with-Logic-Notes-Structures-Lists-Difference-Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Computing-with-Logic-Notes-Structures-Lists-Difference-Lists/" itemprop="url">Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T17:26:20-04:00">
-                2018-09-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-12T18:44:44-04:00">
-                2018-09-12
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
-                    <span itemprop="name">Prolog</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Relations-Predicates"><a href="#Relations-Predicates" class="headerlink" title="Relations/Predicates"></a>Relations/Predicates</h3><ul>
-<li><p>Predicates are building-blocks in predicate calculus: p(a_1, a_2, …, a_k)</p>
-<ul>
-<li><p>parent(X, Y): X is a parent of Y.</p>
-<blockquote>
-<p>parent(pam, bob).</p>
-<p>parent(bob, ann).</p>
-<p>parent(tom, bob).</p>
-<p>parent(bob, pat).</p>
-<p>parent(tom, liz).</p>
-<p>parent(pat, jim).</p>
-<p>parent(pam, bob).</p>
-<p>parent(tom, bob).</p>
-<p>parent(tom, liz).</p>
-<p>…</p>
-</blockquote>
-</li>
-<li><p>male(X): X is a male.</p>
-<blockquote>
-<p>male(tom).</p>
-<p>male(bob).</p>
-<p>male(jim).</p>
-<p>…</p>
-</blockquote>
-</li>
-<li><p>female(X): X is a female.</p>
-<p>female()</p>
-<blockquote>
-<p> female(pam).</p>
-<p>female(pat).</p>
-<p>female(ann).</p>
-<p>female(liz).</p>
-</blockquote>
-<p><code>We attach meaning to them, but within the logical system they are simply structural building blocks, with no meaning beyond that provided by explicitly-stated interrelationships</code></p>
-</li>
-</ul>
-</li>
-<li><p>Rules:</p>
-<ul>
-<li><p>mother(X, Y): X is the mother of Y.</p>
-<ul>
-<li><p>FOL:</p>
-<p>$\forall X, Y (parent(X, Y) \and female(X) \rightarrow mother(X, Y))$</p>
-</li>
-<li><p>In Prolog:</p>
-<p>mother(X, Y):-</p>
-<pre><code>parent(X, Y),
-
-female(X).
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><code>&#39;,&#39;</code> means <code>and</code> (conjunction), <code>&#39;:-&#39;</code> means <code>if</code> (implication) and <code>&#39;;&#39;</code> means <code>or</code>(disjunction).</p>
-</li>
-<li><p>More Relations:</p>
-<ul>
-<li><p>grandparent(X, Y):- </p>
-<pre><code>parent(X, Z), 
-
-parent(Z, Y).
-</code></pre></li>
-<li><p>sibling(X, Y):- </p>
-<pre><code>parent(Z, X), 
-
-parent(Z, Y), 
-</code></pre><p>​    X\= Y. % naf safety condition: negation only applies to bound variables</p>
-</li>
-<li><p>cousin(X, Y):- </p>
-<p>​    parent(A, X), </p>
-<p>​    parent(B, Y), </p>
-<p>​    sibling(A, B).</p>
-</li>
-<li><p>uncle(X, Y):-</p>
-<pre><code>parent(Z, Y),
-
-sibling(X, Z),
-
-male(X).
-</code></pre><p>uncle(X, Y):-</p>
-<pre><code>parent(Z, Y),
-
-sibling(W, Z),
-
-husband(X, W).
-</code></pre></li>
-<li><p>aunt(X, Y):-</p>
-<p>​    uncle(Z, Y),</p>
-<p>​    husband(Z, X).</p>
-<p>aunt(X, Y):-</p>
-<p>​    parent(Z, Y),</p>
-<p>​    sibling(X, Z),</p>
-<p>​    female(X).</p>
-</li>
-<li><p>greatgrandparent(X, Y):- …</p>
-</li>
-<li><p>greatgreatgrandparent(X, Y):- …</p>
-</li>
-</ul>
-</li>
-<li><p>Recursion:</p>
-<ul>
-<li><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Y).
-</code></pre><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Z),
-
-ancestor(Z, Y).
-</code></pre></li>
-<li><p>ancestor(X, Y):-      % INFINITE LOOP</p>
-<pre><code>ancestor(X, Z),
-
-parent(Z, Y).
-</code></pre><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Y).
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<h3 id="Prolog-Execution"><a href="#Prolog-Execution" class="headerlink" title="Prolog Execution"></a>Prolog Execution</h3><ul>
-<li>Call: Call a predicate (invocation)</li>
-<li>Exit: Return an answer to the caller</li>
-<li>Fail: Return to caller with no answer</li>
-<li>Redo: Try next path to find an answer</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/09/12/LeetCode-142/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/LeetCode-142/" itemprop="url">LeetCode #142 Linked List Cycle II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T15:31:40-04:00">
-                2018-09-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-13T13:50:11-04:00">
-                2018-09-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/Medium/" itemprop="url" rel="index">
-                    <span itemprop="name">Medium</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/Linked-List/" itemprop="url" rel="index">
-                    <span itemprop="name">Linked List</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/Two-Pointers/" itemprop="url" rel="index">
-                    <span itemprop="name">Two Pointers</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
-<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>Do not modify the linked list.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/12/LeetCode-142/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2776,7 +2715,7 @@ parent(Z, Y).
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
