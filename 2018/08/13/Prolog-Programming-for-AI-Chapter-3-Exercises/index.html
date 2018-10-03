@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TODO,Prolog," />
+  <meta name="keywords" content="Prolog," />
 
 
 
@@ -96,7 +96,7 @@
 
 
 <meta name="description" content="Relations Membership (has more procedural meaning)  Membership (has more declarative meaning)  Concatenation (or append)  Delete the last three emelemts  Delete the first three and the last three ele">
-<meta name="keywords" content="TODO,Prolog">
+<meta name="keywords" content="Prolog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog Programming for AI - Chapter 3 Exercises">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/08/13/Prolog-Programming-for-AI-Chapter-3-Exercises/index.html">
@@ -740,67 +740,6 @@
 <p style="text-align: right;"> <a href="#head">back to top</a> </p>
 
 <hr>
-<p>encode(L, R) :-</p>
-<p>​    pack(L, L2),</p>
-<p>​    map1(L2, R).</p>
-<p>map([], []).</p>
-<p>map([[H2 | T2] | T, [(N, H2) | T3]) :-</p>
-<p>​    length([H2 | T2], N),</p>
-<p>​    map(T, T3).</p>
-<p>length([], 0).</p>
-<p>length([_ | T], N) :-</p>
-<p>​    length(T, N2),</p>
-<p>​    N is N2 + 1.</p>
-<p>decode([], []).</p>
-<p>decode([(N, H) | T], L) :-</p>
-<p>​    unfold(N, H, L2),</p>
-<p>​    decode(T, L3),</p>
-<p>​    append(L2, L3, L).</p>
-<p>unfold(0, _, []).</p>
-<p>unfold(N, X, [X|T]) :-</p>
-<p>​    N &gt; 0,</p>
-<p>​    N1 is N - 1,</p>
-<p>​    unfold(N1, X, T).</p>
-<p>append([], L, L).</p>
-<p>append([H|T], L, [H, T2]):-</p>
-<p>​    append(T, L, T2).</p>
-<hr>
-<p>range(Min, Max, L) :-</p>
-<p>​    Min &gt;= Max,</p>
-<p>​    !.</p>
-<p>range(Min, Max, [Min|L}):-</p>
-<p>​    X is Min + 1,</p>
-<p>​    range(X, Max, L).</p>
-<hr>
-<p>graph</p>
-<p>:- import member/2, length/2, select/3 from basics.</p>
-<p>adjacent(X, Y, graph(_, Es)).</p>
-<p>% undirected graph:</p>
-<p>degree(graph(_, Es), N, D) :-</p>
-<p>​    degreeHelper(Es, N, 0, D).</p>
-<p>degreeHelper([], _, PD, PD).</p>
-<p>degreeHelper([X|T], N, PD, D) :-</p>
-<p>​    (</p>
-<p>​        X = e(N, _);</p>
-<p>​        X = </p>
-<p>​    )</p>
-<p>degreeHelper()</p>
-<p>% Alternative solution</p>
-<p>degree2(graph(_, Es), N, D) :-</p>
-<p>​    findall(Y, (member(e(N, Y), Es); member(e(Y, N), Es)), L),</p>
-<p>​    length(L, D).</p>
-<hr>
-<p>flatten(X, [X]):-</p>
-<p>   var(X),</p>
-<p>   !.</p>
-<p>flatten([], []) :- </p>
-<p>​    !.</p>
-<p>flatten(X, [X]) :-</p>
-<p>​    atomic(X).</p>
-<p>flatten([H|T], L) :-</p>
-<p>​    flatten(H, L2),</p>
-<p>​    flatten(T, L3),</p>
-<p>​    append(L2, L3, L).</p>
 
       
     </div>
@@ -817,8 +756,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/TODO/" rel="tag"># TODO</a>
           
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
           
@@ -922,7 +859,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">105</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -933,7 +870,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

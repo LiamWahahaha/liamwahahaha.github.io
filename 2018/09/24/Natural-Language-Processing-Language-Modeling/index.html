@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="What is language modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
+<meta name="description" content="What is Language Modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
 <meta name="keywords" content="TODO,Vocabularies,NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Language Modeling">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/24/Natural-Language-Processing-Language-Modeling/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="What is language modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
+<meta property="og:description" content="What is Language Modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-24T13:47:35.818Z">
+<meta property="og:updated_time" content="2018-10-01T12:12:07.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Language Modeling">
-<meta name="twitter:description" content="What is language modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
+<meta name="twitter:description" content="What is Language Modeling? Task of building a predictive model of language.  A language model is used to predict two types of quantities.  Probability of observing a sequence of words from a language.">
 
 
 
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-24T09:47:35-04:00">
-                2018-09-24
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-01T08:12:07-04:00">
+                2018-10-01
               </time>
             
           </span>
@@ -406,7 +406,7 @@
       
 
       
-        <h3 id="What-is-language-modeling"><a href="#What-is-language-modeling" class="headerlink" title="What is language modeling?"></a>What is language modeling?</h3><ul>
+        <h3 id="What-is-Language-Modeling"><a href="#What-is-Language-Modeling" class="headerlink" title="What is Language Modeling?"></a>What is Language Modeling?</h3><ul>
 <li><p>Task of building a predictive model of language.</p>
 </li>
 <li><p>A language model is used to predict two types of quantities.</p>
@@ -420,7 +420,27 @@
 </ul>
 </li>
 </ul>
-<h3 id="Why-is-language-modeling-useful"><a href="#Why-is-language-modeling-useful" class="headerlink" title="Why is language modeling useful?"></a>Why is language modeling useful?</h3><h4 id="Machine-translation"><a href="#Machine-translation" class="headerlink" title="Machine translation"></a>Machine translation</h4><h4 id="Handwriting-recognition"><a href="#Handwriting-recognition" class="headerlink" title="Handwriting recognition"></a>Handwriting recognition</h4><h4 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h4><h4 id="More-generally"><a href="#More-generally" class="headerlink" title="More generally"></a>More generally</h4><h3 id="Why-is-language-modeling-hard"><a href="#Why-is-language-modeling-hard" class="headerlink" title="Why is language modeling hard?"></a>Why is language modeling hard?</h3><h3 id="Strawman-solution"><a href="#Strawman-solution" class="headerlink" title="Strawman solution"></a>Strawman solution</h3><h3 id="Other-basic-solutions"><a href="#Other-basic-solutions" class="headerlink" title="Other basic solutions"></a>Other basic solutions</h3><h3 id="How-to-evaluate-language-models"><a href="#How-to-evaluate-language-models" class="headerlink" title="How to evaluate language models"></a>How to evaluate language models</h3><h3 id="Advanced-solutions"><a href="#Advanced-solutions" class="headerlink" title="Advanced solutions"></a>Advanced solutions</h3>
+<h3 id="Why-is-Language-Modeling-Useful"><a href="#Why-is-Language-Modeling-Useful" class="headerlink" title="Why is Language Modeling Useful?"></a>Why is Language Modeling Useful?</h3><ul>
+<li><p>Machine translation</p>
+</li>
+<li><p>Handwriting recognition</p>
+</li>
+<li><p>Spelling correction</p>
+</li>
+<li><p>More generally</p>
+</li>
+</ul>
+<h3 id="Formal-Task-Definition"><a href="#Formal-Task-Definition" class="headerlink" title="Formal Task Definition"></a>Formal Task Definition</h3><p>A language model is something that specifies the following two quantities, for all words in the vocabulary (of a language).</p>
+<ol>
+<li><p>Probability of a sentence or sequence</p>
+<p>Pr(w_1, w_2, w_3, …, w_k)</p>
+<p>e.g., Pr(I, love, food) =/= Pr(love, I, food)</p>
+</li>
+<li><p>Probability of the next word in a sequence</p>
+<p>Pr(wk | w_1, w_2, …, w_k-1)</p>
+</li>
+</ol>
+<h3 id="Why-is-language-modeling-hard"><a href="#Why-is-language-modeling-hard" class="headerlink" title="Why is language modeling hard?"></a>Why is language modeling hard?</h3><h3 id="Strawman-solution"><a href="#Strawman-solution" class="headerlink" title="Strawman solution"></a>Strawman solution</h3><h3 id="Other-basic-solutions"><a href="#Other-basic-solutions" class="headerlink" title="Other basic solutions"></a>Other basic solutions</h3><h3 id="How-to-evaluate-language-models"><a href="#How-to-evaluate-language-models" class="headerlink" title="How to evaluate language models"></a>How to evaluate language models</h3><h3 id="Advanced-solutions"><a href="#Advanced-solutions" class="headerlink" title="Advanced solutions"></a>Advanced solutions</h3>
       
     </div>
     
@@ -543,7 +563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">105</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -554,7 +574,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -600,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-language-modeling"><span class="nav-number">1.</span> <span class="nav-text">What is language modeling?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-language-modeling-useful"><span class="nav-number">2.</span> <span class="nav-text">Why is language modeling useful?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Machine-translation"><span class="nav-number">2.1.</span> <span class="nav-text">Machine translation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handwriting-recognition"><span class="nav-number">2.2.</span> <span class="nav-text">Handwriting recognition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spelling-correction"><span class="nav-number">2.3.</span> <span class="nav-text">Spelling correction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#More-generally"><span class="nav-number">2.4.</span> <span class="nav-text">More generally</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-language-modeling-hard"><span class="nav-number">3.</span> <span class="nav-text">Why is language modeling hard?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strawman-solution"><span class="nav-number">4.</span> <span class="nav-text">Strawman solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-basic-solutions"><span class="nav-number">5.</span> <span class="nav-text">Other basic solutions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-evaluate-language-models"><span class="nav-number">6.</span> <span class="nav-text">How to evaluate language models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-solutions"><span class="nav-number">7.</span> <span class="nav-text">Advanced solutions</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Language-Modeling"><span class="nav-number">1.</span> <span class="nav-text">What is Language Modeling?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-Language-Modeling-Useful"><span class="nav-number">2.</span> <span class="nav-text">Why is Language Modeling Useful?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Formal-Task-Definition"><span class="nav-number">3.</span> <span class="nav-text">Formal Task Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-language-modeling-hard"><span class="nav-number">4.</span> <span class="nav-text">Why is language modeling hard?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strawman-solution"><span class="nav-number">5.</span> <span class="nav-text">Strawman solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-basic-solutions"><span class="nav-number">6.</span> <span class="nav-text">Other basic solutions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-evaluate-language-models"><span class="nav-number">7.</span> <span class="nav-text">How to evaluate language models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-solutions"><span class="nav-number">8.</span> <span class="nav-text">Advanced solutions</span></a></li></ol></div>
             
 
           </div>

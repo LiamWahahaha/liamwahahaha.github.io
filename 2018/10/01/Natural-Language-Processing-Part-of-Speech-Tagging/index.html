@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TODO,Vocabularies,NLP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Summary Languages generally have a small set of closed class words that are highly frequent, ambiguous, and act as function words, and open-class words like nouns, verbs, adjectives. Various part-of-s">
+<meta name="keywords" content="TODO,Vocabularies,NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Part-of-Speech Tagging">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Summary Languages generally have a small set of closed class words that are highly frequent, ambiguous, and act as function words, and open-class words like nouns, verbs, adjectives. Various part-of-s">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/copula.png">
+<meta property="og:updated_time" content="2018-10-01T15:22:54.444Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Part-of-Speech Tagging">
+<meta name="twitter:description" content="Summary Languages generally have a small set of closed class words that are highly frequent, ambiguous, and act as function words, and open-class words like nouns, verbs, adjectives. Various part-of-s">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/copula.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/"/>
+
+
+
+
+
+  <title>Part-of-Speech Tagging | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Part-of-Speech Tagging</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-01T08:35:01-04:00">
+                2018-10-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-01T11:22:54-04:00">
+                2018-10-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li>Languages generally have a small set of <strong>closed class</strong> words that are highly frequent, ambiguous, and act as <strong>function words</strong>, and <strong>open-class</strong> words like <strong>nouns</strong>, <strong>verbs</strong>, <strong>adjectives</strong>. Various part-of-speech <strong>tagsets</strong> exist, of between 40 and 200 tags.</li>
+<li><strong>Part-of-speech tagging</strong> is the process of assigning a part-of-speech label to each of a sequence of words.</li>
+<li>Two common approaches to <strong>sequence modeling</strong>:<ul>
+<li>a <strong>generative</strong> approach, <strong>HMM</strong> tagging<ul>
+<li>The probabilities in HMM taggers are estimated by maximum likelihood estimation on tag-labeled training corpora</li>
+<li>The <strong>Viterbi algorithm</strong> is used for <strong>decoding</strong>, finding the most likely tag sequence</li>
+<li><strong>Beam search</strong> is a <strong>variant of Viterbi decoding</strong> that maintains only a fraction of high scoring states rather than all states during decoding</li>
+</ul>
+</li>
+<li>a <strong>discriminative</strong> approach, <strong>MEMM</strong> (<strong>Maximum Entropy Markov Model</strong>)tagging<ul>
+<li>This tagger train logistic regression models to pick the best tag given an observation word and its context and the previous tags, and then use Viterbi to choose the best sequence of tags.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Modern taggers are generally run <strong>bidirectionally</strong></li>
+</ul>
+<a id="more"></a>
+<h3 id="Mostly-English-Word-Classes"><a href="#Mostly-English-Word-Classes" class="headerlink" title="(Mostly) English Word Classes"></a>(Mostly) English Word Classes</h3><p>Part-of-speech can be divided into two broad supercategories:</p>
+<ul>
+<li><p><strong>Closed class types</strong></p>
+<ul>
+<li><p>Those with relatively fixed membership, such as prepositions - new prepositions are rarely coined</p>
+</li>
+<li><p>Generally are <strong>function words</strong></p>
+<p>like <em>of</em>, <em>it</em>, <em>and</em>, or <em>you</em>, which tend to be very short, occur frequently and often have structuring uses in grammar</p>
+</li>
+<li><p>Closed classes differ more from language to language</p>
+</li>
+<li><p>Some of the important closed classes in English include:</p>
+<ul>
+<li><p><strong>prepositions</strong> - on, under, over, near, by, at, from, to, with</p>
+<p>prepositions occur before noun phrases</p>
+</li>
+<li><p><strong>particles</strong> -  up, down, on, off, in, out, at, by</p>
+<p>a particle resembles a preposition or an adverb and is used in combination with a verb</p>
+</li>
+<li><p><strong>determiners</strong> - a, an, the</p>
+<p>a closed class that occurs with nouns, often marking the beginning of a noun phrase</p>
+</li>
+<li><p><strong>conjunctions</strong> - and, but, or, as, if, when</p>
+<p>conjunctions join two phrases, clauses, or sentences</p>
+</li>
+<li><p><strong>pronouns</strong> - she, who, I, others</p>
+<p>pronouns are forms that often act as a kind of shorthand for referring to some noun phrase or entity or event</p>
+<ul>
+<li><strong>personal pronouns</strong> - refer to persons or entities (you, she, I, it, me, etc.)</li>
+<li><strong>possessive pronouns</strong> - forms of personal pronouns that indicate either actual possession or more often just an abstract relation between the person and some object (my, your, his, its, one’s, our, their)</li>
+<li><strong>wh-pronouns</strong> - used in certain question forms, or may also act as complemetizers </li>
+</ul>
+</li>
+<li><p><strong>auxiliary verbs</strong> - can, may, should, are</p>
+<ul>
+<li>English auxiliaries include the <strong>copula</strong> verb <code>be</code>, the two verbs <code>do</code> and <code>have</code>, along with their inflected forms, as well as a class of <strong>modal verbs</strong></li>
+</ul>
+</li>
+<li><p><strong>numerals</strong> - one, two, three, first, second, third</p>
+</li>
+<li><p><strong>interjections</strong> - oh, hey, alas, uh, um</p>
+</li>
+<li><p><strong>negatives</strong> - no, not</p>
+</li>
+<li><p><strong>politeness markers</strong> - please, thank you</p>
+</li>
+<li><p><strong>greetings</strong> - hello, goodbye</p>
+</li>
+<li><p><strong>existential</strong> - there</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Open class types</strong></p>
+<ul>
+<li><p>Nouns and verbs are open classes - new nouns and verbs like <code>iPhone</code> or to <code>fax</code>  are continually being created or borrowed</p>
+</li>
+<li><p>Four major open classes occur in the languages of the world:</p>
+<ul>
+<li><p><strong>nouns</strong></p>
+<p>Open class nouns fall into two classes:</p>
+<ul>
+<li><strong>Proper nouns</strong> - in written English, proper nouns are usually capitalized</li>
+<li><strong>Common nouns</strong> - are divided in many languages into <strong>count nouns</strong> and <strong>mass nouns</strong></li>
+</ul>
+</li>
+<li><p><strong>verbs</strong> - refer to actions and processes</p>
+</li>
+<li><p><strong>adjectives</strong> - includes many terms for properties or qualities</p>
+</li>
+<li><p><strong>adverbs</strong> - is rather a hodge-podge in both form and meaning</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="The-Penn-Treebank-Part-of-Speech-Tagset"><a href="#The-Penn-Treebank-Part-of-Speech-Tagset" class="headerlink" title="The Penn Treebank Part-of-Speech Tagset"></a>The Penn Treebank Part-of-Speech Tagset</h3><h3 id="Part-of-Speech-Tagging"><a href="#Part-of-Speech-Tagging" class="headerlink" title="Part-of-Speech Tagging"></a>Part-of-Speech Tagging</h3><h3 id="HMM-Part-of-Speech-Tagging"><a href="#HMM-Part-of-Speech-Tagging" class="headerlink" title="HMM Part-of-Speech Tagging"></a>HMM Part-of-Speech Tagging</h3><h4 id="Markov-Chains"><a href="#Markov-Chains" class="headerlink" title="Markov Chains"></a>Markov Chains</h4><h4 id="The-Hidden-Markov-Model"><a href="#The-Hidden-Markov-Model" class="headerlink" title="The Hidden Markov Model"></a>The Hidden Markov Model</h4><h4 id="The-components-of-an-HMM-tagger"><a href="#The-components-of-an-HMM-tagger" class="headerlink" title="The components of an HMM tagger"></a>The components of an HMM tagger</h4><h4 id="HMM-tagging-as-decoding"><a href="#HMM-tagging-as-decoding" class="headerlink" title="HMM tagging as decoding"></a>HMM tagging as decoding</h4><h4 id="The-Viterbi-Algorithm"><a href="#The-Viterbi-Algorithm" class="headerlink" title="The Viterbi Algorithm"></a>The Viterbi Algorithm</h4><h4 id="Working-through-an-example"><a href="#Working-through-an-example" class="headerlink" title="Working through an example"></a>Working through an example</h4><h4 id="Extending-the-HMM-Algorithm-to-Trigrams"><a href="#Extending-the-HMM-Algorithm-to-Trigrams" class="headerlink" title="Extending the HMM Algorithm to Trigrams"></a>Extending the HMM Algorithm to Trigrams</h4><h4 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h4><h4 id="Unknown-Words"><a href="#Unknown-Words" class="headerlink" title="Unknown Words"></a>Unknown Words</h4><h3 id="Maximum-Entropy-Markov-Models"><a href="#Maximum-Entropy-Markov-Models" class="headerlink" title="Maximum Entropy Markov Models"></a>Maximum Entropy Markov Models</h3><h4 id="Features-in-a-MEMM"><a href="#Features-in-a-MEMM" class="headerlink" title="Features in a MEMM"></a>Features in a MEMM</h4><h4 id="Decoding-and-Training-MEMMs"><a href="#Decoding-and-Training-MEMMs" class="headerlink" title="Decoding and Training MEMMs"></a>Decoding and Training MEMMs</h4><h3 id="Bidirectionality"><a href="#Bidirectionality" class="headerlink" title="Bidirectionality"></a>Bidirectionality</h3><h3 id="Part-of-Speech-Tagging-for-Other-Languages"><a href="#Part-of-Speech-Tagging-for-Other-Languages" class="headerlink" title="Part-of-Speech Tagging for Other Languages"></a>Part-of-Speech Tagging for Other Languages</h3><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">https://web.stanford.edu/~jurafsky/slp3/</a></p>
+<h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><img src="/2018/10/01/Natural-Language-Processing-Part-of-Speech-Tagging/copula.png">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/01/Speech-and-Language-Processing-Notes/" rel="next" title="Speech and Language Processing Notes">
+                <i class="fa fa-chevron-left"></i> Speech and Language Processing Notes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/01/Computing-With-Logic-Quiz9/" rel="prev" title="Computing With Logic Quiz (9)">
+                Computing With Logic Quiz (9) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mostly-English-Word-Classes"><span class="nav-number">2.</span> <span class="nav-text">(Mostly) English Word Classes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Penn-Treebank-Part-of-Speech-Tagset"><span class="nav-number">3.</span> <span class="nav-text">The Penn Treebank Part-of-Speech Tagset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-of-Speech-Tagging"><span class="nav-number">4.</span> <span class="nav-text">Part-of-Speech Tagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMM-Part-of-Speech-Tagging"><span class="nav-number">5.</span> <span class="nav-text">HMM Part-of-Speech Tagging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Markov-Chains"><span class="nav-number">5.1.</span> <span class="nav-text">Markov Chains</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Hidden-Markov-Model"><span class="nav-number">5.2.</span> <span class="nav-text">The Hidden Markov Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-components-of-an-HMM-tagger"><span class="nav-number">5.3.</span> <span class="nav-text">The components of an HMM tagger</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM-tagging-as-decoding"><span class="nav-number">5.4.</span> <span class="nav-text">HMM tagging as decoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Viterbi-Algorithm"><span class="nav-number">5.5.</span> <span class="nav-text">The Viterbi Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Working-through-an-example"><span class="nav-number">5.6.</span> <span class="nav-text">Working through an example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extending-the-HMM-Algorithm-to-Trigrams"><span class="nav-number">5.7.</span> <span class="nav-text">Extending the HMM Algorithm to Trigrams</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Beam-Search"><span class="nav-number">5.8.</span> <span class="nav-text">Beam Search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unknown-Words"><span class="nav-number">5.9.</span> <span class="nav-text">Unknown Words</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximum-Entropy-Markov-Models"><span class="nav-number">6.</span> <span class="nav-text">Maximum Entropy Markov Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Features-in-a-MEMM"><span class="nav-number">6.1.</span> <span class="nav-text">Features in a MEMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decoding-and-Training-MEMMs"><span class="nav-number">6.2.</span> <span class="nav-text">Decoding and Training MEMMs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bidirectionality"><span class="nav-number">7.</span> <span class="nav-text">Bidirectionality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-of-Speech-Tagging-for-Other-Languages"><span class="nav-number">8.</span> <span class="nav-text">Part-of-Speech Tagging for Other Languages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">10.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

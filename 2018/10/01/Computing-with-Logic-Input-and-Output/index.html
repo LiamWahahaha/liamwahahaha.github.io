@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TODO,Prolog,Vocabularies," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Summary Input and output is done using built-in procedures.  Files are sequential. There are two types of streams:  There is the current input stream and the current output stream. The user terminal i">
+<meta name="keywords" content="TODO,Prolog,Vocabularies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 6 Notes and Exercises">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/10/01/Computing-with-Logic-Input-and-Output/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Summary Input and output is done using built-in procedures.  Files are sequential. There are two types of streams:  There is the current input stream and the current output stream. The user terminal i">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Computing-with-Logic-Input-and-Output/supersede.png">
+<meta property="og:updated_time" content="2018-10-02T15:37:17.891Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 6 Notes and Exercises">
+<meta name="twitter:description" content="Summary Input and output is done using built-in procedures.  Files are sequential. There are two types of streams:  There is the current input stream and the current output stream. The user terminal i">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/10/01/Computing-with-Logic-Input-and-Output/supersede.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/10/01/Computing-with-Logic-Input-and-Output/"/>
+
+
+
+
+
+  <title>Prolog Programming for AI - Chapter 6 Notes and Exercises | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/10/01/Computing-with-Logic-Input-and-Output/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 6 Notes and Exercises</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-01T11:28:35-04:00">
+                2018-10-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-02T11:37:17-04:00">
+                2018-10-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Tricks/" itemprop="url" rel="index">
+                    <span itemprop="name">Tricks</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Input-and-Output/" itemprop="url" rel="index">
+                    <span itemprop="name">Input and Output</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Built-in-Procedures/" itemprop="url" rel="index">
+                    <span itemprop="name">Built-in Procedures</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li><p>Input and output is done using built-in procedures.</p>
+</li>
+<li><p>Files are sequential. There are two types of streams:</p>
+<ul>
+<li>There is the <code>current input stream</code> and the <code>current output stream</code>.</li>
+<li>The user terminal is treated as a file called <code>user</code>.</li>
+</ul>
+</li>
+<li><p>Switching between streams is done by:</p>
+<ul>
+<li>see(<strong>File</strong>)  <strong>File</strong> becomes the current input stream</li>
+<li>tell(<strong>File</strong>)   <strong>File</strong> becomes the current output stream</li>
+<li>seen         close the current input stream</li>
+<li>told           close the current output stream</li>
+</ul>
+</li>
+<li><p>Files are read and written in two ways:</p>
+<ul>
+<li>as sequences of characters</li>
+<li><p>as sequences of terms</p>
+</li>
+<li><p>Built-in procedures for reading and writing characters and terms are:</p>
+<ul>
+<li>read(<strong>Term</strong>)           input next term</li>
+<li>write(<strong>Term</strong>)          output Term</li>
+<li>put(<strong>CharCode</strong>)    output character with the given ASCII code</li>
+<li>get0(<strong>CharCode</strong>)   input next character</li>
+<li>get(<strong>CharCode</strong>)     input next ‘printable’ character</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Two procedures help formatting:</p>
+<ul>
+<li>nl            output new line</li>
+<li>tab(N)    output N blanks</li>
+</ul>
+</li>
+<li><p>The procedure name(<strong>Atom</strong>, <strong>CodeList</strong>) decomposes and constructs atoms.</p>
+<ul>
+<li><strong>CodeList</strong> is the list of ASCII codes of the characters in <strong>Atom</strong>.</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="Communication-with-files"><a href="#Communication-with-files" class="headerlink" title="Communication with files"></a>Communication with files</h3><p>At any time during the execution of a Prolog program, only two files are ‘active’: one for input and one for output. These two files are called the <code>current input stream</code> and the <code>current output stream</code>.</p>
+<p>At the beginning of execution these two streams correspond to the user’s terminal, and then the current input stream can be changed to another file. The current output stream can also be changed to another file.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">see(file1),</span><br><span class="line">read_from_file(Information),</span><br><span class="line">see(user),</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">tell(file3),</span><br><span class="line">write_on_file(Information),</span><br><span class="line">tell(user),</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Processing-files-of-terms"><a href="#Processing-files-of-terms" class="headerlink" title="Processing files of terms"></a>Processing files of terms</h3><h4 id="Read-and-write"><a href="#Read-and-write" class="headerlink" title="Read and write"></a>Read and write</h4><ul>
+<li>read(X)<ul>
+<li>used for reading terms from the current input stream</li>
+<li>if read(X) is executed when the end of the current input file has been reached then X will become instantiated to the atom <strong>end_of_file</strong></li>
+</ul>
+</li>
+<li>write(X)<ul>
+<li>will output term X on the current output file</li>
+</ul>
+</li>
+<li>tab(X)<ul>
+<li>inserts spaces into the output stream</li>
+</ul>
+</li>
+<li><p>nl</p>
+<ul>
+<li>causes the start of a new line at output</li>
+</ul>
+</li>
+<li><p>examples</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cube(N, C) :-</span><br><span class="line">    C is N * N * N.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cube :-</span><br><span class="line">    read(X),</span><br><span class="line">    process(X).</span><br><span class="line">    </span><br><span class="line">process(stop) :-</span><br><span class="line">    !.</span><br><span class="line">process(N) :-</span><br><span class="line">    C is N * N * N,</span><br><span class="line">    write(C),</span><br><span class="line">    cube.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cube :-</span><br><span class="line">    write(&apos;Next item, please:&apos;),</span><br><span class="line">    read(X),</span><br><span class="line">    process(X).</span><br><span class="line">    </span><br><span class="line">process(stop) :- !.</span><br><span class="line">process(N) :-</span><br><span class="line">    C is N * N * N,</span><br><span class="line">    write(&apos;Cube of&apos;), write(N), write(&apos;is&apos;),</span><br><span class="line">    write(C), nl,</span><br><span class="line">    cube.</span><br></pre></td></tr></table></figure>
+<h4 id="Displaying-lists"><a href="#Displaying-lists" class="headerlink" title="Displaying lists"></a>Displaying lists</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">% this procedure will print each element of L on a separate line</span><br><span class="line">writelist([]).</span><br><span class="line">writelist([X|L]) :-</span><br><span class="line">    write(X),</span><br><span class="line">    nl,</span><br><span class="line">    writelist(L).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% this procedure will write the elements of each list in one line</span><br><span class="line">writelist([]).</span><br><span class="line">writelist([L | LL]) :-</span><br><span class="line">    doline(L),</span><br><span class="line">    nl,</span><br><span class="line">    writelist(LL).</span><br><span class="line"></span><br><span class="line">doline([]).</span><br><span class="line">doline([X|L]) :-</span><br><span class="line">    write(X),</span><br><span class="line">    tab(1),</span><br><span class="line">    doline(L).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">% this procedure will produce a bar graph, assuming that the numbers in the list are between 0 and 80.</span><br><span class="line"></span><br><span class="line">% ?- bars([3, 4, 6, 5]).</span><br><span class="line">% ***</span><br><span class="line">% ****</span><br><span class="line">% ******</span><br><span class="line">% *****</span><br><span class="line"></span><br><span class="line">bars([N | L]) :-</span><br><span class="line">    stars(N),</span><br><span class="line">    nl,</span><br><span class="line">    bars(L).</span><br><span class="line">    </span><br><span class="line">stars(N) :-</span><br><span class="line">    N &gt; 0,</span><br><span class="line">    write(&apos;*&apos;),</span><br><span class="line">    N1 is N - 1,</span><br><span class="line">    stars(N1).</span><br><span class="line">stars(N) :-</span><br><span class="line">    N =&lt; 0.</span><br></pre></td></tr></table></figure>
+<h4 id="Formatting-terms"><a href="#Formatting-terms" class="headerlink" title="Formatting terms"></a>Formatting terms</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">writefamily(family(Husband, Wife, Children)) :-</span><br><span class="line">    nl, write(parents), nl, nl,</span><br><span class="line">    writeperson(Husband), nl,</span><br><span class="line">    writeperson(Wife), nl,</span><br><span class="line">    write(children), nl, nl,</span><br><span class="line">    writepersonlist(Children).</span><br><span class="line"></span><br><span class="line">writeperson(person(Firstname, Secname, date(D, M, Y), Work)) :-</span><br><span class="line">    tab(4), write(Firstname),</span><br><span class="line">    tab(1), write(Secname),</span><br><span class="line">    write(&apos;, born&apos;),</span><br><span class="line">    write(D), tab(1),</span><br><span class="line">    write(M), tab(1),</span><br><span class="line">    write(Y), write(&apos;,&apos;),</span><br><span class="line">    writework(Work).</span><br><span class="line"></span><br><span class="line">writepersonlist([]).</span><br><span class="line">writepersonlist([X | L]) :-</span><br><span class="line">    writeperson(X),</span><br><span class="line">    nl,</span><br><span class="line">    writepersonlist(L).</span><br><span class="line">    </span><br><span class="line">writework(unemployed) :-</span><br><span class="line">    write(unemployed).</span><br><span class="line"></span><br><span class="line">writework(works(Comp, Sal)) :-</span><br><span class="line">    write(&apos;works &apos;), write(Comp),</span><br><span class="line">    write(&apos;, salary &apos;), write(Sal).</span><br><span class="line"></span><br><span class="line">?- writefamily(family(person(tom, fox, date(7,may, 1950), works(bbc, 15200)), person(ann, fox, date(9, may, 195l), unemployed), [person(pat, fox, date(S, may, 1973), unemployed), person(jim, fox, date(S, may, 1973), unemployed)])</span><br><span class="line">parents</span><br><span class="line"></span><br><span class="line">tom fox, born 7 may 1950,worksbbc,salary15200</span><br><span class="line">ann fox, born 9 may 1951,unemployed</span><br><span class="line"></span><br><span class="line">children</span><br><span class="line"></span><br><span class="line">pat fox, born 5 may 1973,unemployed</span><br><span class="line">jim fox, born 5 may 1973,unemployed</span><br></pre></td></tr></table></figure>
+<h4 id="Processing-a-file-of-terms"><a href="#Processing-a-file-of-terms" class="headerlink" title="Processing a file of terms"></a>Processing a file of terms</h4><p>A typical sequence of goals to process a whole file, F, would look something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...,</span><br><span class="line">see(F),</span><br><span class="line">processfile,</span><br><span class="line">see(user),</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>A typical schema for <strong>processfile</strong> is:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">processfile :-</span><br><span class="line">    read(Term),</span><br><span class="line">    process(Term).</span><br><span class="line"></span><br><span class="line">process(end_of_files) :- !.</span><br><span class="line">process(Term) :-</span><br><span class="line">    treat(Term),</span><br><span class="line">    processfile.</span><br></pre></td></tr></table></figure>
+<p>Here treat(Term) represents whatever is to be done with each term.</p>
+<h3 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h3><ol>
+<li>Let <strong>f</strong> be a file of terms. Define a procedure <strong>findterm(Term)</strong> that displays on the terminal the first term in <strong>f</strong> that matches <strong>Term</strong></li>
+<li>Let <strong>f</strong> be a file of terms. Write a procedure <strong>findallterms(Term)</strong> that displays on the terminal all the terms in <strong>f</strong> that match <strong>Term</strong>. Make sure that <strong>Term</strong> is not instantiated in the process (which could prevent its with terms that occur later in the file).</li>
+</ol>
+<h3 id="Manipulating-characters"><a href="#Manipulating-characters" class="headerlink" title="Manipulating characters"></a>Manipulating characters</h3><h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3><ol start="3">
+<li>Generalize the <strong>squeeze</strong> procedure to handle commas as well. All blanks imediately preceding a comma are to be removed, and we want to have one blank after each comma.</li>
+</ol>
+<h3 id="Constructing-and-decomposing-atoms"><a href="#Constructing-and-decomposing-atoms" class="headerlink" title="Constructing and decomposing atoms"></a>Constructing and decomposing atoms</h3><h3 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise"></a>Exercise</h3><h3 id="Reading-programs-consult-reconsult"><a href="#Reading-programs-consult-reconsult" class="headerlink" title="Reading programs: consult, reconsult"></a>Reading programs: consult, reconsult</h3><p>We tell Prolog to read a program from a file F with the goal:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- consult(F).</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The effect will be that all clauses in F are read and will be used by Prolog when answering further questions from the user.</li>
+<li>If another filed is ‘consulted’ at some later time during the same session, clauses from this new file are simply added at the end of the current set of clauses.</li>
+<li><strong>We don’t have to enter our program into a file and then request ‘consulting’ that file. Instead of reading a file, Prolog can also accept our program directly from the terminal, which corresponds to the pseudo-file user.</strong></li>
+</ul>
+<p>The built-in predicate reconsult is similar to consult. A goal:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- reconsult(F).</span><br></pre></td></tr></table></figure>
+<p>will have the same effect at <strong>Consult(F)</strong> with one exception. </p>
+<ul>
+<li>If there are clauses in F about a relation that has been previously defined, the old definition will be superseded by the new clauses about this relation in F.</li>
+</ul>
+<p>The difference betwen consult and reconsult is that:</p>
+<ul>
+<li>consult always adds new clauses</li>
+<li>reconsult redefines previously defined relations. (reconsult(F) will not affect any relation about which there is no clause in F.)</li>
+</ul>
+<h3 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h3><p><a href="#https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjjtJWh4-XdAhVCheAKHZruDgMQFjACegQIBxAC&amp;url=http%3A%2F%2Fwww.cs.toronto.edu%2F~sheila%2F324%2Ff05%2Ftuts%2Fswi.pdf&amp;usg=AOvVaw3i86Marubx7Hh-98p_NLJ3">How to add new predicates from terminal?</a></p>
+<p>We can use <strong>[user].</strong> or <strong>consult(user).</strong> to enter new program clauses from the terminal. To exit this mode, press Ctrl +D . Then Prolog will parse our predicates and make them accessible.</p>
+<h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><img src="/2018/10/01/Computing-with-Logic-Input-and-Output/supersede.png">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/01/Computing-With-Logic-Quiz9/" rel="next" title="Computing With Logic Quiz (9)">
+                <i class="fa fa-chevron-left"></i> Computing With Logic Quiz (9)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/01/Propositional-Logic-and-Resolution/" rel="prev" title="Propositional Logic and Resolution">
+                Propositional Logic and Resolution <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communication-with-files"><span class="nav-number">2.</span> <span class="nav-text">Communication with files</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">2.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Processing-files-of-terms"><span class="nav-number">3.</span> <span class="nav-text">Processing files of terms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Read-and-write"><span class="nav-number">3.1.</span> <span class="nav-text">Read and write</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Displaying-lists"><span class="nav-number">3.2.</span> <span class="nav-text">Displaying lists</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Formatting-terms"><span class="nav-number">3.3.</span> <span class="nav-text">Formatting terms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Processing-a-file-of-terms"><span class="nav-number">3.4.</span> <span class="nav-text">Processing a file of terms</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">4.</span> <span class="nav-text">Exercises</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manipulating-characters"><span class="nav-number">5.</span> <span class="nav-text">Manipulating characters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise"><span class="nav-number">6.</span> <span class="nav-text">Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructing-and-decomposing-atoms"><span class="nav-number">7.</span> <span class="nav-text">Constructing and decomposing atoms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-1"><span class="nav-number">8.</span> <span class="nav-text">Exercise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-programs-consult-reconsult"><span class="nav-number">9.</span> <span class="nav-text">Reading programs: consult, reconsult</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tricks"><span class="nav-number">10.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">11.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

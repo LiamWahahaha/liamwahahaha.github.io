@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TODO,Prolog,Doubt,Vocabularies," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Summary The type of a term can be tested by the following predicates:  var(X)           X is a (non-instantiated) variable nonvar(X)    X is not a variable atom(X)       X is an atom integer(X)    X i">
+<meta name="keywords" content="TODO,Prolog,Doubt,Vocabularies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prolog Programming for AI - Chapter 7 Notes and Exercises">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/10/02/Prolog-Programming-for-AI-Chapter-7-Notes-and-Exercises/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Summary The type of a term can be tested by the following predicates:  var(X)           X is a (non-instantiated) variable nonvar(X)    X is not a variable atom(X)       X is an atom integer(X)    X i">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-03T02:53:39.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prolog Programming for AI - Chapter 7 Notes and Exercises">
+<meta name="twitter:description" content="Summary The type of a term can be tested by the following predicates:  var(X)           X is a (non-instantiated) variable nonvar(X)    X is not a variable atom(X)       X is an atom integer(X)    X i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/10/02/Prolog-Programming-for-AI-Chapter-7-Notes-and-Exercises/"/>
+
+
+
+
+
+  <title>Prolog Programming for AI - Chapter 7 Notes and Exercises | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/10/02/Prolog-Programming-for-AI-Chapter-7-Notes-and-Exercises/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Prolog Programming for AI - Chapter 7 Notes and Exercises</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-02T11:19:21-04:00">
+                2018-10-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-02T22:53:39-04:00">
+                2018-10-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Built-in-Procedures/" itemprop="url" rel="index">
+                    <span itemprop="name">Built-in Procedures</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li><p>The type of a term can be tested by the following predicates:</p>
+<ul>
+<li>var(X)           X is a (non-instantiated) variable</li>
+<li>nonvar(X)    X is not a variable</li>
+<li>atom(X)       X is an atom</li>
+<li>integer(X)    X is an integer</li>
+<li>atomic(X)    X is either an atom or an integer</li>
+</ul>
+</li>
+<li><p>Terms can be constructed or decomposed:</p>
+<p><strong>Term = .. [Functor | ArgumentList]</strong></p>
+<p><strong>functor( Term, Functor, Arity)</strong></p>
+<p><strong>arg(N, Term, Argument)</strong></p>
+<p><strong>name(Atom, CharacterCodes)</strong></p>
+</li>
+<li><p>A prolog program can be viewed as a relational database that can be updated by the following procedures:</p>
+<p><strong>assert(Clause)</strong>      add <strong>Clause</strong> to the program</p>
+<p><strong>asserta(Clause)</strong>    add at the beginning</p>
+<p><strong>assertz(Clause)</strong>     add at the end</p>
+<p><strong>retract(Clause)</strong>     remove a clause that matches <strong>Clause</strong></p>
+</li>
+<li><p>All the objects that satisfy a given condition can be collected into a list by the predicates:</p>
+<p><strong>bagof(X, P, L)</strong>     <strong>L</strong> is the list of all <strong>X</strong> that satisfy condition <strong>P</strong></p>
+<p><strong>setof(X, P, L)</strong>      <strong>L</strong> is the sorted list of all <strong>X</strong> that satisfy condition <strong>P</strong></p>
+<p><strong>findall(X, P, L)</strong>    similar to <strong>bagof</strong></p>
+</li>
+<li><p><strong>repeat</strong> is a control facility that generates an unlimited number of alternatives for backtracking</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="Testing-the-type-of-terms"><a href="#Testing-the-type-of-terms" class="headerlink" title="Testing the type of terms"></a>Testing the type of terms</h3><h4 id="Predicates-var-nonvar-atom-integer-atomic"><a href="#Predicates-var-nonvar-atom-integer-atomic" class="headerlink" title="Predicates var, nonvar, atom, integer, atomic"></a>Predicates var, nonvar, atom, integer, atomic</h4><p><strong>var(X)</strong></p>
+<p>​    This goal succeeds if <strong>X</strong> is currently an uninstantiated variable.</p>
+<p><strong>nonvar(X)</strong></p>
+<p>​    This goal succeeds if <strong>X</strong> is a term other than a variable, or <strong>X</strong> is an <code>already instantiated variable</code>.</p>
+<p><strong>atom(X)</strong></p>
+<p>​    This is true if <strong>X</strong> curretly stands for an atom.</p>
+<p><strong>integer(X)</strong></p>
+<p>​    This goal is true if <strong>X</strong> currently stands for an integer.</p>
+<p><strong>atomic(X)</strong></p>
+<p>​    This goal is true if <strong>X</strong> currently stands for an integer or an atom.</p>
+<h4 id="Question-Why-do-we-need-atom"><a href="#Question-Why-do-we-need-atom" class="headerlink" title="Question: Why do we need atom?"></a>Question: Why do we need atom?</h4><p>count(A, L, N) where A is the atom, L is the list and N is the number of occurrences.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">count(_, [], 0).</span><br><span class="line">count(A, [B | L], N) :-</span><br><span class="line">    atom(B),</span><br><span class="line">    A = B,             % B is atom A?</span><br><span class="line">    !,</span><br><span class="line">    count(A, L, N1),   % Count in tail</span><br><span class="line">    N is N1 + 1;</span><br><span class="line">    count(A, L, N).    ％ Otherwise just count the tail</span><br></pre></td></tr></table></figure>
+<h4 id="A-cryptarithmetic-puzzle-using-nonvar"><a href="#A-cryptarithmetic-puzzle-using-nonvar" class="headerlink" title="A cryptarithmetic puzzle using nonvar"></a>A cryptarithmetic puzzle using nonvar</h4><p>A popular example of a cryptarithmetic puzzle is</p>
+<p>​    D O N A L D</p>
+<p>+  G E  R A L D</p>
+<p>=============<br>​    R O B  E R T</p>
+<p>We will define a relation <strong>sum(N1, N2, N)</strong> where N1, N2, N represent the three numbers of a given cryptarithmetic puzzle. The goal <strong>sum(N1, N2, N)</strong> is true if an assignment of digits to letters such that N1 + N2 = N.</p>
+<p>The puzzle can be stated to Prolog by the question:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- sum([D, O, N, A, L, D], [G, E, R, A, L, D], [R, O, B, E, R, T]).</span><br></pre></td></tr></table></figure>
+<p>to define the <strong>sum</strong> relation on lists of digits, we have to implement the actual rules for doing summation in the decimal number system.</p>
+<p>In general, some additional information is involved, besides the three numbers N1, N2 and N:</p>
+<ul>
+<li>carry digit before the summation of the numbers</li>
+<li>carry digit after the summation</li>
+<li>set of digits available before the summation</li>
+<li>remaining digits, not used in the summation</li>
+</ul>
+<p>To formulate the <strong>sum</strong> relation we will use the principle of generalization of the problem: we will introduce an auxiliary <strong>sum1</strong>. (<strong>sum1(N1, N2, N, C1, C, Digits1, Digits)</strong>, where N1, N2 and N are our three numbers, C1 is carry from the right, before summation of N1 and N2, and C is carry to the left, after the summation.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">% Solving cryptarithmetic puzzles</span><br><span class="line">sum(N1, N2, N) :-                            % Numbers represented as lists of digits</span><br><span class="line">    sum1(N1, N2, N,</span><br><span class="line">         0, 0,                               % Carries from right and to left both 0</span><br><span class="line">         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, _])  % All digits available</span><br><span class="line">         </span><br><span class="line">sum1([], [], [], 0, 0, Digits, Digits).</span><br><span class="line">sum1([D1 | N1], [D2 | N2], [D | N], C1, C, Digs1, Digs) :-</span><br><span class="line">    sum1(N1, N2, N, C1, C2, Digs1, Digs2) :-</span><br><span class="line">    digitsum(D1, D2, C2, D, C, Digs2, Digs).</span><br><span class="line"></span><br><span class="line">digitsum(D1, D2, C1, D, C, Digs1, Digs) :-</span><br><span class="line">    del(D1, Digs1, Digs2),    % select an available digit for D1</span><br><span class="line">    del(D2, Digs2, Digs3),    % select an available digit for D2</span><br><span class="line">    del(D, Digs3, Digs),      % select an available digit for D</span><br><span class="line">    S is D1 + D2 + C1,</span><br><span class="line">    D is S mod 10,</span><br><span class="line">    C is S div 10.</span><br><span class="line"></span><br><span class="line">del(A, L, L) :-</span><br><span class="line">    nonvar(A), !.    % A already instantiated</span><br><span class="line">del(A, [A | L], L).</span><br><span class="line">del(A, [B | L], [B | L1]) :-</span><br><span class="line">    del(A, L, L1).</span><br></pre></td></tr></table></figure>
+<h4 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h4><ol>
+<li><p>Write a procedure <strong>simplify</strong> to symbolically simplify <strong>summation</strong> expressions with numbers and symbols (lower-case letters). Let the procedure rearrange the expressions so that all the symbols precede numbers. Theses are examples of its use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?- simplify(1 + 1 + a, E).</span><br><span class="line">E = a + 2</span><br><span class="line">?- simplify(1 + a + 4 + 2 + b + c, E).</span><br><span class="line">E = a + b + c + 7</span><br><span class="line">?- simplify (3 + x + x, E).</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Define the procedure <strong>add(Item, List)</strong> to store a new element into a list. Assume that all of the elements that can be stored are atoms. <strong>List</strong> contains all the stored elements followed by a tail that is not instantiated and can thus accommodate new elements. For example, let the existing elements stored be <strong>a, b and c</strong>.</p>
+<p>Then <strong>List = [a, b, c | Tail]</strong> where <strong>Tail</strong> is a variable. </p>
+<p>The goal <strong>add(d, List)</strong> will cause the instantiation:<strong>Tail=[d | NewTail]</strong> and <strong>List=[a, b, c, d | NewTail]</strong></p>
+<p>Thus the structure can grow by accepting new items. Define also the corresponding membership relation.</p>
+</li>
+</ol>
+<h3 id="Constructing-and-decomposing-term-…-functor-arg-name"><a href="#Constructing-and-decomposing-term-…-functor-arg-name" class="headerlink" title="Constructing and decomposing term: =…, functor, arg, name"></a>Constructing and decomposing term: =…, functor, arg, name</h3><p>The goal <strong>Term =.. L</strong> is true if <strong>L</strong> is a list that contains the principal functor of <strong>Term</strong>, followed by its arguments. The following examples illustrate:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">?- f(a, b) =.. L.</span><br><span class="line">L = [f, a, b]</span><br><span class="line">?- T =.. [rectangle, 3, 5].</span><br><span class="line">T = rectangle(3, 5)</span><br><span class="line">?- Z =.. [p, X, f(X,Y)].</span><br><span class="line">Z = p(X, f(X, Y))</span><br></pre></td></tr></table></figure>
+<h4 id="Exercises-1"><a href="#Exercises-1" class="headerlink" title="Exercises"></a>Exercises</h4><ol start="3">
+<li>Define the predicate <strong>ground(Term)</strong> so that it is true if <strong>Term</strong> does not contain any uninstantiated variables.</li>
+</ol>
+<h3 id="Various-kinds-of-equality"><a href="#Various-kinds-of-equality" class="headerlink" title="Various kinds of equality"></a>Various kinds of equality</h3><ul>
+<li><p>X = Y</p>
+<p>This is true if X and Y match</p>
+</li>
+<li><p>X is E</p>
+<p>This is true if X matches the value of the arithmetic expression E</p>
+</li>
+<li><p>E1 =:= E2</p>
+<p>This is true if the values of the arithmetic expressions E1 and E2 are equal</p>
+</li>
+<li><p>E1 =\= E2</p>
+<p>This is true if the values of the arithmetic expression E1 and E2 are not equal</p>
+</li>
+<li><p>T1 == T2</p>
+<p>This is true if terms T1 and T2 are identical</p>
+<ul>
+<li>This is a stricter kind of equality: the literal equality of two terms</li>
+</ul>
+</li>
+<li><p>T1 \== T2</p>
+<p>This is true if terms T1 and T2 are not identical</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">?- f(a, b) == f(a, b).</span><br><span class="line">yes</span><br><span class="line">?- f(a, b) == f(a, X).</span><br><span class="line">no</span><br><span class="line">?- f(a, X) == f(a, Y).</span><br><span class="line">no</span><br><span class="line">?- X \== Y.</span><br><span class="line">yes</span><br><span class="line">?- t(X, f(a, Y)) == t(X, f(a, Y)).</span><br><span class="line">yes</span><br><span class="line"></span><br><span class="line">count(Term, List, N)</span><br><span class="line">count(_, [], 0).</span><br><span class="line">count(Term, [Head | L], N) :-</span><br><span class="line">    Term == Head, !,</span><br><span class="line">      count(Term, L, N1),</span><br><span class="line">      N is N1 + 1,</span><br><span class="line">    count(Term, L, N).</span><br></pre></td></tr></table></figure>
+<h3 id="Database-manipulation"><a href="#Database-manipulation" class="headerlink" title="Database manipulation"></a>Database manipulation</h3><ul>
+<li><p>assert(C)</p>
+<p>this goal always succeeds and causes a clause C to be ‘asserted’</p>
+</li>
+<li><p>retract(C)</p>
+<p>this goal deletes a clause that matches C</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">?- crisis.</span><br><span class="line">no</span><br><span class="line">?- assert(crisis).</span><br><span class="line">yes</span><br><span class="line">?- crisis.</span><br><span class="line">yes</span><br><span class="line">?- retract(crisis).</span><br><span class="line">yes</span><br><span class="line">?- crisis.</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">?- assert(</span><br><span class="line">         (faster(X, Y) :-</span><br><span class="line">             fast(X), slow(Y))).</span><br><span class="line">yes</span><br><span class="line">?- assert(fast(ann)).</span><br><span class="line">yes</span><br><span class="line">?- assert(slow(tom)).</span><br><span class="line">yes</span><br><span class="line">?- assert(slow(pat)).</span><br><span class="line">?- faster(A, B).</span><br><span class="line">A = ann,</span><br><span class="line">B = tom</span><br><span class="line">?- retract(slow(X)).</span><br><span class="line">X = tom;</span><br><span class="line">X = pat;</span><br><span class="line">no</span><br><span class="line">?- faster(ann, _).</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>asserta(C)</p>
+<p>this goal adds C at the beginning of the database</p>
+</li>
+<li><p>assertz(C)</p>
+<p>this goal adds C at the end of the database</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% memoization!</span><br><span class="line">?- solve(problem1, Solution),</span><br><span class="line">asserta(solve(problem1, Solution)).</span><br></pre></td></tr></table></figure>
+<h4 id="Exercises-2"><a href="#Exercises-2" class="headerlink" title="Exercises"></a>Exercises</h4><ol start="6">
+<li><p>(a) Write a Prolog question to remove the whole product table from the database</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- retract(product(_, _, _)), fail; true.</span><br></pre></td></tr></table></figure>
+<p>(b) Modify the question so that it only removes those entries where the product is 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- retract(product(_, _, 0)), fail; true.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Define the relation <strong>copy(Term, Copy)</strong> which will produce a copy of <strong>Term</strong> so that <strong>Copy</strong> is <strong>Term</strong> with all its variables renamed. This can be easily programmed by using <strong>assert</strong> and <strong>retract</strong></p>
+</li>
+</ol>
+<h3 id="Control-facilities"><a href="#Control-facilities" class="headerlink" title="Control facilities"></a>Control facilities</h3><ul>
+<li><p>cut, written as ‘!’</p>
+<p>prevents backtracking</p>
+</li>
+<li><p>fail</p>
+<p>is a goal that always fails</p>
+</li>
+<li><p>true</p>
+<p>is a goal that always succeeds</p>
+</li>
+<li><p>not(P)</p>
+<p>is a type of negation that behaves exactly as if defined as</p>
+<p>not(P) :- P, !, fail; true.</p>
+</li>
+<li><p>call(P)</p>
+<p>invokes a goal P. It succeeds if P succeeds.</p>
+</li>
+<li><p>repeat</p>
+<p>is a goal that always succeeds. Its special property is that it is non-deterministic; therefore, each time it is reached by backtracking it generates another alternative execution branch. Repeat behaves as if defined by:</p>
+<p>​    repeat.</p>
+<p>​    repeat :- repeat.</p>
+<p>A typical way of using repeat is illustrated by the following procedure <strong>dosquares</strong> which reads a sequence of numbers and outputs their squares.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dosquares :-</span><br><span class="line">    repeat,</span><br><span class="line">    read(X),</span><br><span class="line">    (X = stop, !;</span><br><span class="line">     Y is X * X, write(Y), fail).</span><br></pre></td></tr></table></figure>
+<h3 id="bagof-setof-and-findall"><a href="#bagof-setof-and-findall" class="headerlink" title="bagof, setof and findall"></a>bagof, setof and findall</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class(a, vow).</span><br><span class="line">class(b, con).</span><br><span class="line">class(c, con).</span><br><span class="line">class(d, con).</span><br><span class="line">class(e, vow).</span><br><span class="line">class(f, con).</span><br><span class="line"></span><br><span class="line">?- bagof(Letter, class(Letter, con), Letters).</span><br><span class="line">Letters = [b, c, d, f]</span><br><span class="line">?- bagof(Letter, class(Letter, Class), Letters).</span><br><span class="line">Class = vow,</span><br><span class="line">Letters = [a, e];</span><br><span class="line">Class = con,</span><br><span class="line">Letters = [b, c, d, f]</span><br></pre></td></tr></table></figure>
+<p>if there is no solution for P in the goal <strong>bagof(X, P, L)</strong> then the <strong>bagof</strong> goal simply fails.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- setof(Class/Letter, class(Letter, Class), List).</span><br><span class="line">List = [con/b, con/c, con/d, con/f, vow/a, vow/e]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- findall(Letter, class(Letter, Class), Letters).</span><br><span class="line">Letters = [a, b, c, d, e, f]</span><br></pre></td></tr></table></figure>
+<p>If there is no object X that satisfies P then <strong>findall</strong> will succeed with <strong>L = []</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">findall(X, Goal, Xlist):-</span><br><span class="line">    call(Goal),</span><br><span class="line">    assertz(stack(X)),</span><br><span class="line">    fail;</span><br><span class="line">    assertz(stack(bottom)),</span><br><span class="line">    collect(Xlist).</span><br><span class="line">collect(L) :-</span><br><span class="line">    retract(stack(X)), !,</span><br><span class="line">    (</span><br><span class="line">     X == bottom, !, L =[];</span><br><span class="line">     L = [X | Rest], collect(Rest)).</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Exercises-3"><a href="#Exercises-3" class="headerlink" title="Exercises"></a>Exercises</h4><ol start="8">
+<li>Use <strong>bagof</strong> to define the relation <strong>powerset(Set, Subsets)</strong> to compute the set of all subsets of a given set (all sets represented as lists)</li>
+<li>Use <strong>bagof</strong> to define the relation <strong>copy(Term, Copy)</strong> such that <strong>Copy</strong> is <strong>Term</strong> with all its variables renamed.</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Doubt/" rel="tag"># Doubt</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/01/Propositional-Logic-and-Resolution/" rel="next" title="Propositional Logic and Resolution">
+                <i class="fa fa-chevron-left"></i> Propositional Logic and Resolution
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/02/Analysis-of-Algorithms-Lecture-10/" rel="prev" title="Analysis of Algorithms Lecture 10">
+                Analysis of Algorithms Lecture 10 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-the-type-of-terms"><span class="nav-number">2.</span> <span class="nav-text">Testing the type of terms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Predicates-var-nonvar-atom-integer-atomic"><span class="nav-number">2.1.</span> <span class="nav-text">Predicates var, nonvar, atom, integer, atomic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Question-Why-do-we-need-atom"><span class="nav-number">2.2.</span> <span class="nav-text">Question: Why do we need atom?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#A-cryptarithmetic-puzzle-using-nonvar"><span class="nav-number">2.3.</span> <span class="nav-text">A cryptarithmetic puzzle using nonvar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercises"><span class="nav-number">2.4.</span> <span class="nav-text">Exercises</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructing-and-decomposing-term-…-functor-arg-name"><span class="nav-number">3.</span> <span class="nav-text">Constructing and decomposing term: =…, functor, arg, name</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercises-1"><span class="nav-number">3.1.</span> <span class="nav-text">Exercises</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Various-kinds-of-equality"><span class="nav-number">4.</span> <span class="nav-text">Various kinds of equality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-manipulation"><span class="nav-number">5.</span> <span class="nav-text">Database manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercises-2"><span class="nav-number">5.1.</span> <span class="nav-text">Exercises</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Control-facilities"><span class="nav-number">6.</span> <span class="nav-text">Control facilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bagof-setof-and-findall"><span class="nav-number">7.</span> <span class="nav-text">bagof, setof and findall</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercises-3"><span class="nav-number">7.1.</span> <span class="nav-text">Exercises</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

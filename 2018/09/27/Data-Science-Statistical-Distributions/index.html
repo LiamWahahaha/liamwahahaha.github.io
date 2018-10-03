@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Data Science,Vocabularies," />
+  <meta name="keywords" content="Vocabularies,Data Science," />
 
 
 
@@ -96,14 +96,14 @@
 
 
 <meta name="description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
-<meta name="keywords" content="Data Science,Vocabularies">
+<meta name="keywords" content="Vocabularies,Data Science">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Statistical Distributions">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/27/Data-Science-Statistical-Distributions/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-27T12:40:14.543Z">
+<meta property="og:updated_time" content="2018-10-02T15:11:52.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistical Distributions">
 <meta name="twitter:description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-27T08:40:14-04:00">
-                2018-09-27
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-02T11:11:52-04:00">
+                2018-10-02
               </time>
             
           </span>
@@ -400,12 +400,83 @@
 <h3 id="Statistical-Data-Distributions"><a href="#Statistical-Data-Distributions" class="headerlink" title="Statistical Data Distributions"></a>Statistical Data Distributions</h3><p>Every observed random variable has a particular frequency/probability distribution.</p>
 <p>Some distributions occur often in practice/theory:</p>
 <ul>
-<li>The Binomial Distribution</li>
-<li>The Normal Distribution</li>
-<li>The Poisson Distribution</li>
-<li>The Power Law Distribution</li>
+<li><h4 id="The-Binomial-Distribution"><a href="#The-Binomial-Distribution" class="headerlink" title="The Binomial Distribution"></a>The Binomial Distribution</h4><p>Experiments consist of n identical, independent trials which have two possible outcomes, with probabilities p and (1 - p) like heads or tails.</p>
+<p>$P(X=x) = C(n, x)p^x(1-p)^{n - x}$</p>
+<p>The observed season batting averages of a p = 0.300 hitter were drawn from a binomial distribution.</p>
+<ul>
+<li><p>Properties of Binomial Distributions</p>
+<p>Discrete, but bell (or half-bell) shaped</p>
+</li>
 </ul>
-<p>### </p>
+</li>
+<li><h4 id="The-Normal-Distribution"><a href="#The-Normal-Distribution" class="headerlink" title="The Normal Distribution"></a>The Normal Distribution</h4><p>The bell-shaped distribution of height, IQ, etc.</p>
+<p>Completely parameterized by mean and standard deviation:</p>
+<p>$f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma} e^{\frac{-(x-\mu)^2}{2\sigma^2}}$</p>
+<p>Not all bell-shaped distributions are normal but it is generally a reasonable start.</p>
+<ul>
+<li><p>Properties of the Normal Distribution</p>
+<ul>
+<li>It is a generalization of the binomial distribution where n to infinite</li>
+<li>Instead of n and p, the parameters are the mean $\mu$ and standard deviation $\sigma$ </li>
+<li>It really is bell-shaped since x is continuous and goes infinitely in each direction.</li>
+<li>The sum of normally distributed variables is normal.</li>
+</ul>
+</li>
+<li><p>Interpreting the Normal Distribution</p>
+<p>Tight bounds on probability follow for Z-scores from normally distributed random variables:</p>
+<ul>
+<li>IQ is normally distributed, with mean 100 and standard deviation 15.</li>
+<li>Thus about 2.5% of people have IQs above 130.</li>
+<li>1 sigma =&gt; 68%</li>
+<li>2 sigma =&gt; 95%</li>
+<li>3 sigma =&gt; 99%</li>
+</ul>
+</li>
+<li><p><strong>What is not Normal?</strong></p>
+<p>Not all bell-shaped distributions are normal (i.e. stock returns are <strong>log normal</strong> with fat tails).</p>
+<p>Mixtures of normal distributions are not normal, like full population heights.</p>
+<p>Statistical tests exist to establish whether data is drawn from a normal distribution, but populaitons are generally mixtures of multiple distributions:</p>
+<ul>
+<li>height</li>
+<li>weight</li>
+<li>IQ</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="The-Poisson-Distribution"><a href="#The-Poisson-Distribution" class="headerlink" title="The Poisson Distribution"></a>The Poisson Distribution</h4><p>The Poisson distribution measures the frequency of intervals between rare events.</p>
+<p>$Pr(x) = \frac{e^{-\mu} \mu^x}{x!}$</p>
+<p>Instead of event probability p, the distribution is parameterized by mean $\mu$, but this is equivalent because</p>
+<p>$\mu = \sum_{k=0}^{\infin}k \times Pr(k)$</p>
+<ul>
+<li><p><strong>Lifespan Distribution</strong></p>
+<p>If your chance of surviving any given day is probability p, what is your lifespan distribution?</p>
+<p>A lifespan of n days means dying for the first time on day n, so</p>
+<p>$Pr(n) = p^{n-1}(1 - p)$ &lt;= probability is time variance </p>
+<p>Lightbulb life spans are better modeled with such a distribution, not dead bulbs per 1000 hours.</p>
+</li>
+<li><p><strong>Distribution of Kids per Family</strong></p>
+<p>The average U.S. family has 2.2 kids, but how are they distributed?</p>
+<p>If families repeatedly decide whether to have any more children with fixed probability p we get a Poisson distribution</p>
+</li>
+</ul>
+</li>
+<li><h4 id="The-Power-Law-Distribution"><a href="#The-Power-Law-Distribution" class="headerlink" title="The Power Law Distribution"></a>The Power Law Distribution</h4><p>Power laws are defined $p(x) = c x^{-a}$, for exponent a and normalization constant c.</p>
+<p>They do not cluster around a mean like a normal distribution, instead having very large values rarely but consistently.</p>
+<p><strong>They define 80-20 rules: 20% of the X get 80% of the Y.</strong> </p>
+<ul>
+<li><p><strong>City Population Yield Power Laws</strong></p>
+<p>The average big US city has population 165,719. Even with a huge standard deviation of 410,730, the biggest city under a normal distribution should be Indianapolis (780K).</p>
+<p>New York city had 8,008,278 people in the 2000 census.</p>
+<p>Power laws arise when the rich get richer.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>###Significance of Classical Distributions</p>
+<p>Classical probability distributions arise often in practice, so look out for them.</p>
+<p>Closed-form formulas and special statistical tests often exist for particular distributions.</p>
+<p>However, your observed data does not necessarily come from a particular distribution just because the shape looks similar.</p>
 
       
     </div>
@@ -423,9 +494,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
-          
             <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
           
         </div>
       
@@ -527,7 +598,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">105</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -538,7 +609,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -584,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistics-and-Data-Science"><span class="nav-number">1.</span> <span class="nav-text">Statistics and Data Science</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-Data-Distributions"><span class="nav-number">2.</span> <span class="nav-text">Statistical Data Distributions</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistics-and-Data-Science"><span class="nav-number">1.</span> <span class="nav-text">Statistics and Data Science</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-Data-Distributions"><span class="nav-number">2.</span> <span class="nav-text">Statistical Data Distributions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Binomial-Distribution"><span class="nav-number">2.1.</span> <span class="nav-text">The Binomial Distribution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Normal-Distribution"><span class="nav-number">2.2.</span> <span class="nav-text">The Normal Distribution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Poisson-Distribution"><span class="nav-number">2.3.</span> <span class="nav-text">The Poisson Distribution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Power-Law-Distribution"><span class="nav-number">2.4.</span> <span class="nav-text">The Power Law Distribution</span></a></li></ol></li></ol></div>
             
 
           </div>
