@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Prolog ExecutionCall: Call a predicate(invocation)Exit: Return an answer to the callerFail: Return to caller with no answerRedo: Try next path to find an answer">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-21T13:49:47.374Z">
+<meta property="og:updated_time" content="2018-10-03T19:23:05.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2">
 <meta name="twitter:description" content="Prolog ExecutionCall: Call a predicate(invocation)Exit: Return an answer to the callerFail: Return to caller with no answerRedo: Try next path to find an answer">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-21T09:49:47-04:00">
-                2018-09-21
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-03T15:23:05-04:00">
+                2018-10-03
               </time>
             
           </span>
@@ -406,15 +406,22 @@
       
 
       
-        <h4 id="Prolog-Execution"><a href="#Prolog-Execution" class="headerlink" title="Prolog Execution"></a>Prolog Execution</h4><h5 id="Call-Call-a-predicate-invocation"><a href="#Call-Call-a-predicate-invocation" class="headerlink" title="Call: Call a predicate(invocation)"></a>Call: Call a predicate(invocation)</h5><h5 id="Exit-Return-an-answer-to-the-caller"><a href="#Exit-Return-an-answer-to-the-caller" class="headerlink" title="Exit: Return an answer to the caller"></a>Exit: Return an answer to the caller</h5><h5 id="Fail-Return-to-caller-with-no-answer"><a href="#Fail-Return-to-caller-with-no-answer" class="headerlink" title="Fail: Return to caller with no answer"></a>Fail: Return to caller with no answer</h5><h5 id="Redo-Try-next-path-to-find-an-answer"><a href="#Redo-Try-next-path-to-find-an-answer" class="headerlink" title="Redo: Try next path to find an answer"></a>Redo: Try next path to find an answer</h5><a id="more"></a>
-<h4 id="Use-of-XSB"><a href="#Use-of-XSB" class="headerlink" title="Use of XSB"></a>Use of XSB</h4><h5 id="Put-your-ruleset-and-data-in-a-file-with-extension-P-or-pl"><a href="#Put-your-ruleset-and-data-in-a-file-with-extension-P-or-pl" class="headerlink" title="Put your ruleset and data in a file with extension .P (or .pl)"></a>Put your ruleset and data in a file with extension .P (or .pl)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p(X) :- q(X, _).</span><br><span class="line">q(1, a).</span><br><span class="line">q(2, a).</span><br><span class="line">q(b, c).</span><br><span class="line">?- p(X).</span><br></pre></td></tr></table></figure>
-<h5 id="Don’t-forget-all-rules-and-facts-end-with-a-period"><a href="#Don’t-forget-all-rules-and-facts-end-with-a-period" class="headerlink" title="Don’t forget: all rules and facts end with a period (.)"></a>Don’t forget: all rules and facts end with a period (.)</h5><h5 id="Comments-or-…"><a href="#Comments-or-…" class="headerlink" title="Comments: / / or % …"></a>Comments: /<em> </em>/ or % …</h5><h5 id="Loading-your-program-myprog-P"><a href="#Loading-your-program-myprog-P" class="headerlink" title="Loading your program, myprog.P"></a>Loading your program, myprog.P</h5><p>?- [myprog].</p>
+        <h3 id="Prolog-Execution"><a href="#Prolog-Execution" class="headerlink" title="Prolog Execution"></a>Prolog Execution</h3><h5 id="Call-Call-a-predicate-invocation"><a href="#Call-Call-a-predicate-invocation" class="headerlink" title="Call: Call a predicate(invocation)"></a>Call: Call a predicate(invocation)</h5><h5 id="Exit-Return-an-answer-to-the-caller"><a href="#Exit-Return-an-answer-to-the-caller" class="headerlink" title="Exit: Return an answer to the caller"></a>Exit: Return an answer to the caller</h5><h5 id="Fail-Return-to-caller-with-no-answer"><a href="#Fail-Return-to-caller-with-no-answer" class="headerlink" title="Fail: Return to caller with no answer"></a>Fail: Return to caller with no answer</h5><h5 id="Redo-Try-next-path-to-find-an-answer"><a href="#Redo-Try-next-path-to-find-an-answer" class="headerlink" title="Redo: Try next path to find an answer"></a>Redo: Try next path to find an answer</h5><a id="more"></a>
+<h3 id="Use-of-XSB"><a href="#Use-of-XSB" class="headerlink" title="Use of XSB"></a>Use of XSB</h3><ul>
+<li>Put your ruleset and data in a file with extension .P (or .pl)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p(X) :- q(X, _).</span><br><span class="line">q(1, a).</span><br><span class="line">q(2, a).</span><br><span class="line">q(b, c).</span><br><span class="line">?- p(X).</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Don’t forget: all rules and facts end with a period (.)</p>
+</li>
+<li><p>Comments: /<em> </em>/ or % …</p>
+</li>
+<li><p>Loading your program, myprog.P</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- [myprog].</span><br></pre></td></tr></table></figure>
 <p>XSB will compile myprog.P (if necessary) and load it. Now you can type further queries, e.g.</p>
-<blockquote>
-<p>?- p(X).</p>
-<p>?- p(1).</p>
-</blockquote>
-<h5 id="Some-Useful-Built-ins"><a href="#Some-Useful-Built-ins" class="headerlink" title="Some Useful Built-ins:"></a>Some Useful Built-ins:</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?- p(X).</span><br><span class="line">?- p(1).</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Some Useful Built-ins:</p>
 <ul>
 <li>write(X) - write whatever X is bound to</li>
 <li>writeln(X) - write then put newline</li>
@@ -422,40 +429,66 @@
 <li>Equality: =</li>
 <li>Inequality: \=</li>
 </ul>
-</blockquote>
-<h5 id="Some-Useful-Tricks"><a href="#Some-Useful-Tricks" class="headerlink" title="Some Useful Tricks:"></a>Some Useful Tricks:</h5><blockquote>
+</li>
+<li><p>Some Useful Tricks:</p>
 <ul>
 <li><p>XSB returns only the first answer to the query. To get the next, type ‘;<return>‘</return></p>
 </li>
 <li><p>Usually, typing the ;’s is tedious. To do this programmatically, use this idiom:</p>
-<p>?- (q(_X), write(‘X=’), writeln(_X), fail; true).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?- (q(_X), write(&apos;X=&apos;), writeln(_X), fail; true).</span><br></pre></td></tr></table></figure>
 <p>_X here tells XSB to not print its own answers, since we are printing them by ourselves. (XSB won’t print answers for variables that are prefixed with a _.)</p>
 </li>
 </ul>
-</blockquote>
-<h4 id="Syntax-of-Prolog-Programs"><a href="#Syntax-of-Prolog-Programs" class="headerlink" title="Syntax of Prolog Programs"></a>Syntax of Prolog Programs</h4><h5 id="A-program-is-a-sequence-of-clauses"><a href="#A-program-is-a-sequence-of-clauses" class="headerlink" title="A program is a sequence of clauses."></a>A program is a sequence of clauses.</h5><h5 id="Each-clause-is-of-the-form-head-body"><a href="#Each-clause-is-of-the-form-head-body" class="headerlink" title="Each clause is of the form head:- body."></a>Each clause is of the form head:- body.</h5><h5 id="Head-is-one-term"><a href="#Head-is-one-term" class="headerlink" title="Head is one term."></a>Head is one term.</h5><h5 id="Body-is-a-comma-separated-list-of-terms"><a href="#Body-is-a-comma-separated-list-of-terms" class="headerlink" title="Body is a comma-separated list of terms."></a>Body is a comma-separated list of terms.</h5><h5 id="A-clause-with-an-empty-body-is-called-a-fact"><a href="#A-clause-with-an-empty-body-is-called-a-fact" class="headerlink" title="A clause with an empty body is called a fact."></a>A clause with an empty body is called a fact.</h5><h5 id="A-clause-is-also-sometimes-called-a-rule"><a href="#A-clause-is-also-sometimes-called-a-rule" class="headerlink" title="A clause is also sometimes called a rule."></a>A clause is also sometimes called a rule.</h5><h4 id="Logic-Programming-Concepts"><a href="#Logic-Programming-Concepts" class="headerlink" title="Logic Programming Concepts"></a>Logic Programming Concepts</h4><h5 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h5><blockquote>
+</li>
+</ul>
+<h3 id="Syntax-of-Prolog-Programs"><a href="#Syntax-of-Prolog-Programs" class="headerlink" title="Syntax of Prolog Programs"></a>Syntax of Prolog Programs</h3><ul>
+<li><p>A <strong>Prolog</strong> program is a sequence of clauses.</p>
+</li>
+<li><p>Each clause (<code>sometimes called a rule or Horn rule</code>) is of the form:</p>
+<p><strong>Head :- Body.</strong></p>
+</li>
+<li><p><strong>Head</strong> is one term.</p>
+</li>
+<li><p><strong>Body</strong> is a comma-separated list of terms.</p>
+</li>
+<li><p>A clause with an empty body is called a fact.</p>
+</li>
+<li><p>A clause is also sometimes called a rule.</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Most statements can be written many ways<ul>
+<li>That’s great for people but a nuisance for computers</li>
+<li>It turns out that if you make certain <u>restrictions</u> on the <u>format of statements</u> you can <u>prove theorems mechanically</u><ul>
+<li>Horn clauses are named for the logician Alfred Horn, who first pointed out their significance in 1951.</li>
+</ul>
+</li>
+<li>That’s what logic programming systems do</li>
+</ul>
+</li>
+</ul>
+<h3 id="Logic-Programming-Concepts"><a href="#Logic-Programming-Concepts" class="headerlink" title="Logic Programming Concepts"></a>Logic Programming Concepts</h3><ul>
+<li><p>Operators</p>
 <ul>
 <li>conjunction</li>
 <li>disjunction</li>
 <li>negation</li>
 <li>implication</li>
 </ul>
-</blockquote>
-<h5 id="Universal-and-existential-quantifiers"><a href="#Universal-and-existential-quantifiers" class="headerlink" title="Universal and existential quantifiers"></a>Universal and existential quantifiers</h5><h5 id="Statements"><a href="#Statements" class="headerlink" title="Statements"></a>Statements</h5><blockquote>
+</li>
+<li><p>Universal and existential quantifiers</p>
+</li>
+<li><p>Statements</p>
 <ul>
 <li>sometimes true, sometimes false, sometimes unknown</li>
 <li>Axioms - assumed true</li>
 <li>theorems - provably true</li>
-<li>Goals - things we’d like to prove true</li>
+<li>Goals - things we’d like to prove true </li>
 </ul>
-</blockquote>
-<h5 id="Most-statements-can-be-written-many-ways"><a href="#Most-statements-can-be-written-many-ways" class="headerlink" title="Most statements can be written many ways"></a>Most statements can be written many ways</h5><h5 id="That’s-great-for-people-but-a-nuisance-for-computers"><a href="#That’s-great-for-people-but-a-nuisance-for-computers" class="headerlink" title="That’s great for people but a nuisance for computers"></a>That’s great for people but a nuisance for computers</h5><blockquote>
-<ul>
-<li>It turns out that if you make certain restrictions on the format of statements you can prove theorems mechanically</li>
-<li>That’s what logic programming systems do</li>
+</li>
 </ul>
-</blockquote>
-<h4 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h4><h5 id="Transitive-closure"><a href="#Transitive-closure" class="headerlink" title="Transitive closure"></a>Transitive closure</h5><blockquote>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><h5 id="Transitive-closure"><a href="#Transitive-closure" class="headerlink" title="Transitive closure"></a>Transitive closure</h5><blockquote>
 <ul>
 <li><p>Example: a graph declared with facts (true statements)</p>
 <p>edge(1,2).</p>
@@ -474,7 +507,10 @@
 </li>
 </ul>
 </blockquote>
-<h4 id="Prolog-Programs"><a href="#Prolog-Programs" class="headerlink" title="Prolog Programs"></a>Prolog Programs</h4><h5 id="Syntax-of-Prolog-Programs-1"><a href="#Syntax-of-Prolog-Programs-1" class="headerlink" title="Syntax of Prolog Programs"></a>Syntax of Prolog Programs</h5><blockquote>
+<h3 id="Prolog-Programs"><a href="#Prolog-Programs" class="headerlink" title="Prolog Programs"></a>Prolog Programs</h3><ul>
+<li>Syntax of Prolog Programs</li>
+</ul>
+<blockquote>
 <ul>
 <li>A program is a sequence of clauses (Horn rules).</li>
 <li>Each clause is of the form <code>head:- body</code>.</li>
@@ -542,7 +578,7 @@
 </li>
 </ul>
 </blockquote>
-<h4 id="Logic-Programming-Queries"><a href="#Logic-Programming-Queries" class="headerlink" title="Logic Programming Queries"></a>Logic Programming Queries</h4><h4 id="Meaning-of-Logic-Programs"><a href="#Meaning-of-Logic-Programs" class="headerlink" title="Meaning of Logic Programs"></a>Meaning of Logic Programs</h4><h5 id="Declarative-Meaning"><a href="#Declarative-Meaning" class="headerlink" title="Declarative Meaning"></a>Declarative Meaning</h5><p>What are the logical consequences of a program?</p>
+<h3 id="Logic-Programming-Queries"><a href="#Logic-Programming-Queries" class="headerlink" title="Logic Programming Queries"></a>Logic Programming Queries</h3><h3 id="Meaning-of-Logic-Programs"><a href="#Meaning-of-Logic-Programs" class="headerlink" title="Meaning of Logic Programs"></a>Meaning of Logic Programs</h3><h5 id="Declarative-Meaning"><a href="#Declarative-Meaning" class="headerlink" title="Declarative Meaning"></a>Declarative Meaning</h5><p>What are the logical consequences of a program?</p>
 <blockquote>
 <ul>
 <li>Logical consequence of a program L is the smallest set such that<ul>
@@ -572,7 +608,6 @@
 </li>
 </ul>
 </blockquote>
-<p>Page 48</p>
 <h4 id="Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph"><a href="#Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph" class="headerlink" title="Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:"></a>Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:</h4><p>% brother(X, Y):- X is the brother of Y.</p>
 <p>brother(X, Y):-</p>
 <p>​    male(X),</p>
@@ -716,7 +751,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-count">108</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -727,7 +762,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">83</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -738,7 +773,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -773,7 +808,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prolog-Execution"><span class="nav-number">1.</span> <span class="nav-text">Prolog Execution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Call-Call-a-predicate-invocation"><span class="nav-number">1.1.</span> <span class="nav-text">Call: Call a predicate(invocation)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exit-Return-an-answer-to-the-caller"><span class="nav-number">1.2.</span> <span class="nav-text">Exit: Return an answer to the caller</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fail-Return-to-caller-with-no-answer"><span class="nav-number">1.3.</span> <span class="nav-text">Fail: Return to caller with no answer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redo-Try-next-path-to-find-an-answer"><span class="nav-number">1.4.</span> <span class="nav-text">Redo: Try next path to find an answer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Use-of-XSB"><span class="nav-number">2.</span> <span class="nav-text">Use of XSB</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Put-your-ruleset-and-data-in-a-file-with-extension-P-or-pl"><span class="nav-number">2.1.</span> <span class="nav-text">Put your ruleset and data in a file with extension .P (or .pl)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Don’t-forget-all-rules-and-facts-end-with-a-period"><span class="nav-number">2.2.</span> <span class="nav-text">Don’t forget: all rules and facts end with a period (.)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Comments-or-…"><span class="nav-number">2.3.</span> <span class="nav-text">Comments: / / or % …</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Loading-your-program-myprog-P"><span class="nav-number">2.4.</span> <span class="nav-text">Loading your program, myprog.P</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Some-Useful-Built-ins"><span class="nav-number">2.5.</span> <span class="nav-text">Some Useful Built-ins:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Some-Useful-Tricks"><span class="nav-number">2.6.</span> <span class="nav-text">Some Useful Tricks:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Syntax-of-Prolog-Programs"><span class="nav-number">3.</span> <span class="nav-text">Syntax of Prolog Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#A-program-is-a-sequence-of-clauses"><span class="nav-number">3.1.</span> <span class="nav-text">A program is a sequence of clauses.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Each-clause-is-of-the-form-head-body"><span class="nav-number">3.2.</span> <span class="nav-text">Each clause is of the form head:- body.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Head-is-one-term"><span class="nav-number">3.3.</span> <span class="nav-text">Head is one term.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Body-is-a-comma-separated-list-of-terms"><span class="nav-number">3.4.</span> <span class="nav-text">Body is a comma-separated list of terms.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#A-clause-with-an-empty-body-is-called-a-fact"><span class="nav-number">3.5.</span> <span class="nav-text">A clause with an empty body is called a fact.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#A-clause-is-also-sometimes-called-a-rule"><span class="nav-number">3.6.</span> <span class="nav-text">A clause is also sometimes called a rule.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logic-Programming-Concepts"><span class="nav-number">4.</span> <span class="nav-text">Logic Programming Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Operators"><span class="nav-number">4.1.</span> <span class="nav-text">Operators</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Universal-and-existential-quantifiers"><span class="nav-number">4.2.</span> <span class="nav-text">Universal and existential quantifiers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Statements"><span class="nav-number">4.3.</span> <span class="nav-text">Statements</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Most-statements-can-be-written-many-ways"><span class="nav-number">4.4.</span> <span class="nav-text">Most statements can be written many ways</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#That’s-great-for-people-but-a-nuisance-for-computers"><span class="nav-number">4.5.</span> <span class="nav-text">That’s great for people but a nuisance for computers</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Recursion"><span class="nav-number">5.</span> <span class="nav-text">Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Transitive-closure"><span class="nav-number">5.1.</span> <span class="nav-text">Transitive closure</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prolog-Programs"><span class="nav-number">6.</span> <span class="nav-text">Prolog Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Syntax-of-Prolog-Programs-1"><span class="nav-number">6.1.</span> <span class="nav-text">Syntax of Prolog Programs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Terms"><span class="nav-number">6.2.</span> <span class="nav-text">Terms</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logic-Programming-Queries"><span class="nav-number">7.</span> <span class="nav-text">Logic Programming Queries</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Meaning-of-Logic-Programs"><span class="nav-number">8.</span> <span class="nav-text">Meaning of Logic Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Declarative-Meaning"><span class="nav-number">8.1.</span> <span class="nav-text">Declarative Meaning</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Procedural-Meaning"><span class="nav-number">8.2.</span> <span class="nav-text">Procedural Meaning</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph"><span class="nav-number">9.</span> <span class="nav-text">Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Execution"><span class="nav-number">1.</span> <span class="nav-text">Prolog Execution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Call-Call-a-predicate-invocation"><span class="nav-number">1.0.1.</span> <span class="nav-text">Call: Call a predicate(invocation)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exit-Return-an-answer-to-the-caller"><span class="nav-number">1.0.2.</span> <span class="nav-text">Exit: Return an answer to the caller</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fail-Return-to-caller-with-no-answer"><span class="nav-number">1.0.3.</span> <span class="nav-text">Fail: Return to caller with no answer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redo-Try-next-path-to-find-an-answer"><span class="nav-number">1.0.4.</span> <span class="nav-text">Redo: Try next path to find an answer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-of-XSB"><span class="nav-number">2.</span> <span class="nav-text">Use of XSB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-of-Prolog-Programs"><span class="nav-number">3.</span> <span class="nav-text">Syntax of Prolog Programs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Concepts"><span class="nav-number">4.</span> <span class="nav-text">Logic Programming Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursion"><span class="nav-number">5.</span> <span class="nav-text">Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Transitive-closure"><span class="nav-number">5.0.1.</span> <span class="nav-text">Transitive closure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Programs"><span class="nav-number">6.</span> <span class="nav-text">Prolog Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Terms"><span class="nav-number">6.0.1.</span> <span class="nav-text">Terms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Queries"><span class="nav-number">7.</span> <span class="nav-text">Logic Programming Queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meaning-of-Logic-Programs"><span class="nav-number">8.</span> <span class="nav-text">Meaning of Logic Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Declarative-Meaning"><span class="nav-number">8.0.1.</span> <span class="nav-text">Declarative Meaning</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Procedural-Meaning"><span class="nav-number">8.0.2.</span> <span class="nav-text">Procedural Meaning</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph"><span class="nav-number">8.1.</span> <span class="nav-text">Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:</span></a></li></ol></li></ol></div>
             
 
           </div>

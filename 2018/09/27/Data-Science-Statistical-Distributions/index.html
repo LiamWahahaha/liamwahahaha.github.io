@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Vocabularies,Data Science," />
+  <meta name="keywords" content="Data Science," />
 
 
 
@@ -96,14 +96,14 @@
 
 
 <meta name="description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
-<meta name="keywords" content="Vocabularies,Data Science">
+<meta name="keywords" content="Data Science">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Statistical Distributions">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/27/Data-Science-Statistical-Distributions/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-02T15:11:52.522Z">
+<meta property="og:updated_time" content="2018-10-05T19:28:41.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistical Distributions">
 <meta name="twitter:description" content="Statistics and Data Science“A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” - Josh Blumenstock (University of Washington">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-02T11:11:52-04:00">
-                2018-10-02
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-05T15:28:41-04:00">
+                2018-10-05
               </time>
             
           </span>
@@ -463,14 +463,51 @@
 </li>
 <li><h4 id="The-Power-Law-Distribution"><a href="#The-Power-Law-Distribution" class="headerlink" title="The Power Law Distribution"></a>The Power Law Distribution</h4><p>Power laws are defined $p(x) = c x^{-a}$, for exponent a and normalization constant c.</p>
 <p>They do not cluster around a mean like a normal distribution, instead having very large values rarely but consistently.</p>
+<p>The constant c is unimportant: for a given <code>a</code> this constant <code>c</code> ensures the probability sums to 1.</p>
+<p>Doubling x (to 2x) reduces the probability by a factor of $2^a$, so larger values keep getting rarer steady, non-decreasing rate.</p>
 <p><strong>They define 80-20 rules: 20% of the X get 80% of the Y.</strong> </p>
 <ul>
+<li><p><strong>Properties of Power Laws</strong></p>
+<ul>
+<li>The mean does not make sense. For example, Bill Gates adds about $250 to the US mean wealth.</li>
+<li>The standard deviation does not make sense, typically much larger than the mean.</li>
+<li>The median better captures the bulk of the distribution.</li>
+<li>The distribution is scale invariant, meaning zoomed in regions look like the whole plot.</li>
+</ul>
+</li>
 <li><p><strong>City Population Yield Power Laws</strong></p>
 <p>The average big US city has population 165,719. Even with a huge standard deviation of 410,730, the biggest city under a normal distribution should be Indianapolis (780K).</p>
 <p>New York city had 8,008,278 people in the 2000 census.</p>
 <p>Power laws arise when the rich get richer.</p>
+<ul>
+<li><p><strong>Linear and Log-Log Plots for City Pop</strong></p>
+<p>Straight lines on log-log plots say power law.</p>
+<p>The biggest values are out of scale on linear plots.</p>
 </li>
 </ul>
+</li>
+<li><p><strong>Wealth Yields Power Laws</strong></p>
+<p>1 Bill Gates has $80 billion.</p>
+<p>5 Hyperbillionaries have $40 billion each.</p>
+<p>25 Superbillionaries have $20 billion each.</p>
+<p>125 Multibillionaries have $10 billion each.</p>
+<p>625 Billionaries have $5 billion each.</p>
+<p>Power laws: as you multiply the value by x, you divide the number of people by y.</p>
+</li>
+<li><p><strong>Word Frequencies and Zipf’s Law</strong></p>
+<p>Zipf’s law states that the kth most popular word is used 1/kth as often as the most popular word.</p>
+<p>Zipf’s law is a power law for <code>a = 1</code>, so a word of rank 2x have half the frequency of rank x.</p>
+</li>
+</ul>
+<p><strong>Many Distributions are Power Laws</strong></p>
+<ul>
+<li>Internet sites with x inlinks.</li>
+<li>Frequency of earthquakes at x on the Richter scale.</li>
+<li>Words used with a relative frequency of x.</li>
+<li>Wars which kill x people.</li>
+</ul>
+<p>Power laws show as straight lines on log value, log frequency plots.</p>
+<p><strong>One thing that Power laws distribution mean is that there is no real maximum!</strong></p>
 </li>
 </ul>
 <p>###Significance of Classical Distributions</p>
@@ -493,8 +530,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
           
             <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
           
@@ -598,7 +633,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-count">108</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -609,7 +644,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">83</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -620,7 +655,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

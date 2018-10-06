@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Relations/Predicates Predicates are building-blocks in predicate calculus: p(a_1, a_2, …, a_k)  parent(X, Y): X is a parent of Y.  parent(pam, bob). parent(bob, ann). parent(tom, bob). parent(bob, pat">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-12T22:44:44.883Z">
+<meta property="og:updated_time" content="2018-10-03T19:01:37.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 1">
 <meta name="twitter:description" content="Relations/Predicates Predicates are building-blocks in predicate calculus: p(a_1, a_2, …, a_k)  parent(X, Y): X is a parent of Y.  parent(pam, bob). parent(bob, ann). parent(tom, bob). parent(bob, pat">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-12T18:44:44-04:00">
-                2018-09-12
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-03T15:01:37-04:00">
+                2018-10-03
               </time>
             
           </span>
@@ -432,7 +432,6 @@
 </blockquote>
 </li>
 <li><p>female(X): X is a female.</p>
-<p>female()</p>
 <blockquote>
 <p> female(pam).</p>
 <p>female(pat).</p>
@@ -447,90 +446,69 @@
 <ul>
 <li><p>mother(X, Y): X is the mother of Y.</p>
 <ul>
-<li><p>FOL:</p>
+<li><p>In First Order Logic (FOL or predicate calculas):</p>
 <p>$\forall X, Y (parent(X, Y) \and female(X) \rightarrow mother(X, Y))$</p>
 </li>
 <li><p>In Prolog:</p>
-<p>mother(X, Y):-</p>
-<pre><code>parent(X, Y),
-
-female(X).
+<pre><code>mother(X, Y) :-
+    parent(X, Y),
+    female(X).
 </code></pre></li>
 </ul>
 </li>
-</ul>
+<li><p>all variables are universally quantified outside the rule</p>
 </li>
 <li><p><code>&#39;,&#39;</code> means <code>and</code> (conjunction), <code>&#39;:-&#39;</code> means <code>if</code> (implication) and <code>&#39;;&#39;</code> means <code>or</code>(disjunction).</p>
 </li>
+</ul>
+</li>
 <li><p>More Relations:</p>
 <ul>
-<li><p>grandparent(X, Y):- </p>
-<pre><code>parent(X, Z), 
-
-parent(Z, Y).
+<li><pre><code>grandparent(X, Y) :-
+    parent(X, Z), 
+    parent(Z, Y).
 </code></pre></li>
-<li><p>sibling(X, Y):- </p>
-<pre><code>parent(Z, X), 
-
-parent(Z, Y), 
-</code></pre><p>​    X\= Y. % naf safety condition: negation only applies to bound variables</p>
-</li>
-<li><p>cousin(X, Y):- </p>
-<p>​    parent(A, X), </p>
-<p>​    parent(B, Y), </p>
-<p>​    sibling(A, B).</p>
-</li>
-<li><p>uncle(X, Y):-</p>
-<pre><code>parent(Z, Y),
-
-sibling(X, Z),
-
-male(X).
-</code></pre><p>uncle(X, Y):-</p>
-<pre><code>parent(Z, Y),
-
-sibling(W, Z),
-
-husband(X, W).
+<li><pre><code>sibling(X, Y) :-
+    parent(Z, X), 
+    parent(Z, Y),
+    X \= Y.       % naf safety condition: negation only applies to bound variables
 </code></pre></li>
-<li><p>aunt(X, Y):-</p>
-<p>​    uncle(Z, Y),</p>
-<p>​    husband(Z, X).</p>
-<p>aunt(X, Y):-</p>
-<p>​    parent(Z, Y),</p>
-<p>​    sibling(X, Z),</p>
-<p>​    female(X).</p>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cousin(X, Y):- </span><br><span class="line">    parent(A, X),</span><br><span class="line">    parent(B, Y), </span><br><span class="line">    sibling(A, B).</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>greatgrandparent(X, Y):- …</p>
+<li><pre><code>uncle(X, Y) :-
+    parent(Z, Y),
+    sibling(X, Z),
+    male(X).
+
+uncle(X, Y) :-
+    parent(Z, Y),
+    sibling(W, Z),
+    husband(X, W).
+</code></pre></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aunt(X, Y):-</span><br><span class="line">    uncle(Z, Y),</span><br><span class="line">    husband(Z, X).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aunt(X, Y):-</span><br><span class="line">    parent(Z, Y),</span><br><span class="line">    sibling(X, Z),</span><br><span class="line">    female(X).</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>greatgreatgrandparent(X, Y):- …</p>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greatgrandparent(X, Y):- ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greatgreatgrandparent(X, Y):- ...</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>Recursion:</p>
 <ul>
-<li><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Y).
-</code></pre><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Z),
-
-ancestor(Z, Y).
+<li><pre><code>ancestor(X, Y):-
+    parent(X, Y);
+    parent(X, Z),
+    ancestor(Z, Y).
 </code></pre></li>
-<li><p>ancestor(X, Y):-      % INFINITE LOOP</p>
-<pre><code>ancestor(X, Z),
-
-parent(Z, Y).
-</code></pre><p>ancestor(X, Y):-</p>
-<pre><code>parent(X, Y).
+<li><p><strong>INFINITE LOOP</strong></p>
+<pre><code>ancestor(X, Y) :-
+    ancestor(X, Z),
+    parent(Z, Y);
+    parent(X, Y).
 </code></pre></li>
 </ul>
 </li>
-</ul>
-<h3 id="Prolog-Execution"><a href="#Prolog-Execution" class="headerlink" title="Prolog Execution"></a>Prolog Execution</h3><ul>
-<li>Call: Call a predicate (invocation)</li>
-<li>Exit: Return an answer to the caller</li>
-<li>Fail: Return to caller with no answer</li>
-<li>Redo: Try next path to find an answer</li>
 </ul>
 
       
@@ -651,7 +629,7 @@ parent(Z, Y).
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">105</span>
+                <span class="site-state-item-count">108</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -662,7 +640,7 @@ parent(Z, Y).
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">83</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -673,7 +651,7 @@ parent(Z, Y).
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -708,7 +686,7 @@ parent(Z, Y).
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Relations-Predicates"><span class="nav-number">1.</span> <span class="nav-text">Relations/Predicates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Execution"><span class="nav-number">2.</span> <span class="nav-text">Prolog Execution</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Relations-Predicates"><span class="nav-number">1.</span> <span class="nav-text">Relations/Predicates</span></a></li></ol></div>
             
 
           </div>
