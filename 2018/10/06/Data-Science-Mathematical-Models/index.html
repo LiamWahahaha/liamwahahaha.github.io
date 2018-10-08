@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Vocabularies,Data Science," />
+  <meta name="keywords" content="TODO,Vocabularies,Data Science," />
 
 
 
@@ -95,18 +95,28 @@
 
 
 
-<meta name="description" content="Philosophies of ModelingBias-Variance Trade-Offs Bias is error from incorrect assumptions built into the model, such as restricting an interpolating function to be linear instead of a higher-order cur">
-<meta name="keywords" content="Vocabularies,Data Science">
+<meta name="description" content="The Data Science Analysis Pipeline Ask an interesting question What is the scientific goal? What would you do if you had the data? What do you want to predict or estimate?  Get the data How were the d">
+<meta name="keywords" content="TODO,Vocabularies,Data Science">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mathematical Models">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Philosophies of ModelingBias-Variance Trade-Offs Bias is error from incorrect assumptions built into the model, such as restricting an interpolating function to be linear instead of a higher-order cur">
+<meta property="og:description" content="The Data Science Analysis Pipeline Ask an interesting question What is the scientific goal? What would you do if you had the data? What do you want to predict or estimate?  Get the data How were the d">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-06T05:13:03.635Z">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/errand.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/humility.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/taxonomy.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/retrain.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/diminish.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/ensemble.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/cogent.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/deem.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/clairvoyance.png">
+<meta property="og:updated_time" content="2018-10-08T04:19:40.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mathematical Models">
-<meta name="twitter:description" content="Philosophies of ModelingBias-Variance Trade-Offs Bias is error from incorrect assumptions built into the model, such as restricting an interpolating function to be linear instead of a higher-order cur">
+<meta name="twitter:description" content="The Data Science Analysis Pipeline Ask an interesting question What is the scientific goal? What would you do if you had the data? What do you want to predict or estimate?  Get the data How were the d">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/10/06/Data-Science-Mathematical-Models/errand.png">
 
 
 
@@ -339,8 +349,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-06T01:13:03-04:00">
-                2018-10-06
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-08T00:19:40-04:00">
+                2018-10-08
               </time>
             
           </span>
@@ -360,6 +370,28 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Data-Science/" itemprop="url" rel="index">
                     <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/Basic-Concepts/" itemprop="url" rel="index">
+                    <span itemprop="name">Basic Concepts</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/Basic-Concepts/Analysis-Pipeline/" itemprop="url" rel="index">
+                    <span itemprop="name">Analysis Pipeline</span>
                   </a>
                 </span>
 
@@ -395,7 +427,43 @@
       
 
       
-        <h3 id="Philosophies-of-Modeling"><a href="#Philosophies-of-Modeling" class="headerlink" title="Philosophies of Modeling"></a>Philosophies of Modeling</h3><h4 id="Bias-Variance-Trade-Offs"><a href="#Bias-Variance-Trade-Offs" class="headerlink" title="Bias-Variance Trade-Offs"></a>Bias-Variance Trade-Offs</h4><ul>
+        <h3 id="The-Data-Science-Analysis-Pipeline"><a href="#The-Data-Science-Analysis-Pipeline" class="headerlink" title="The Data Science Analysis Pipeline"></a>The Data Science Analysis Pipeline</h3><ul>
+<li><p><strong>Ask</strong> an interesting question</p>
+<p>What is the scientific goal?</p>
+<p>What would you do if you had the data?</p>
+<p>What do you want to predict or estimate?</p>
+</li>
+<li><p><strong>Get</strong> the data</p>
+<p>How were the data sampled?</p>
+<p>Which data are relevant?</p>
+<p>Are there privacy issues?</p>
+</li>
+<li><p><strong>Explore</strong> the data</p>
+<p>Plot the data.</p>
+<p>Are there anomalies?</p>
+<p>Are there patterns?</p>
+</li>
+<li><p><strong>Model</strong> the data</p>
+<p>Build a model.</p>
+<p>Fit the model.</p>
+<p>Validate the model.</p>
+</li>
+<li><p><strong>Communicate</strong> and <strong>visualize</strong> the results</p>
+<p>What did we learn?</p>
+<p>Do the results make sense?</p>
+<p>Can we tell a story?</p>
+</li>
+</ul>
+<p>Modeling is the process of encapsulating information into a tool which can make forecases/predictions.</p>
+<p>The key steps are building, fitting, and validating the model.</p>
+<a id="more"></a>
+<h3 id="Philosophies-of-Modeling"><a href="#Philosophies-of-Modeling" class="headerlink" title="Philosophies of Modeling"></a>Philosophies of Modeling</h3><p>We need to think in some fundamental ways about modeling to build them in sensible ways.</p>
+<ul>
+<li><h4 id="Occam’s-razor"><a href="#Occam’s-razor" class="headerlink" title="Occam’s razor"></a><a href="#https://en.wikipedia.org/wiki/Occam%27s_razor">Occam’s razor</a></h4><p>When presented with competing <a href="https://en.wikipedia.org/wiki/Hypothesis" target="_blank" rel="noopener">hypotheses</a> to solve a problem, one should select the solution with the fewest assumptions.</p>
+<p>With respect to modeling, this often means minimizing the parameter count in a model.</p>
+<p>Machine learning methods like LASSO/ridge regression employ penalty functions to minimize features, but also do a ‘sniff test’.</p>
+</li>
+<li><h4 id="Bias-Variance-tradeoffs"><a href="#Bias-Variance-tradeoffs" class="headerlink" title="Bias-Variance tradeoffs"></a>Bias-Variance tradeoffs</h4><ul>
 <li><p>Bias is error from incorrect assumptions built into the model, such as restricting an interpolating function to be linear instead of a higher-order curve</p>
 <ul>
 <li><p>Errors of bias produce underfit models.</p>
@@ -410,13 +478,127 @@
 <ul>
 <li><p>Errors of variance result in overfit models.</p>
 <blockquote>
-<p>Models that do much better on testing data than training data are overfit.</p>
+<p> Models that do much better on testing data than training data are overfit.</p>
 </blockquote>
 </li>
 </ul>
 </li>
+<li><p>Models based on first-principles or assumptions are likely to suffer from bias</p>
+</li>
+<li><p>Data-driven models are in greater danger of overfitting</p>
+</li>
 </ul>
-<h3 id="A-Taxonomy-of-Models"><a href="#A-Taxonomy-of-Models" class="headerlink" title="A Taxonomy of Models"></a>A Taxonomy of Models</h3><h3 id="Baseline-Models"><a href="#Baseline-Models" class="headerlink" title="Baseline Models"></a>Baseline Models</h3><h3 id="Evaluating-Models"><a href="#Evaluating-Models" class="headerlink" title="Evaluating Models"></a>Evaluating Models</h3><h3 id="Evaluation-Environments"><a href="#Evaluation-Environments" class="headerlink" title="Evaluation Environments"></a>Evaluation Environments</h3><h3 id="Simulation-Models"><a href="#Simulation-Models" class="headerlink" title="Simulation Models"></a>Simulation Models</h3><h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3>
+</li>
+<li><h4 id="Nate-Silver-The-Signal-and-Noise"><a href="#Nate-Silver-The-Signal-and-Noise" class="headerlink" title="Nate Silver: The Signal and Noise"></a>Nate Silver: The Signal and Noise</h4><p>Principles of Nate Silver:</p>
+<ol>
+<li><p>Think probabilistically</p>
+<p>Demanding a single deterministic ‘prediction’ from a model is a fool’s errand.</p>
+<p>Good forecasting models generally produce a probability distribution over all possible events.</p>
+<p>Good models do better than baseline models, but you could get rich predicting if the stock market goes up/down with p &gt; 0.55.</p>
+<ul>
+<li><p>Properties of Probabilities</p>
+<blockquote>
+<ol>
+<li>They sum to 1</li>
+<li>They are never negative</li>
+<li>Rare events do not get probabilities of zero</li>
+</ol>
+</blockquote>
+<p>Probabilities are a measure of humility in the accuracy of the model, and the uncertainty of a complex world.</p>
+<p>Models must be honest in what they do/don’t know.</p>
+</li>
+<li><p>Scores to Probabilities</p>
+<p>The logit function maps scores into probabilities using only one parameter.</p>
+<p>Summing up the ‘probabilities’ over all events s defines the constant 1/s to multiply each so they sum up to 1.</p>
+</li>
+</ul>
+</li>
+<li><p>Change your forecast in response to new information</p>
+<p>A model is <strong>live</strong> if it is continually updating predictions in response to new information.</p>
+<p>Dynamically-changing forecasts provide excellent opportunities to evaluate your model.</p>
+<blockquote>
+<p>Do they ultimately converge on the right answer?</p>
+<p>Does it display past forecasts so the user can judge the consistency of the model?</p>
+<p>Does the model retrain on fresher data?</p>
+</blockquote>
+</li>
+<li><p>Look for consensus</p>
+<p>A good forecast comes from multiple distinct sources of evidence.</p>
+<p>Ideally, multiple models should be built, each trying to predict the same thing in different ways.</p>
+<ul>
+<li>Are there competing forecasts you can compare to, e.g. prediction markets?</li>
+<li>What do your baseline models say?</li>
+<li>Do you have multiple models which use different approaches to making the forecast?</li>
+</ul>
+<p>Boosting is a machine learning technique which explicitly combines an ensemble of classifier.</p>
+</li>
+<li><p>Employ Bayesian reasoning</p>
+<p>Bayes’ theorem lets us update our confidence in an event in response to fresh evidence.</p>
+<p>When stated as $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$ , it provides a way to calculate how the probability of event A changes in response to new evidence B.</p>
+<p>Bayesian reasoning relfects how a <strong>prior</strong> probability P(A) is updated to given the <strong>posterior</strong> probability P(A|B) in the face of a new observation B according to the ratio of the <strong>likelihood</strong> P(B|A) and the <strong>marginal probability</strong> P(B).</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="A-Taxonomy-of-Models"><a href="#A-Taxonomy-of-Models" class="headerlink" title="A Taxonomy of Models"></a>A Taxonomy of Models</h3><h4 id="Modeling-Methodologies"><a href="#Modeling-Methodologies" class="headerlink" title="Modeling Methodologies"></a>Modeling Methodologies</h4><ul>
+<li><p>First-principle models</p>
+<p>Based on a belief of how the system under investigation really works. It might be a theretical explanation, a discrete event simulation, or seat-of-the-pants reasoning from an understanding of the domain</p>
+</li>
+<li><p>Data-driven models</p>
+<p>Based on observed correlations between input parameters and outcome variables.</p>
+</li>
+</ul>
+<p>Good models are typically a mixture of both.</p>
+<p>Models have different properties inherent in how they are constructed:</p>
+<h4 id="Linear-vs-Non-Linear-Models"><a href="#Linear-vs-Non-Linear-Models" class="headerlink" title="Linear vs. Non-Linear Models"></a>Linear vs. Non-Linear Models</h4><h4 id="Discrete-vs-Continuous-Models"><a href="#Discrete-vs-Continuous-Models" class="headerlink" title="Discrete vs. Continuous Models"></a>Discrete vs. Continuous Models</h4><ul>
+<li><p>Discrete models manipulate discrete entities.</p>
+<p>Representative are discrete-event simulations using randomized (Monte Carlo) methods.</p>
+</li>
+<li><p>Continuous models forecast numerical quantities over reals.</p>
+<p>They can employ the full weight of classical mathematics: calculus, algebrea, geometry, etc. </p>
+</li>
+</ul>
+<h4 id="Blackbox-vs-Descriptive-Models"><a href="#Blackbox-vs-Descriptive-Models" class="headerlink" title="Blackbox vs. Descriptive Models"></a>Blackbox vs. Descriptive Models</h4><h4 id="Stochastic-vs-Deterministic-Models"><a href="#Stochastic-vs-Deterministic-Models" class="headerlink" title="Stochastic vs. Deterministic Models"></a>Stochastic vs. Deterministic Models</h4><h4 id="Flat-vs-Hierarchical-Models"><a href="#Flat-vs-Hierarchical-Models" class="headerlink" title="Flat vs. Hierarchical Models"></a>Flat vs. Hierarchical Models</h4><p>[TODO]</p>
+<h4 id="General-vs-Ad-Hoc-Models"><a href="#General-vs-Ad-Hoc-Models" class="headerlink" title="General vs. Ad Hoc Models"></a>General vs. Ad Hoc Models</h4><p>Machine learning models for classification and regression are <strong>general</strong>, meaning they employ no problem-specific ideas, only specific data.</p>
+<p><strong>Ad hoc models</strong> are built using domain-specific knowledge to guide their structure and design.</p>
+<h3 id="Steps-to-Build-Effiective-Models"><a href="#Steps-to-Build-Effiective-Models" class="headerlink" title="Steps to Build Effiective Models"></a>Steps to Build Effiective Models</h3><ul>
+<li>Identify the best output type for your model, likely a probability distribution.</li>
+<li>Develop reasonable baseline models.</li>
+<li>Identify the most important levels to build submodels around.</li>
+<li>Test models with out-of-sample predictions.</li>
+</ul>
+<h3 id="Baseline-Models"><a href="#Baseline-Models" class="headerlink" title="Baseline Models"></a>Baseline Models</h3><p><code>A broken clock is right twice a day.</code></p>
+<p>The first step to assess whether your model is any good is to build <strong>baseline models</strong>: the simplest reasonable models that produce answers we can compare against.</p>
+<p>Only after you decisively beat your baselines can your models be deemed effective.</p>
+<p>There are two common tasks for data science models: classification and value prediction.</p>
+<h4 id="Representative-Baseline-Models-for-Classification-Tasks"><a href="#Representative-Baseline-Models-for-Classification-Tasks" class="headerlink" title="Representative Baseline Models for Classification Tasks"></a>Representative Baseline Models for Classification Tasks</h4><ul>
+<li>Uniform or random selection among labels</li>
+<li>The most common label appearing in the training data</li>
+<li>The most accurate single-feature model</li>
+<li>Same label as the previous point in time</li>
+<li>Rule of thumb heuristics</li>
+<li>Sombody else’s model</li>
+<li>Clairvoyance</li>
+</ul>
+<p>Baseline models must be fair: they should be simple but not stupid.</p>
+<h4 id="Baseline-Models-for-Value-Prediction"><a href="#Baseline-Models-for-Value-Prediction" class="headerlink" title="Baseline Models for Value Prediction"></a>Baseline Models for Value Prediction</h4><p>In value prediction problems, we are given a collection of feature-value pairs (fi, vi) to use to train a function F such that F(vi) = vi.</p>
+<ul>
+<li>Mean or median</li>
+<li>Linear regression</li>
+<li>Value of the previous point in time</li>
+</ul>
+<h3 id="Evaluating-Models"><a href="#Evaluating-Models" class="headerlink" title="Evaluating Models"></a>Evaluating Models</h3><h3 id="Evaluation-Environments"><a href="#Evaluation-Environments" class="headerlink" title="Evaluation Environments"></a>Evaluation Environments</h3><h3 id="Simulation-Models"><a href="#Simulation-Models" class="headerlink" title="Simulation Models"></a>Simulation Models</h3><h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><img src="/2018/10/06/Data-Science-Mathematical-Models/errand.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/humility.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/taxonomy.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/retrain.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/diminish.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/ensemble.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/cogent.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/deem.png">
+<img src="/2018/10/06/Data-Science-Mathematical-Models/clairvoyance.png">
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="#https://docs.google.com/presentation/d/1orIO7xhFw0qXWqx0J4vcy8NtBRHkdtq69_Wf-yPhHKw/edit?usp=sharing">Lecture 13: Building Models</a></p>
+<p><a href="#https://docs.google.com/presentation/d/1UUJvPpROFlqUmm45mn5Gwvdwp7ULqA5x0TTVKOQ31Us/edit?usp=sharing">Lecture 14: Validating Models</a></p>
+
       
     </div>
     
@@ -432,6 +614,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
           
             <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
           
@@ -537,7 +721,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">114</span>
+                <span class="site-state-item-count">118</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -548,7 +732,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">87</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -594,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophies-of-Modeling"><span class="nav-number">1.</span> <span class="nav-text">Philosophies of Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bias-Variance-Trade-Offs"><span class="nav-number">1.1.</span> <span class="nav-text">Bias-Variance Trade-Offs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Taxonomy-of-Models"><span class="nav-number">2.</span> <span class="nav-text">A Taxonomy of Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-Models"><span class="nav-number">3.</span> <span class="nav-text">Baseline Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-Models"><span class="nav-number">4.</span> <span class="nav-text">Evaluating Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-Environments"><span class="nav-number">5.</span> <span class="nav-text">Evaluation Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simulation-Models"><span class="nav-number">6.</span> <span class="nav-text">Simulation Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">7.</span> <span class="nav-text">Vocabularies</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Data-Science-Analysis-Pipeline"><span class="nav-number">1.</span> <span class="nav-text">The Data Science Analysis Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophies-of-Modeling"><span class="nav-number">2.</span> <span class="nav-text">Philosophies of Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Occam’s-razor"><span class="nav-number">2.1.</span> <span class="nav-text">Occam’s razor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bias-Variance-tradeoffs"><span class="nav-number">2.2.</span> <span class="nav-text">Bias-Variance tradeoffs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nate-Silver-The-Signal-and-Noise"><span class="nav-number">2.3.</span> <span class="nav-text">Nate Silver: The Signal and Noise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Taxonomy-of-Models"><span class="nav-number">3.</span> <span class="nav-text">A Taxonomy of Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-Methodologies"><span class="nav-number">3.1.</span> <span class="nav-text">Modeling Methodologies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linear-vs-Non-Linear-Models"><span class="nav-number">3.2.</span> <span class="nav-text">Linear vs. Non-Linear Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Discrete-vs-Continuous-Models"><span class="nav-number">3.3.</span> <span class="nav-text">Discrete vs. Continuous Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blackbox-vs-Descriptive-Models"><span class="nav-number">3.4.</span> <span class="nav-text">Blackbox vs. Descriptive Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stochastic-vs-Deterministic-Models"><span class="nav-number">3.5.</span> <span class="nav-text">Stochastic vs. Deterministic Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flat-vs-Hierarchical-Models"><span class="nav-number">3.6.</span> <span class="nav-text">Flat vs. Hierarchical Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#General-vs-Ad-Hoc-Models"><span class="nav-number">3.7.</span> <span class="nav-text">General vs. Ad Hoc Models</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps-to-Build-Effiective-Models"><span class="nav-number">4.</span> <span class="nav-text">Steps to Build Effiective Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-Models"><span class="nav-number">5.</span> <span class="nav-text">Baseline Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Representative-Baseline-Models-for-Classification-Tasks"><span class="nav-number">5.1.</span> <span class="nav-text">Representative Baseline Models for Classification Tasks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Baseline-Models-for-Value-Prediction"><span class="nav-number">5.2.</span> <span class="nav-text">Baseline Models for Value Prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-Models"><span class="nav-number">6.</span> <span class="nav-text">Evaluating Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-Environments"><span class="nav-number">7.</span> <span class="nav-text">Evaluation Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simulation-Models"><span class="nav-number">8.</span> <span class="nav-text">Simulation Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">9.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">10.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
