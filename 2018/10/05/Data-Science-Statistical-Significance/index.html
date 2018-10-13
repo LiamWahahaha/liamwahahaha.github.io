@@ -104,7 +104,7 @@
 <meta property="og:description" content="Talking to StatisticiansStatisticians are primarily concerned with whether observations on data are significant. Data miners are primarily concerned with whether their observations are interesting. I">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://liamwahahaha.github.io/2018/10/05/Data-Science-Statistical-Significance/opaque.png">
-<meta property="og:updated_time" content="2018-10-05T20:25:02.255Z">
+<meta property="og:updated_time" content="2018-10-11T14:53:19.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Statistical Significance">
 <meta name="twitter:description" content="Talking to StatisticiansStatisticians are primarily concerned with whether observations on data are significant. Data miners are primarily concerned with whether their observations are interesting. I">
@@ -341,8 +341,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-05T16:25:02-04:00">
-                2018-10-05
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-11T10:53:19-04:00">
+                2018-10-11
               </time>
             
           </span>
@@ -432,6 +432,57 @@
 <h3 id="The-Bonferroni-Correction"><a href="#The-Bonferroni-Correction" class="headerlink" title="The Bonferroni Correction"></a>The Bonferroni Correction</h3><p>A statistical significance of 0.05 means there is a probability 1/20 this result came by chance.</p>
 <p><code>Thus fishing expeditions which test millions of hypotheses must be held to higher standards!</code></p>
 <p>In testing n hypotheses, one must rise to a level of $\alpha/n$to be considered significant at the level of $alpha$. </p>
+<h3 id="The-Significance-of-Significance"><a href="#The-Significance-of-Significance" class="headerlink" title="The Significance of Significance"></a>The Significance of Significance</h3><p>For large enough sample sizes, extremely small differences can register as highly significant.</p>
+<p>Significance measures the confidence there is a difference between distributions, not <strong>the effect size or importance/magnitude of the difference</strong>.</p>
+<h3 id="Measures-of-Effect-Size"><a href="#Measures-of-Effect-Size" class="headerlink" title="Measures of Effect Size"></a>Measures of Effect Size</h3><ul>
+<li><p>Pearson correlation coefficient:</p>
+<p>Small effects start at 0.2, medium effects at 0.5, large effects at 0.8</p>
+</li>
+<li><p>Percentage of overlap between distributions:</p>
+<p>Small effects start at 53%, medium effects at 67%, large effects at 85%</p>
+</li>
+<li><p>Cohen’s d (d = (|$\mu - \mu’$|/ $\sigma$)):</p>
+<p>small &gt; 0.2, medium &gt; 0.5, large &gt; 0.8</p>
+</li>
+</ul>
+<h3 id="Bootstrapping-P-values"><a href="#Bootstrapping-P-values" class="headerlink" title="Bootstrapping P-values"></a>Bootstrapping P-values</h3><p>Traditional statistical tests evaluate whether two samples came from the same distribution.</p>
+<p>Many have subtleties (e.g. one- vs. two-sided tests, distributional assumptions, etc.)</p>
+<p>Permutation tests allow a more general, more computationally idiot-proof way to establish significance.</p>
+<h3 id="Permutation-Tests"><a href="#Permutation-Tests" class="headerlink" title="Permutation Tests"></a>Permutation Tests</h3><p>If your hypothesis is true, then randomly shuffled data sets should not look like real data.</p>
+<p>The ranking of the real test statistic among the shuffled test statistics gives a p-vale.</p>
+<p>You need statistic on your model you believe is interesting, e.g. correlation, std. error, or size.</p>
+<h4 id="Permutation-Test-Gender-Relevant"><a href="#Permutation-Test-Gender-Relevant" class="headerlink" title="Permutation Test(Gender Relevant)"></a>Permutation Test(Gender Relevant)</h4><p>Heights here coded by bar length and color.</p>
+<p>The random permutation (c/r) shows less height difference by gender than the original data.</p>
+<h4 id="Significance-of-a-Permutation-Test"><a href="#Significance-of-a-Permutation-Test" class="headerlink" title="Significance of a Permutation Test"></a>Significance of a Permutation Test</h4><p>The rank of the real data among the random permutations determines significance</p>
+<h4 id="Permorming-Permutation-Tests"><a href="#Permorming-Permutation-Tests" class="headerlink" title="Permorming Permutation Tests"></a>Permorming Permutation Tests</h4><p>The more permutations you try (at least 1000), the more impressive your significance can be.</p>
+<p>Typically we permute the values of fields across records or time-points within a record.</p>
+<p>Keep comparisons apples-to-apples.</p>
+<p>If your model shows decent performance trained on random data, you have a problem.</p>
+<h4 id="Permutation-Test-Caveat"><a href="#Permutation-Test-Caveat" class="headerlink" title="Permutation Test Caveat"></a>Permutation Test Caveat</h4><p>Permutation tests give you the probability of your data given your hypothesis.</p>
+<p>This is not the same as the probability of your hypothesis given your data, which is the traditional goal of significance testing.</p>
+<p>The real strength of your conclusion does not infinitely increase with more permutations.</p>
+<h4 id="Constructing-Random-Permutations"><a href="#Constructing-Random-Permutations" class="headerlink" title="Constructing Random Permutations"></a>Constructing Random Permutations</h4><p>Constructing truly random permutations is surprisingly subtle. Which algorithm is right?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i = 1 to n do a[i] = i;</span><br><span class="line">for i = 1 to n - 1 do swap[a[i], a[Random[i, n]]];</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i = 1 to n do a[i] = i;</span><br><span class="line">for i = 1 to n - 1 do swap[a[i], a[Random[1, n]]];</span><br></pre></td></tr></table></figure>
+<p><strong>Yes, there is a difference</strong></p>
+<blockquote>
+<p>Experiments constructing 1 million random permutations shows that algorithm 1 is uniform, but algorithm 2 is not.</p>
+<p>st. dev. 1 =      166.1</p>
+<p>st. dev. 2 = 20,932.9</p>
+</blockquote>
+<p><strong>Why is it Uniform?</strong></p>
+<p>The first algorithm picks a random choice for the first position, then leaves it alone and recurs. It generates random permutations.</p>
+<p>The second algorithm gives subsequent elements a better chance to end up first. The distribution is not uniform.</p>
+<p>Moral: Random generation can be very subtle.</p>
+<p><strong>Sampling from Distributions</strong></p>
+<p>A common task is repeatedly drawing random samples from a given probability distribution.</p>
+<p>Give me an algorithm to draw uniformly random points from a circle:</p>
+<p>The problem is more subtle than it looks.</p>
+<p><strong>Drawing Points from a Circle</strong></p>
+<p>Each point in a circle is described by a radius r and angle a, but drawing them uniformly at random picks too many points near the center.</p>
+<p>The inner half circle is smaller than the outer half!</p>
+<p>Independently sampling x and y give points uniform in the box, so discarding those outside the circle leaves a uniform distribution.</p>
 <h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><img src="/2018/10/05/Data-Science-Statistical-Significance/opaque.png">
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="#https://docs.google.com/presentation/d/1CdwMzReU2FyaWv9pbYuCKmLDQ1KSmY9RN2r492Md7F8/edit?usp=sharing">Lecture 10: Statistical Significance</a></p>
 
@@ -555,7 +606,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">134</span>
+                <span class="site-state-item-count">139</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -566,7 +617,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -577,7 +628,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -612,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Talking-to-Statisticians"><span class="nav-number">1.</span> <span class="nav-text">Talking to Statisticians</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-is-an-Observation-Meaningful"><span class="nav-number">2.</span> <span class="nav-text">When is an Observation Meaningful?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#For-Example-Medical-Statistics"><span class="nav-number">2.1.</span> <span class="nav-text">For Example: Medical Statistics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Significance-and-Classification"><span class="nav-number">3.</span> <span class="nav-text">Significance and Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparing-Population-Means"><span class="nav-number">4.</span> <span class="nav-text">Comparing Population Means</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Differences-in-Distributions"><span class="nav-number">5.</span> <span class="nav-text">Differences in Distributions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-T-Test"><span class="nav-number">6.</span> <span class="nav-text">The T-Test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-Significance-Tests-Can-Work"><span class="nav-number">6.1.</span> <span class="nav-text">Why Significance Tests Can Work</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Kolmogorov-Smirnov-Test"><span class="nav-number">7.</span> <span class="nav-text">The Kolmogorov-Smirnov Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normality-Testing"><span class="nav-number">8.</span> <span class="nav-text">Normality Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Bonferroni-Correction"><span class="nav-number">9.</span> <span class="nav-text">The Bonferroni Correction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">10.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">11.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Talking-to-Statisticians"><span class="nav-number">1.</span> <span class="nav-text">Talking to Statisticians</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-is-an-Observation-Meaningful"><span class="nav-number">2.</span> <span class="nav-text">When is an Observation Meaningful?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#For-Example-Medical-Statistics"><span class="nav-number">2.1.</span> <span class="nav-text">For Example: Medical Statistics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Significance-and-Classification"><span class="nav-number">3.</span> <span class="nav-text">Significance and Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparing-Population-Means"><span class="nav-number">4.</span> <span class="nav-text">Comparing Population Means</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Differences-in-Distributions"><span class="nav-number">5.</span> <span class="nav-text">Differences in Distributions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-T-Test"><span class="nav-number">6.</span> <span class="nav-text">The T-Test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-Significance-Tests-Can-Work"><span class="nav-number">6.1.</span> <span class="nav-text">Why Significance Tests Can Work</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Kolmogorov-Smirnov-Test"><span class="nav-number">7.</span> <span class="nav-text">The Kolmogorov-Smirnov Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normality-Testing"><span class="nav-number">8.</span> <span class="nav-text">Normality Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Bonferroni-Correction"><span class="nav-number">9.</span> <span class="nav-text">The Bonferroni Correction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Significance-of-Significance"><span class="nav-number">10.</span> <span class="nav-text">The Significance of Significance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Measures-of-Effect-Size"><span class="nav-number">11.</span> <span class="nav-text">Measures of Effect Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bootstrapping-P-values"><span class="nav-number">12.</span> <span class="nav-text">Bootstrapping P-values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permutation-Tests"><span class="nav-number">13.</span> <span class="nav-text">Permutation Tests</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation-Test-Gender-Relevant"><span class="nav-number">13.1.</span> <span class="nav-text">Permutation Test(Gender Relevant)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Significance-of-a-Permutation-Test"><span class="nav-number">13.2.</span> <span class="nav-text">Significance of a Permutation Test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permorming-Permutation-Tests"><span class="nav-number">13.3.</span> <span class="nav-text">Permorming Permutation Tests</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation-Test-Caveat"><span class="nav-number">13.4.</span> <span class="nav-text">Permutation Test Caveat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Constructing-Random-Permutations"><span class="nav-number">13.5.</span> <span class="nav-text">Constructing Random Permutations</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">14.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">15.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>

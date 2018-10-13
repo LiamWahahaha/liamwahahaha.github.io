@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Prolog," />
+  <meta name="keywords" content="Prolog,Doubt,Vocabularies," />
 
 
 
@@ -95,18 +95,25 @@
 
 
 
-<meta name="description" content="Mathematical Formalization Why formalize language? to remove ambiguity to represent facts on a computer and use it for proving, proof-checking, etc. to detect unsound reasoning in arguments">
-<meta name="keywords" content="Prolog">
+<meta name="description" content="Mathematical Formalizations in LogicWhy formalize language? to remove ambiguity  to represent facts on a computer and use it for proving, proof-checking, etc.  to detect unsound reasoning in arguments">
+<meta name="keywords" content="Prolog,Doubt,Vocabularies">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to Logic, Logic Programming Concepts and Languages">
+<meta property="og:title" content="Introduction to Logic, Logic Programming Concepts and Languages (Part 1)">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Mathematical Formalization Why formalize language? to remove ambiguity to represent facts on a computer and use it for proving, proof-checking, etc. to detect unsound reasoning in arguments">
+<meta property="og:description" content="Mathematical Formalizations in LogicWhy formalize language? to remove ambiguity  to represent facts on a computer and use it for proving, proof-checking, etc.  to detect unsound reasoning in arguments">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-15T17:56:34.052Z">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/1.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/3.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/2.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/4.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/syntax.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/semantic.png">
+<meta property="og:updated_time" content="2018-10-13T21:00:40.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Introduction to Logic, Logic Programming Concepts and Languages">
-<meta name="twitter:description" content="Mathematical Formalization Why formalize language? to remove ambiguity to represent facts on a computer and use it for proving, proof-checking, etc. to detect unsound reasoning in arguments">
+<meta name="twitter:title" content="Introduction to Logic, Logic Programming Concepts and Languages (Part 1)">
+<meta name="twitter:description" content="Mathematical Formalizations in LogicWhy formalize language? to remove ambiguity  to represent facts on a computer and use it for proving, proof-checking, etc.  to detect unsound reasoning in arguments">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/09/10/Computing-with-Logic-Programming-in-Prolog/1.png">
 
 
 
@@ -141,7 +148,7 @@
 
 
 
-  <title>Introduction to Logic, Logic Programming Concepts and Languages | Liam's Blog</title>
+  <title>Introduction to Logic, Logic Programming Concepts and Languages (Part 1) | Liam's Blog</title>
   
 
 
@@ -311,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Introduction to Logic, Logic Programming Concepts and Languages</h1>
+          <h1 class="post-title" itemprop="name headline">Introduction to Logic, Logic Programming Concepts and Languages (Part 1)</h1>
         
 
         <div class="post-meta">
@@ -339,8 +346,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-15T13:56:34-04:00">
-                2018-09-15
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-13T17:00:40-04:00">
+                2018-10-13
               </time>
             
           </span>
@@ -376,6 +383,39 @@
 
                 
                 
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Introduction-to-Logic/" itemprop="url" rel="index">
+                    <span itemprop="name">Introduction to Logic</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Introduction-to-Logic/Mathematical-Formalizations/" itemprop="url" rel="index">
+                    <span itemprop="name">Mathematical Formalizations</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Introduction-to-Logic/Propositional-Logic/" itemprop="url" rel="index">
+                    <span itemprop="name">Propositional Logic</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -406,22 +446,22 @@
       
 
       
-        <h3 id="Mathematical-Formalization"><a href="#Mathematical-Formalization" class="headerlink" title="Mathematical Formalization"></a>Mathematical Formalization</h3><ul>
-<li>Why formalize language?<ul>
-<li>to remove ambiguity</li>
-<li>to represent facts on a computer and use it for <u><strong>proving</strong></u>, proof-checking, etc.</li>
-<li>to detect <u><strong>unsound</strong></u> reasoning in arguments</li>
-</ul>
+        <h3 id="Mathematical-Formalizations-in-Logic"><a href="#Mathematical-Formalizations-in-Logic" class="headerlink" title="Mathematical Formalizations in Logic"></a>Mathematical Formalizations in Logic</h3><h4 id="Why-formalize-language"><a href="#Why-formalize-language" class="headerlink" title="Why formalize language?"></a>Why formalize language?</h4><ul>
+<li><p>to remove ambiguity</p>
+</li>
+<li><p>to represent facts on a computer and use it for <u><strong>proving</strong></u>, proof-checking, etc.</p>
+</li>
+<li><p>to detect <u><strong>unsound</strong></u> reasoning in arguments</p>
+<p>What is <strong>unsound</strong>?</p>
 </li>
 </ul>
-<a id="more"></a>
-<h3 id="Logic"><a href="#Logic" class="headerlink" title="Logic"></a>Logic</h3><ul>
-<li>Mathematical logic is a tool for dealing with formal reasoning<ul>
+<h4 id="Logic"><a href="#Logic" class="headerlink" title="Logic"></a>Logic</h4><ul>
+<li>Mathematical logic is a tool for dealing with formal reasoning.<ul>
 <li>formalization of natural language and reasoning methods</li>
 </ul>
 </li>
 <li>Logic does:<ul>
-<li>assess if an argument is Valid/Invalid</li>
+<li>assess if an argument is <code>Valid</code> or <code>Invalid</code></li>
 </ul>
 </li>
 <li>Logic does not directly:<ul>
@@ -429,7 +469,105 @@
 </ul>
 </li>
 </ul>
-<h3 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h3><p>### </p>
+<a id="more"></a>
+<h3 id="Propositional-Logic-or-the-Logic-of-Compound-Statements"><a href="#Propositional-Logic-or-the-Logic-of-Compound-Statements" class="headerlink" title="Propositional Logic or the Logic of Compound Statements"></a>Propositional Logic or the Logic of Compound Statements</h3><blockquote>
+<p> This is the study of:</p>
+<ul>
+<li>the structure (syntax) and</li>
+<li>the meaning (semantics) of (simple and complex) propositions</li>
+</ul>
+<p>The key questions are:</p>
+<ul>
+<li><strong>how is the truth value of a complex proposition obtained from the truth value of its simpler components?</strong></li>
+<li><strong>which propositions represent correct reasoning arguments?</strong></li>
+</ul>
+</blockquote>
+<h4 id="What-is-a-Proposition"><a href="#What-is-a-Proposition" class="headerlink" title="What is a Proposition"></a>What is a Proposition</h4><blockquote>
+<p>A proposition is a sentence that is either <code>true</code> or <code>false</code>, but not both</p>
+<ul>
+<li>Examples of simple propositions:<ul>
+<li>John is a student</li>
+<li>5 + 1 = 6</li>
+<li>426 &gt; 1721</li>
+<li>It is 92 degrees outside right now.</li>
+</ul>
+</li>
+<li>Eaxmple of a complex proposition:<ul>
+<li>Tom is five and Mary is six.</li>
+</ul>
+</li>
+<li>Sentences which are not propositions:<ul>
+<li>Did Steve get an A on the exam? (this is a query)</li>
+<li>Go away! (this is an order)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="Proposition-Forms-or-Formulas"><a href="#Proposition-Forms-or-Formulas" class="headerlink" title="Proposition Forms or Formulas"></a>Proposition Forms or Formulas</h4><blockquote>
+<p>In studying properties of propositions we represent them by expressions called <code>proposition forms</code> or <code>formulas</code> built from the followings:</p>
+<ul>
+<li>propositional variables (atoms), which represent simple propositions</li>
+<li>connective symbols, which representing logical connectives</li>
+</ul>
+</blockquote>
+<h4 id="Connectives"><a href="#Connectives" class="headerlink" title="Connectives"></a>Connectives</h4><img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/1.png">
+<img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/3.png">
+<h4 id="Formulas"><a href="#Formulas" class="headerlink" title="Formulas"></a>Formulas</h4><img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/2.png">
+<h4 id="Determining-Truth-of-a-Formula"><a href="#Determining-Truth-of-a-Formula" class="headerlink" title="Determining Truth of a Formula"></a>Determining Truth of a Formula</h4><ul>
+<li><p>Atomic formulae:        given</p>
+</li>
+<li><p>Compound formulae: via meaning of the connectives</p>
+<blockquote>
+<ul>
+<li>The semantics of logical connectives determines how propositional formulas are evaluated depending on the truth values assigned to propositional variables</li>
+<li>Each possible truth assignment or valuation for the propositional variables of a formula yields a truth value. The different possibilities can be summarized in a <code>truth table</code>.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="Evaluation-of-Formulas-Truth-Tables"><a href="#Evaluation-of-Formulas-Truth-Tables" class="headerlink" title="Evaluation of Formulas - Truth Tables"></a>Evaluation of Formulas - Truth Tables</h4><blockquote>
+<p> A truth table for a formula lists all possible <code>situations</code> of truth or falsity, depending on the values assigned to the propositional variables of the formula.</p>
+</blockquote>
+<p>How to construct truth tables?</p>
+<ul>
+<li>There are two choices (<code>true</code> or <code>false</code>) for each of n variables, so in general there are 2**n rows for n variables.</li>
+<li>A systematic procedure (an algorithm) is necessary to make sure you construct all rows without duplicates.<ul>
+<li>construct the rows systematically:<ul>
+<li>count in binary: 000, 001, 010, 011, 100, …</li>
+<li>the rightmost column must be computed as a function of all the truth values in the row</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Language-Syntax-of-Formulas"><a href="#Language-Syntax-of-Formulas" class="headerlink" title="Language: Syntax of Formulas"></a>Language: Syntax of Formulas</h4><ul>
+<li><p>The <code>formal language</code> of propositional logic can be specified by <code>grammar rules</code></p>
+</li>
+<li><p>The <code>syntactic structure</code> of a complex logical expression must be <code>unambiguous</code></p>
+<p><proposition> ::= <variable></variable></proposition></p>
+<p>​                                     | (~<proposition>)</proposition></p>
+<p>​                                     | (<proposition> and <proposition>)</proposition></proposition></p>
+<p>​                                     | (<proposition> or <proposition>)</proposition></proposition></p>
+<p>​                                      …</p>
+<p><variable> ::= p | q | r | …</variable></p>
+</li>
+<li><p>Simplified Syntax</p>
+<ul>
+<li><p>In arithmetic one often species a precedence among operators (say, <u>times ahead of plus</u>) to eliminate the need for some parentheses in certain programming languages.</p>
+</li>
+<li><p>The same can be done for the logical connectives, though deleting parentheses may cause confusion.</p>
+</li>
+<li><p>Precedence and associative</p>
+<img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/4.png">
+<ul>
+<li>Avoid confusion - use parentheses </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Vocabularies"><a href="#Vocabularies" class="headerlink" title="Vocabularies"></a>Vocabularies</h3><img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/syntax.png">
+<img src="/2018/09/10/Computing-with-Logic-Programming-in-Prolog/semantic.png">
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="#http://www3.cs.stonybrook.edu/~pfodor/courses/CSE505/L01_IntroductionLP.pdf">Lecture Slide</a></p>
 
       
@@ -449,6 +587,10 @@
         <div class="post-tags">
           
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Doubt/" rel="tag"># Doubt</a>
+          
+            <a href="/tags/Vocabularies/" rel="tag"># Vocabularies</a>
           
         </div>
       
@@ -550,7 +692,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">134</span>
+                <span class="site-state-item-count">139</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -561,7 +703,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -572,7 +714,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -607,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematical-Formalization"><span class="nav-number">1.</span> <span class="nav-text">Mathematical Formalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic"><span class="nav-number">2.</span> <span class="nav-text">Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Propositional-Logic"><span class="nav-number">3.</span> <span class="nav-text">Propositional Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematical-Formalizations-in-Logic"><span class="nav-number">1.</span> <span class="nav-text">Mathematical Formalizations in Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-formalize-language"><span class="nav-number">1.1.</span> <span class="nav-text">Why formalize language?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logic"><span class="nav-number">1.2.</span> <span class="nav-text">Logic</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Propositional-Logic-or-the-Logic-of-Compound-Statements"><span class="nav-number">2.</span> <span class="nav-text">Propositional Logic or the Logic of Compound Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-a-Proposition"><span class="nav-number">2.1.</span> <span class="nav-text">What is a Proposition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proposition-Forms-or-Formulas"><span class="nav-number">2.2.</span> <span class="nav-text">Proposition Forms or Formulas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Connectives"><span class="nav-number">2.3.</span> <span class="nav-text">Connectives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Formulas"><span class="nav-number">2.4.</span> <span class="nav-text">Formulas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Determining-Truth-of-a-Formula"><span class="nav-number">2.5.</span> <span class="nav-text">Determining Truth of a Formula</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Evaluation-of-Formulas-Truth-Tables"><span class="nav-number">2.6.</span> <span class="nav-text">Evaluation of Formulas - Truth Tables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Language-Syntax-of-Formulas"><span class="nav-number">2.7.</span> <span class="nav-text">Language: Syntax of Formulas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabularies"><span class="nav-number">3.</span> <span class="nav-text">Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
