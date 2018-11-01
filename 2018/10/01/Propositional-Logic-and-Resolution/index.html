@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TODO,Prolog," />
+  <meta name="keywords" content="Prolog,Vocabulary," />
 
 
 
@@ -95,18 +95,28 @@
 
 
 
-<meta name="description" content="Propositional logic Alphabet A:  Propositional symbols (identifiers) Connectives: conjunction(and) disjunction (or) negation logical equivalence implication     Well-formed formulas (wffs, denoted by">
-<meta name="keywords" content="TODO,Prolog">
+<meta name="description" content="Propositional Logic">
+<meta name="keywords" content="Prolog,Vocabulary">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Propositional Logic and Resolution">
+<meta property="og:title" content="Propositional Logic and Resolution (Part 1)">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Propositional logic Alphabet A:  Propositional symbols (identifiers) Connectives: conjunction(and) disjunction (or) negation logical equivalence implication     Well-formed formulas (wffs, denoted by">
+<meta property="og:description" content="Propositional Logic">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-01T21:55:50.436Z">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/1.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/2.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/3.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/4.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/5.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/6.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/7.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/8.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/turnstile.png">
+<meta property="og:updated_time" content="2018-11-01T17:34:35.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Propositional Logic and Resolution">
-<meta name="twitter:description" content="Propositional logic Alphabet A:  Propositional symbols (identifiers) Connectives: conjunction(and) disjunction (or) negation logical equivalence implication     Well-formed formulas (wffs, denoted by">
+<meta name="twitter:title" content="Propositional Logic and Resolution (Part 1)">
+<meta name="twitter:description" content="Propositional Logic">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/10/01/Propositional-Logic-and-Resolution/1.png">
 
 
 
@@ -141,7 +151,7 @@
 
 
 
-  <title>Propositional Logic and Resolution | Liam's Blog</title>
+  <title>Propositional Logic and Resolution (Part 1) | Liam's Blog</title>
   
 
 
@@ -311,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Propositional Logic and Resolution</h1>
+          <h1 class="post-title" itemprop="name headline">Propositional Logic and Resolution (Part 1)</h1>
         
 
         <div class="post-meta">
@@ -339,8 +349,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-01T17:55:50-04:00">
-                2018-10-01
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-01T13:34:35-04:00">
+                2018-11-01
               </time>
             
           </span>
@@ -406,47 +416,16 @@
       
 
       
-        <h3 id="Propositional-logic"><a href="#Propositional-logic" class="headerlink" title="Propositional logic"></a>Propositional logic</h3><ul>
-<li><p>Alphabet A:</p>
-<ul>
-<li>Propositional symbols (identifiers)</li>
-<li>Connectives:<ul>
-<li>conjunction(and)</li>
-<li>disjunction (or)</li>
-<li>negation</li>
-<li>logical equivalence</li>
-<li>implication</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Well-formed formulas (wffs, denoted by F) over alphabet A is the smallest set such that:</p>
-<ul>
-<li>If p is a predicate symbol in A then p in F.</li>
-<li>If the wffs F, G in F then so are (not F), (F and G), (F or G), (F implication G) and (F logical equivalence G)</li>
-</ul>
-</li>
-</ul>
-<h3 id="Interpretation"><a href="#Interpretation" class="headerlink" title="Interpretation"></a>Interpretation</h3><ul>
-<li>An interpretation I is a subset of propositions in an alphabet A.</li>
-<li>Alternatively, you can view I as a mapping from the set of all propositions in A to a 2-values Boolean domain {true, false}.</li>
-<li>This name, ‘interpretation’, is more commonly used for predicate logic.<ul>
-<li>in the propositional case, this is sometimes called a ‘substitution’ or ‘truth assignment’.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Semantics-of-Well-Formed-Formulae"><a href="#Semantics-of-Well-Formed-Formulae" class="headerlink" title="Semantics of Well-Formed Formulae"></a>Semantics of Well-Formed Formulae</h3><ul>
-<li>A formula’s meaning is given w.r.t. an interpretation I:<ul>
-<li>I entails p iff p in I</li>
-<li>I entails negation(F) iff I does not entail F</li>
-<li>I entails (F conjunction G) iff I entails F and I entails G</li>
-<li>I entails (F disjunction G) iff I entails F or I entails G (or both)</li>
-<li>I entails (F implication G) iff I entails G whenever I entails F</li>
-<li></li>
-</ul>
-</li>
-</ul>
-
+        <h3 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/1.png">
+<a id="more"></a>
+<h3 id="Interpretation"><a href="#Interpretation" class="headerlink" title="Interpretation"></a>Interpretation</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/2.png">
+<h3 id="Semantics-of-Well-Formed-Formulae"><a href="#Semantics-of-Well-Formed-Formulae" class="headerlink" title="Semantics of Well-Formed Formulae"></a>Semantics of Well-Formed Formulae</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/3.png">
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/4.png">
+<h3 id="Logical-Consequence"><a href="#Logical-Consequence" class="headerlink" title="Logical Consequence"></a>Logical Consequence</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/5.png"> 
+<h3 id="Proof-System-for-Resolution"><a href="#Proof-System-for-Resolution" class="headerlink" title="Proof System for Resolution"></a>Proof System for Resolution</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/6.png"> 
+<h3 id="Resolution-Proof"><a href="#Resolution-Proof" class="headerlink" title="Resolution Proof"></a>Resolution Proof</h3><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><img src="/2018/10/01/Propositional-Logic-and-Resolution/7.png"> 
+<h4 id="An-Alternative-View"><a href="#An-Alternative-View" class="headerlink" title="An Alternative View"></a>An Alternative View</h4><img src="/2018/10/01/Propositional-Logic-and-Resolution/8.png"> 
+<h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><img src="/2018/10/01/Propositional-Logic-and-Resolution/turnstile.png">
       
     </div>
     
@@ -463,9 +442,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TODO/" rel="tag"># TODO</a>
-          
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Vocabulary/" rel="tag"># Vocabulary</a>
           
         </div>
       
@@ -567,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">139</span>
+                <span class="site-state-item-count">157</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -578,7 +557,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">113</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -589,7 +568,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -624,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Propositional-logic"><span class="nav-number">1.</span> <span class="nav-text">Propositional logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretation"><span class="nav-number">2.</span> <span class="nav-text">Interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantics-of-Well-Formed-Formulae"><span class="nav-number">3.</span> <span class="nav-text">Semantics of Well-Formed Formulae</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Propositional-Logic"><span class="nav-number">1.</span> <span class="nav-text">Propositional Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretation"><span class="nav-number">2.</span> <span class="nav-text">Interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantics-of-Well-Formed-Formulae"><span class="nav-number">3.</span> <span class="nav-text">Semantics of Well-Formed Formulae</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">4.</span> <span class="nav-text">Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-Consequence"><span class="nav-number">5.</span> <span class="nav-text">Logical Consequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proof-System-for-Resolution"><span class="nav-number">6.</span> <span class="nav-text">Proof System for Resolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-Proof"><span class="nav-number">7.</span> <span class="nav-text">Resolution Proof</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">7.1.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#An-Alternative-View"><span class="nav-number">7.2.</span> <span class="nav-text">An Alternative View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vocabulary"><span class="nav-number">8.</span> <span class="nav-text">Vocabulary</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Visualization," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="What is a Heatmap?A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors.  Heap maps originated in 2D displays of the">
+<meta name="keywords" content="Visualization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Science Visualization -Heatmap">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/10/15/Data-Science-Visualization-Heetmap/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="What is a Heatmap?A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors.  Heap maps originated in 2D displays of the">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Heatmap.png/220px-Heatmap.png">
+<meta property="og:updated_time" content="2018-10-15T14:40:47.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Data Science Visualization -Heatmap">
+<meta name="twitter:description" content="What is a Heatmap?A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors.  Heap maps originated in 2D displays of the">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Heatmap.png/220px-Heatmap.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/10/15/Data-Science-Visualization-Heetmap/"/>
+
+
+
+
+
+  <title>Data Science Visualization -Heatmap | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/10/15/Data-Science-Visualization-Heetmap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Data Science Visualization -Heatmap</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-15T09:06:51-04:00">
+                2018-10-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-15T10:40:47-04:00">
+                2018-10-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/Visualization/" itemprop="url" rel="index">
+                    <span itemprop="name">Visualization</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/Visualization/Heatmap/" itemprop="url" rel="index">
+                    <span itemprop="name">Heatmap</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Python/Seaborn/" itemprop="url" rel="index">
+                    <span itemprop="name">Seaborn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="What-is-a-Heatmap"><a href="#What-is-a-Heatmap" class="headerlink" title="What is a Heatmap?"></a><a href="#https://en.wikipedia.org/wiki/Heat_map">What is a Heatmap?</a></h3><p>A <strong>heat map</strong> (or <strong>heatmap</strong>) is a graphical representation of data where the individual values contained in a matrix are represented as colors.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Heatmap.png/220px-Heatmap.png" alt="img"></p>
+<p>Heap maps originated in 2D displays of the values in a data matrix.</p>
+<ul>
+<li>Larger values were represented by small dark gray or black squares</li>
+<li>Smaller values were represented by small lighter squares</li>
+</ul>
+<a id="more"></a>
+<h4 id="Different-Kinds-of-Heatmaps"><a href="#Different-Kinds-of-Heatmaps" class="headerlink" title="Different Kinds of Heatmaps:"></a>Different Kinds of Heatmaps:</h4><ul>
+<li>Web heatmaps have been used for displaying area of a Web page most frequently scanned by visitors. <a href="#https://www.impactbnd.com/blog/what-to-know-about-heat-mapping-and-how-to-use-it">There are severall different types of heatmaps, including</a>:<ul>
+<li>Scroll maps</li>
+<li>Hover mapping</li>
+<li>Click mapping</li>
+<li>Attention mapping</li>
+</ul>
+</li>
+<li>Biology heatmaps are typically used in molecular biology to represent the level of expression of many genes across a number of comparable samples as they are obtained from DNA microarrays.</li>
+<li>The treemap is a 2D hierarchical partitioning of data that visually resembles a heatmap.</li>
+<li>A density function visualization is a heatmap for representing the density of dots in a map. It enables one to perceive density of points independently of the zoom factor.</li>
+</ul>
+<h3 id="When-to-Use-a-Heatmap"><a href="#When-to-Use-a-Heatmap" class="headerlink" title="When to Use a Heatmap"></a><a href="#https://www.crazyegg.com/blog/understanding-using-heatmaps-studies/">When to Use a Heatmap</a></h3><p>Heatmaps are perfect for representing data where a defined boundary is relevant to the data.</p>
+<p>Here are a few scenarios where having heatmap data handy can help you quickly make better decisions:</p>
+<ul>
+<li>Website reedesign</li>
+<li>A/B testing</li>
+<li>Content marketing</li>
+<li>…</li>
+</ul>
+<h3 id="The-Reasons-Why-We-Have-to-Use-It"><a href="#The-Reasons-Why-We-Have-to-Use-It" class="headerlink" title="The Reasons Why We Have to Use It"></a><a href="#https://www.crazyegg.com/blog/understanding-using-heatmaps-studies/">The Reasons Why We Have to Use It</a></h3><p>Heatmap data can help you to quickly see:</p>
+<ul>
+<li>Which headlines draw visitors in and make them click</li>
+<li>Which images attract attention and what people do about it – you’ll be surprised how many try to click the image</li>
+<li><strong>What distracts visitors</strong> from your core content (Many first-time heat map users are shocked at how differently their users navigate the site compared with their expectations.)</li>
+<li>Whether visitors see your email opt-in box (Low opt-ins and click-throughs can be due to something as simple as opt-in boxes that don’t stand out. Heatmaps make that clear and obvious so you can fix it.)</li>
+</ul>
+<p>You can also use a heat map to find out:</p>
+<ul>
+<li>Whether your <strong>navigation is working</strong> (Do users know it’s there?)</li>
+<li>If people can locate search options easily</li>
+<li>Whether visitors are reading your content and how much of it (This is a huge use case for scroll maps!)</li>
+</ul>
+<h3 id="How-to-Plot-a-Heatmap"><a href="#How-to-Plot-a-Heatmap" class="headerlink" title="How to Plot a Heatmap?"></a>How to Plot a Heatmap?</h3><h4 id="Plot-a-Heatmap-via-Seaborn"><a href="#Plot-a-Heatmap-via-Seaborn" class="headerlink" title="Plot a Heatmap via Seaborn"></a><a href="#http://seaborn.pydata.org/generated/seaborn.heatmap.html">Plot a Heatmap via Seaborn</a></h4><p>Seaborn.heatmap(<em>data</em>, <em>vmin=None</em>, <em>vmax=None</em>, <em>cmap=None</em>, <em>center=None</em>, <em>robust=False</em>, <em>annot=None</em>, <em>fmt=’.2g’</em>, <em>annot_kws=None</em>, <em>linewidths=0</em>, <em>linecolor=’white’</em>, <em>cbar=True</em>, <em>cbar_kws=None</em>, <em>cbar_ax=None</em>, <em>square=False</em>, <em>xticklabels=’auto’</em>, <em>yticklabels=’auto’</em>, <em>mask=None</em>, <em>ax=None</em>, *<em>\</em>kwargs*)</p>
+<p>Sorted by importance</p>
+<ul>
+<li><p><strong>data</strong>: rectangular dataset</p>
+<blockquote>
+<p>If a Pandas DataFrame is provided, the index/column information will be used to label the columns and rows</p>
+</blockquote>
+</li>
+<li><p><strong>vmin, vmax</strong>: floats, optional</p>
+<blockquote>
+<p>Values to anchor the colormap, otherwise they are inferred from the data and other keyword arguments.</p>
+</blockquote>
+</li>
+<li><p><strong>linewidths</strong> : float, optional</p>
+<blockquote>
+<p>Width of the lines that will divide each cell.</p>
+</blockquote>
+</li>
+<li><p><strong>linecolor</strong> : color, optional</p>
+<blockquote>
+<p>Color of the lines that will divide each cell.</p>
+</blockquote>
+</li>
+<li><p><strong>square</strong> : boolean, optional</p>
+<blockquote>
+<p>If True, set the Axes aspect to “equal” so each cell will be square-shaped.</p>
+</blockquote>
+</li>
+<li><p><strong>xticklabels, yticklabels</strong> : “auto”, bool, list-like, or int, optional</p>
+<blockquote>
+<p>If True, plot the column names of the dataframe. If False, don’t plot the column names. If list-like, plot these alternate labels as the xticklabels. If an integer, use the column names but plot only every n label. If “auto”, try to densely plot non-overlapping labels.</p>
+</blockquote>
+</li>
+<li><p><strong>cmap</strong> : matplotlib colormap name or object, or list of colors, optional</p>
+<blockquote>
+<p>The mapping from data values to color space. If not provided, the default will depend on whether <code>center</code> is set.</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>robust</strong> : bool, optional</p>
+<blockquote>
+<p>If True and <code>vmin</code> or <code>vmax</code> are absent, the colormap range is computed with robust quantiles instead of the extreme values.</p>
+</blockquote>
+</li>
+<li><p><strong>annot</strong> : bool or rectangular dataset, optional</p>
+<blockquote>
+<p>If True, write the data value in each cell. If an array-like with the same shape as <code>data</code>, then use this to annotate the heatmap instead of the raw data.</p>
+</blockquote>
+</li>
+<li><p><strong>fmt</strong> : string, optional</p>
+<blockquote>
+<p>String formatting code to use when adding annotations.</p>
+</blockquote>
+</li>
+<li><p><strong>annot_kws</strong> : dict of key, value mappings, optional</p>
+<blockquote>
+<p>Keyword arguments for <code>ax.text</code> when <code>annot</code> is True.</p>
+</blockquote>
+</li>
+<li><p><strong>cbar</strong> : boolean, optional</p>
+<blockquote>
+<p>Whether to draw a colorbar.</p>
+</blockquote>
+</li>
+<li><p><strong>cbar_kws</strong> : dict of key, value mappings, optional</p>
+<blockquote>
+<p>Keyword arguments for fig.colorbar.</p>
+</blockquote>
+</li>
+<li><p><strong>cbar_ax</strong> : matplotlib Axes, optional</p>
+<blockquote>
+<p>Axes in which to draw the colorbar, otherwise take space from the main Axes.</p>
+</blockquote>
+</li>
+<li><p><strong>mask</strong> : boolean array or DataFrame, optional</p>
+<blockquote>
+<p>If passed, data will not be shown in cells where <code>mask</code> is True. Cells with missing values are automatically masked.</p>
+</blockquote>
+</li>
+<li><p><strong>ax</strong> : matplotlib Axes, optional</p>
+<blockquote>
+<p>Axes in which to draw the plot, otherwise use the currently-active Axes.</p>
+</blockquote>
+</li>
+<li><p><strong>kwargs</strong> : other keyword arguments</p>
+<blockquote>
+<p>All other keyword arguments are passed to <code>ax.pcolormesh</code>.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Tips-for-Designing-a-Heatmap"><a href="#Tips-for-Designing-a-Heatmap" class="headerlink" title="Tips for Designing a Heatmap"></a><a href="#https://visage.co/data-visualization-101-heat-maps/">Tips for Designing a Heatmap</a></h4><ul>
+<li><p>Use a simple map outline</p>
+<p>These lines are meant to frame the data, not distract.</p>
+</li>
+<li><p>Select colors appropriately</p>
+<ul>
+<li><p>Use a single color with varying shade or a spectrum between two analogous colors to show intensity.</p>
+</li>
+<li><p>An important consideration here is selecting colors and contrasts visible to individuals with color blindness.</p>
+</li>
+<li>Remember to intuitively code color intensity according to values</li>
+</ul>
+</li>
+<li><p>Use patterns sparingly</p>
+<p>A pattern overlay that indicates a second variable is acceptable, but using multiple is overwhelming and distracting.</p>
+</li>
+<li><p>Choose appropriate data ranges</p>
+<p>Select 3-5 numerical ranges that enable fairly even distribution of data between them. Use +/- signs to extend high and low ranges.</p>
+</li>
+</ul>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples:"></a>Examples:</h3><p><a href="https://datavizcatalogue.com/methods/heatmap.html" target="_blank" rel="noopener">https://datavizcatalogue.com/methods/heatmap.html</a></p>
+<p><a href="http://seaborn.pydata.org/generated/seaborn.heatmap.html" target="_blank" rel="noopener">http://seaborn.pydata.org/generated/seaborn.heatmap.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Visualization/" rel="tag"># Visualization</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/LeetCode-220/" rel="next" title="LeetCode #220 Contains Duplicate III">
+                <i class="fa fa-chevron-left"></i> LeetCode #220 Contains Duplicate III
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/15/LeetCode-235/" rel="prev" title="LeetCode #235 Lowest Common Ancestor of a Binary Search Tree">
+                LeetCode #235 Lowest Common Ancestor of a Binary Search Tree <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">157</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-Heatmap"><span class="nav-number">1.</span> <span class="nav-text">What is a Heatmap?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Different-Kinds-of-Heatmaps"><span class="nav-number">1.1.</span> <span class="nav-text">Different Kinds of Heatmaps:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-to-Use-a-Heatmap"><span class="nav-number">2.</span> <span class="nav-text">When to Use a Heatmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Reasons-Why-We-Have-to-Use-It"><span class="nav-number">3.</span> <span class="nav-text">The Reasons Why We Have to Use It</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Plot-a-Heatmap"><span class="nav-number">4.</span> <span class="nav-text">How to Plot a Heatmap?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Plot-a-Heatmap-via-Seaborn"><span class="nav-number">4.1.</span> <span class="nav-text">Plot a Heatmap via Seaborn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tips-for-Designing-a-Heatmap"><span class="nav-number">4.2.</span> <span class="nav-text">Tips for Designing a Heatmap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-number">5.</span> <span class="nav-text">Examples:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

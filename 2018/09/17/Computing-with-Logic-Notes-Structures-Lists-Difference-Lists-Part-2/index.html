@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TODO,Prolog," />
+  <meta name="keywords" content="Prolog," />
 
 
 
@@ -96,16 +96,16 @@
 
 
 <meta name="description" content="Prolog ExecutionCall: Call a predicate(invocation)Exit: Return an answer to the callerFail: Return to caller with no answerRedo: Try next path to find an answer">
-<meta name="keywords" content="TODO,Prolog">
+<meta name="keywords" content="Prolog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2">
+<meta property="og:title" content="Structures, Lists, Difference Lists (Part 2)">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/09/17/Computing-with-Logic-Notes-Structures-Lists-Difference-Lists-Part-2/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Prolog ExecutionCall: Call a predicate(invocation)Exit: Return an answer to the callerFail: Return to caller with no answerRedo: Try next path to find an answer">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-03T19:23:05.539Z">
+<meta property="og:updated_time" content="2018-10-15T16:07:53.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2">
+<meta name="twitter:title" content="Structures, Lists, Difference Lists (Part 2)">
 <meta name="twitter:description" content="Prolog ExecutionCall: Call a predicate(invocation)Exit: Return an answer to the callerFail: Return to caller with no answerRedo: Try next path to find an answer">
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2 | Liam's Blog</title>
+  <title>Structures, Lists, Difference Lists (Part 2) | Liam's Blog</title>
   
 
 
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Computing-with-Logic-Notes(Structures, Lists, Difference Lists) Part 2</h1>
+          <h1 class="post-title" itemprop="name headline">Structures, Lists, Difference Lists (Part 2)</h1>
         
 
         <div class="post-meta">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-03T15:23:05-04:00">
-                2018-10-03
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-15T12:07:53-04:00">
+                2018-10-15
               </time>
             
           </span>
@@ -371,6 +371,50 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
                     <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Concepts/" itemprop="url" rel="index">
+                    <span itemprop="name">Concepts</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Queries/" itemprop="url" rel="index">
+                    <span itemprop="name">Queries</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Declarative-Meaning/" itemprop="url" rel="index">
+                    <span itemprop="name">Declarative Meaning</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Procedural-Meaning/" itemprop="url" rel="index">
+                    <span itemprop="name">Procedural Meaning</span>
                   </a>
                 </span>
 
@@ -469,6 +513,18 @@
 </li>
 </ul>
 <h3 id="Logic-Programming-Concepts"><a href="#Logic-Programming-Concepts" class="headerlink" title="Logic Programming Concepts"></a>Logic Programming Concepts</h3><ul>
+<li>The Prolog interpreter has a colleciton of facts and rules in its DATABASE</li>
+<li>Prolog provides an automatic way to deduce true results from facts and rules<ul>
+<li>Query or goal(i.e., a clause with an empty head)</li>
+<li>So, rules are theorems that allow the interpreter to infer things</li>
+</ul>
+</li>
+<li>The scope of a variable is the clause in which it appears:<ul>
+<li>Variables whose first appearance is on the <code>left hand side of the clause (i.e., in the head) have implicit universal quantifiers</code></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p>Operators</p>
 <ul>
 <li>conjunction</li>
@@ -538,9 +594,12 @@
 </li>
 <li><p>These are Single-Assignment Logical variables:</p>
 <ul>
-<li>Variables can be assigned only once</li>
+<li>Variables can be assigned only once, but that value can be further refined</li>
 <li>Different occurrences of the same variable in a clause denote the same data.</li>
-<li>Variables are implicitly declared upon first use.</li>
+</ul>
+</li>
+<li><p>Variables are implicitly declared upon first use.</p>
+<ul>
 <li>Variables are not typed<ul>
 <li>All types are discovered implicitly (no declarations in LP)</li>
 </ul>
@@ -578,7 +637,16 @@
 </li>
 </ul>
 </blockquote>
-<h3 id="Logic-Programming-Queries"><a href="#Logic-Programming-Queries" class="headerlink" title="Logic Programming Queries"></a>Logic Programming Queries</h3><h3 id="Meaning-of-Logic-Programs"><a href="#Meaning-of-Logic-Programs" class="headerlink" title="Meaning of Logic Programs"></a>Meaning of Logic Programs</h3><h5 id="Declarative-Meaning"><a href="#Declarative-Meaning" class="headerlink" title="Declarative Meaning"></a>Declarative Meaning</h5><p>What are the logical consequences of a program?</p>
+<h3 id="Logic-Programming-Queries"><a href="#Logic-Programming-Queries" class="headerlink" title="Logic Programming Queries"></a>Logic Programming Queries</h3><p>To run a Prolog program, one asks the interpreter a question</p>
+<ul>
+<li>This is done by asking a query which the interpreter tries to prove:<ul>
+<li><u>If it can,</u> it says <strong>yes</strong></li>
+<li><u>If it can’t</u>, it says <strong>no</strong></li>
+<li>If your query contained variables, the interpreter prints the values it had to give them to make the query true.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Meaning-of-Logic-Programs-Semantics"><a href="#Meaning-of-Logic-Programs-Semantics" class="headerlink" title="Meaning of Logic Programs (Semantics)"></a>Meaning of Logic Programs (Semantics)</h3><h5 id="Declarative-Meaning"><a href="#Declarative-Meaning" class="headerlink" title="Declarative Meaning"></a>Declarative Meaning</h5><p>What are the logical consequences of a program?</p>
 <blockquote>
 <ul>
 <li>Logical consequence of a program L is the smallest set such that<ul>
@@ -606,30 +674,28 @@
 </li>
 </ul>
 </li>
+<li>The Prolog interpreter works by what is called <strong>BACKWARD CHAINING</strong> (also called <strong>top-down, goal directed</strong>)<ul>
+<li>It begins with the thing it is trying to prove and works backwards looking for things that would imply it, until it gets to facts.</li>
+<li>It is also possible to work forward from the facts trying to see if any of the things you can prove from them are what you were looking for<ul>
+<li>This methodology is called <strong>bottom-up resolution</strong></li>
+<li>It can be very time-consuming</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>When it attempts resolution, the Prolog interpreter pushes the current goal onto a stack, makes the first term in the body the current goal, and goes back to the beginning of the database and starts looking again </li>
+<li>If it gets through the first goal of a body successfully, the interpreter continues with the next one </li>
+<li>If it gets all the way through the body, the goal is satisfied and it backs up a level and proceeds </li>
+<li>The Prolog interpreter starts at the <u>beginning of your database</u> (<strong>this ordering is part of Prolog, NOT of logic programming in general</strong>) and looks for something with which to unify the current goal<ul>
+<li>If it finds a fact; it succeeds,</li>
+<li>If it finds a rule, it attempts to satisfy the terms in the body of the rule depth first</li>
+</ul>
+</li>
+<li>If it fails to satisfy the terms in the body of a rule, the interpreter undoes the unification of the left hand side (BACKTRACKING) (this includes un-instantiating any variables that were given values as a result of the unification) and keeps looking through the database for something else with which to unify </li>
+<li>If the interpreter gets to the end of database without succeeding, it backs out a level (that’s how it might fail to satisfy something in a body) and continues from there </li>
 </ul>
 </blockquote>
-<h4 id="Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph"><a href="#Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph" class="headerlink" title="Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:"></a>Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:</h4><p>% brother(X, Y):- X is the brother of Y.</p>
-<p>brother(X, Y):-</p>
-<p>​    male(X),</p>
-<p>​    parent(Z, X),</p>
-<p>​    parent(Z, Y),​    </p>
-<p>​    X \= Y.</p>
-<p>% uncle(X, Y):- X is the uncle of Y.</p>
-<p>% female(X):- X is a female person.</p>
-<p>% sister(X, Y):- X is the sister of Y.</p>
-<p>% has_son(X):- the person has a son.</p>
-<p>% married(X, Y): - X and Y are married (to each other).</p>
-<p>% brother_in_low(X, Y):- X is the brother-in-law of Y.</p>
-<p>% ancestor(X, Y):- X is an ancestor of Y.</p>
-<p>ancestor(X, Y):-</p>
-<p>​    parent(X, Y).</p>
-<p>ancestor(X, Y):-</p>
-<p>​    parent(X, Z),</p>
-<p>​    ancestor(Z, Y).</p>
-<p>% relatives(X, Y):- X and Y are relatives.</p>
-<p>% ancestors(As, X):- As is the set of all ancestors of X.</p>
-<p>ancestors(As, X):- findall(A, ancestor(A, X), As).</p>
-<p>% descendants(Ds, X):- Ds is the set of all descendants of X</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www3.cs.stonybrook.edu/~pfodor/courses/CSE505/L02_Prolog.pdf" target="_blank" rel="noopener">Lecture Slide: Programming in Prolog</a></p>
 
       
     </div>
@@ -646,8 +712,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/TODO/" rel="tag"># TODO</a>
           
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
           
@@ -751,7 +815,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">139</span>
+                <span class="site-state-item-count">157</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -762,7 +826,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">113</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -773,7 +837,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -808,7 +872,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Execution"><span class="nav-number">1.</span> <span class="nav-text">Prolog Execution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Call-Call-a-predicate-invocation"><span class="nav-number">1.0.1.</span> <span class="nav-text">Call: Call a predicate(invocation)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exit-Return-an-answer-to-the-caller"><span class="nav-number">1.0.2.</span> <span class="nav-text">Exit: Return an answer to the caller</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fail-Return-to-caller-with-no-answer"><span class="nav-number">1.0.3.</span> <span class="nav-text">Fail: Return to caller with no answer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redo-Try-next-path-to-find-an-answer"><span class="nav-number">1.0.4.</span> <span class="nav-text">Redo: Try next path to find an answer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-of-XSB"><span class="nav-number">2.</span> <span class="nav-text">Use of XSB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-of-Prolog-Programs"><span class="nav-number">3.</span> <span class="nav-text">Syntax of Prolog Programs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Concepts"><span class="nav-number">4.</span> <span class="nav-text">Logic Programming Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursion"><span class="nav-number">5.</span> <span class="nav-text">Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Transitive-closure"><span class="nav-number">5.0.1.</span> <span class="nav-text">Transitive closure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Programs"><span class="nav-number">6.</span> <span class="nav-text">Prolog Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Terms"><span class="nav-number">6.0.1.</span> <span class="nav-text">Terms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Queries"><span class="nav-number">7.</span> <span class="nav-text">Logic Programming Queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meaning-of-Logic-Programs"><span class="nav-number">8.</span> <span class="nav-text">Meaning of Logic Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Declarative-Meaning"><span class="nav-number">8.0.1.</span> <span class="nav-text">Declarative Meaning</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Procedural-Meaning"><span class="nav-number">8.0.2.</span> <span class="nav-text">Procedural Meaning</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consider-the-Prolog-predicates-for-parent-2-male-1-and-husband-2-Write-Prolog-facts-to-represent-the-following-family-graph"><span class="nav-number">8.1.</span> <span class="nav-text">Consider the Prolog predicates for parent/2, male/1, and husband/2, Write Prolog facts to represent the following family graph:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Execution"><span class="nav-number">1.</span> <span class="nav-text">Prolog Execution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Call-Call-a-predicate-invocation"><span class="nav-number">1.0.1.</span> <span class="nav-text">Call: Call a predicate(invocation)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exit-Return-an-answer-to-the-caller"><span class="nav-number">1.0.2.</span> <span class="nav-text">Exit: Return an answer to the caller</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fail-Return-to-caller-with-no-answer"><span class="nav-number">1.0.3.</span> <span class="nav-text">Fail: Return to caller with no answer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redo-Try-next-path-to-find-an-answer"><span class="nav-number">1.0.4.</span> <span class="nav-text">Redo: Try next path to find an answer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-of-XSB"><span class="nav-number">2.</span> <span class="nav-text">Use of XSB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-of-Prolog-Programs"><span class="nav-number">3.</span> <span class="nav-text">Syntax of Prolog Programs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Concepts"><span class="nav-number">4.</span> <span class="nav-text">Logic Programming Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursion"><span class="nav-number">5.</span> <span class="nav-text">Recursion</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Transitive-closure"><span class="nav-number">5.0.1.</span> <span class="nav-text">Transitive closure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prolog-Programs"><span class="nav-number">6.</span> <span class="nav-text">Prolog Programs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Terms"><span class="nav-number">6.0.1.</span> <span class="nav-text">Terms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Programming-Queries"><span class="nav-number">7.</span> <span class="nav-text">Logic Programming Queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meaning-of-Logic-Programs-Semantics"><span class="nav-number">8.</span> <span class="nav-text">Meaning of Logic Programs (Semantics)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Declarative-Meaning"><span class="nav-number">8.0.1.</span> <span class="nav-text">Declarative Meaning</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Procedural-Meaning"><span class="nav-number">8.0.2.</span> <span class="nav-text">Procedural Meaning</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>

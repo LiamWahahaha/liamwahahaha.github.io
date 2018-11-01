@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Answer Set Programming,Reading Notes," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
+<meta name="keywords" content="Answer Set Programming,Reading Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/10/30/Note-of-An-ASP-Methodology-for-Understanding-Narratives-about-Stereotypical-Activities/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-31T19:55:01.325Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities">
+<meta name="twitter:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/10/30/Note-of-An-ASP-Methodology-for-Understanding-Narratives-about-Stereotypical-Activities/"/>
+
+
+
+
+
+  <title>Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/10/30/Note-of-An-ASP-Methodology-for-Understanding-Narratives-about-Stereotypical-Activities/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-30T20:05:50-04:00">
+                2018-10-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-10-31T15:55:01-04:00">
+                2018-10-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h2><p>An ASP Methodology for Understanding Narratives about Stereotypical Activities</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="What-is-the-concept-of-a-script-to-model-stereotypical-activities"><a href="#What-is-the-concept-of-a-script-to-model-stereotypical-activities" class="headerlink" title="What is the concept of a script to model stereotypical activities?"></a>What is the concept of a script to model stereotypical activities?</h3><p>A fixed sequence of actions that are <strong>always</strong> executed in a specific order.</p>
+<h3 id="What-is-the-problem-the-authors-want-to-solve"><a href="#What-is-the-problem-the-authors-want-to-solve" class="headerlink" title="What is the problem the authors want to solve?"></a>What is the problem the authors want to solve?</h3><p>One of their goals in this work is to understand what parts of the AIA architecture can be adopted to their purpose of modeling the reasoning of a narrative reader and how.</p>
+<h3 id="What-did-this-paper-do"><a href="#What-did-this-paper-do" class="headerlink" title="What did this paper do?"></a>What did this paper do?</h3><ul>
+<li><p>The authors proposed a new representation methodology and reasoning approach, which makes it possible to answer, in both normal and exception scenarios, questions about events that did or did not take place.</p>
+</li>
+<li><p>The system they built might be the first scalable approach to the understanding or exceptional scenarios.</p>
+</li>
+<li>The authors proposed a prototypical implementation of the end-to-end system in which understanding is tested via question answering.</li>
+</ul>
+<h4 id="Literature-Review"><a href="#Literature-Review" class="headerlink" title="Literature Review"></a>Literature Review</h4><ul>
+<li><p>Theory of intentions</p>
+<p> This theory introduces the concept of an activity - a sequence of agent actions and sub-activities that are supposed to achieve a goal. The theory of intentions is written in an action language and is translatable into Answer Set Prolog.</p>
+</li>
+<li><p>Architecture of an intentional agent (AIA)</p>
+<p>AIA is an agent that obeys the theory of intentions. According to AIA, at each time step, the agent observes the world, explains observations incompatible with its expectations (diagnosis), and determines what action to execute next (planning).</p>
+<p>The reasoning module implementing AIA allows an agent to reason about a wide variety of scenarios, including the serendipitous achievement of its goal by exogenous actions or the realization that an active activity has no chance to achieve its goal anymore.</p>
+<p>How AIA handles the normal and exceptional stereotypical activities?</p>
+<ul>
+<li><p>Scenario 1 (Base case)</p>
+<p>Nicole went to a vegetarian restaurant. She ordered lentil soup. The waitress set the soup in the middle of the table. Nicole enjoyed the soup. She left the restaurant.</p>
+<ul>
+<li><p>What should readers know?</p>
+<p>Since customers are expected to pay for their meal, readers are supposed to know such conventions. Therefore, readers know this information is missing from the text.</p>
+</li>
+</ul>
+</li>
+<li><p>Scenario 2 (Serendipity)</p>
+<p>Nicole went to a vegetarian restaurant. She ordered lentil soup. When the waitress brought her the soup, she told her that it was on the house. Nicole enjoyed the soup and then left.</p>
+<ul>
+<li><p>What should readers know?</p>
+<p>The reader should understand that Nicole did not pay for the soup.</p>
+</li>
+</ul>
+</li>
+<li><p>Scenario 3 (Detecting Futile Activity)</p>
+<p>Nicole went to a vegetarian restaurant. She sat down and wanted to order lentil soup, but it was not on the menu.</p>
+<ul>
+<li><p>What should readers know?</p>
+<p>The reader should deduce that Nicole stopped her plan of eating lentil soup here.</p>
+</li>
+</ul>
+</li>
+<li><p>Scenario 4 (Diagnosis)</p>
+<p>Nicole went to a vegetarian restaurant. She ordered lentil soup. The waitress brought her a miso soup instead.</p>
+<ul>
+<li><p>What should readers know?</p>
+<p>The reader is supposed to produce some explanations for what may have gone wrong: either the waitress or the cook misunderstood the order.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>AIA encodes an agent’s reasoning process about his own goals, intentions, and ways to achieve them.</p>
+</li>
+</ul>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Story-Understanding"><a href="#Story-Understanding" class="headerlink" title="Story Understanding"></a>Story Understanding</h3><ul>
+<li>An extensive review of narrative processing systems can be found in Mueller’s paper.</li>
+</ul>
+<p>The task taken in this paper is a more difficult one because stories about stereotypical activities tend to omit more information about the events taking place compared to other texts, as such information is expected to be filled in by the reader.</p>
+<h3 id="Restaurant-Narratives"><a href="#Restaurant-Narratives" class="headerlink" title="Restaurant Narratives."></a>Restaurant Narratives.</h3><p>Erik Mueller’s work is based on the hypothesis that readers of a text understand it by constructing a mental model of the narrative.</p>
+<p>Mueller’s system relied on two important pieces of background knowledge:</p>
+<ol>
+<li>a commonsense knowledge base about actions occuring in a restaurant, their <strong>effects</strong> and <strong>preconditions</strong> encoded in <strong>Event Calculus</strong></li>
+<li>a script describing a sequence of actions performed by different characters in a <strong>normal</strong> unfolding of a restaurant episode.</li>
+</ol>
+<h3 id="Activity-Recognition"><a href="#Activity-Recognition" class="headerlink" title="Activity Recognition"></a>Activity Recognition</h3><p>The task authors undertook here presents some similarities to activity recognition, in that it requires observing agents and their environment in order to complete the picture about the agents’ actions and activities. However, unlike activity recognition, understanding naratives limited to a single stereotypical activity does not require identifying agents’ goals, which are always the same for each role in their case.</p>
+<h2 id="Preliminary-Theory-of-Intentions"><a href="#Preliminary-Theory-of-Intentions" class="headerlink" title="Preliminary: Theory of Intentions"></a>Preliminary: Theory of Intentions</h2><p>Theory of intentions of a goal-driven agent</p>
+<p>Each sequence of actions (i.e., plan) of an agent was associated with a goal that it was meant to achieve, and the combination of the two was called an activity.</p>
+<ul>
+<li><p>Activities could have nested sub-activities, and were encoded using the predicates: </p>
+<ul>
+<li><em>activity</em>(<strong>m</strong>) (<strong>m</strong> is an activity)</li>
+<li><em>goal</em>(<strong>m, g</strong>) (the goal of activity <strong>m</strong> is <strong>g</strong>)</li>
+<li><em>length</em>(<strong>m, n</strong>) (the length of activity <strong>m</strong> is <strong>n</strong>)</li>
+<li><em>comp</em>(<strong>m, k, x</strong>) (the <strong>k</strong>th component of activity <strong>m</strong> is <strong>x</strong>, where <strong>x</strong> is either an action or a sub-activity)</li>
+</ul>
+</li>
+<li><p>AIA control loop</p>
+<p>Observe the world and initialize history with observations</p>
+<ol>
+<li><p>interpret observations</p>
+<p>The agent uses diagnostic reasoning to explain unexpected observations, which involves determinging which exogenous actions may have occured without being observed.</p>
+</li>
+<li><p>find an intended action <em>e</em></p>
+<p>The goal of this step is to allow the agent to find an <em>intended action.</em> The following intended actions are considered:</p>
+<ul>
+<li>To continue executing an ongoing activity that is expected to achieve its goal</li>
+<li>To stop an ongoing activity whose goal is no longer active (because it has been either achieved or abandoned)</li>
+<li>To stop an activity that is no longer expected to achieve its goal</li>
+<li>To start a chosen activity that is expected to achieve its goal</li>
+</ul>
+<p>Under certain conditions, there may be no way for the agent to achieve its goal, or the agent may simply have no goal. In either case, the agent’s intended action is to wait. For the case when the agent continues executing an ongoing activity, the fluent <em>nexg_action</em>(<strong>m, a</strong>) in the theory of intentions becomes relevant as it indicates the action in activity <strong>m</strong> that the agent would have to attempt next.</p>
+</li>
+<li><p>Attempt to perform <em>e</em> and update history with a record of the attempt</p>
+<p>The agent acts and records its attempt to perform the intended action.</p>
+</li>
+<li><p>observe the world, update history with observations, and go to step 3</p>
+<p>The agent observes the values of fluents, the result of his attempt to act form step3, and possibly the occurrence of someexogenous actions.</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>The authors introduced the concept of an <em>intentional agent</em> - one that has goals that it intends to pursue, ‘only attempts to perform those actions that are intended and does so without delay.’</p>
+<p>The agent is expected to possess knowledge about the changing world around it. The knowledge can be represented as a trransition diagram in which nodes denote <em>physical</em> states of the world and arc are labeled by <em>physically executable</em> actions that may take the world from one state to the other. States describe the values of relevant properties of the world, where properties are divided into fluents (those that can be changed by actions) and statics (those that cannot).</p>
+<p>To accommodate intentions and decisions of an intentional agent, Blount et al. expanded the traditional transition diagram with <em>mental</em> fluents and actions.</p>
+<p>Three important mental fluents in their theory are:</p>
+<ul>
+<li><p><em>status</em>(<strong>m, k</strong>) (<strong>m</strong> is in progress if <strong>k</strong> greater than or equal to 0; not yet started or stpped if <strong>k</strong> = -1)</p>
+<p>=&gt; The authors added an extra argument <strong>ag</strong> to associate an agent to each mental fluent and action of TI (e.g., <em>status</em>(<strong>m, k</strong>) became <em>status</em>(<strong>ag, m, k</strong>))</p>
+</li>
+<li><p><em>active_goal</em>(<strong>g</strong>) (goal <strong>g</strong> is active)</p>
+</li>
+<li><p><em>next_action</em>(<strong>m, a</strong>) (‘the next physical action to be executed as part of activity <strong>m</strong> is <strong>a</strong>‘)</p>
+</li>
+</ul>
+<p><strong>Axioms</strong> describe how the execution of physical actions affects the status of activities and sub-activities, activates (or inactivates) goals and sub-goals, and determines the selection of the next action to be executed.</p>
+<p><u>The author also extended TI by the ASP axioms below, needed to make explicit Blount et al.’s assumption that an agent has only one top-level goal at a time.</u></p>
+<p>This restriction is important when modeling an external observer and was not fully captured previously by TI.</p>
+<p>The first two axioms say that an agent cannot select a goal if it already has an active goal or if it selects another goal at the same time.</p>
+<p>The third rule says that the stopping of an activity inactivates the goals of all of its sub-actvities.</p>
+<p><em>impossible</em>(<em>select</em>(Ag, G), I) :-</p>
+<p>​    <em>holds</em>(<em>active_goal</em>(Ag, G1), I), </p>
+<p>​    <em>possible_goal</em>(Ag, G).</p>
+<p><em>impossible</em>(<em>select</em>(Ag, G), I) :-</p>
+<p>​    <em>occurs</em>(<em>select</em>(Ag, G1), I), <em>possible</em>(Ag, G), </p>
+<p>​    G =\= G1.</p>
+<p><em>not holds</em>(<em>active_goal</em>(Ag, G1), I + 1) :-</p>
+<p>​    goal(M1, G1),</p>
+<p>​    <em>holds</em>(<em>descendant</em>(Ag, M1, M), I),</p>
+<p>​    <em>occurs</em>(<em>stop</em>(Ag, M), I).</p>
+<p><strong>Mental actions</strong> include:</p>
+<ul>
+<li><em>select</em>(<strong>g</strong>) for goal</li>
+<li><em>abandon</em>(<strong>g</strong>) for goal</li>
+<li><em>start</em>(<strong>m</strong>) for activities</li>
+<li><em>stop</em>(<strong>m</strong>) for activities</li>
+</ul>
+<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><h3 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h3><p>The authors assumed that a wide coverage commonsense knowledge base written in ASP is available to us and that it contains information about a large number of actions, their effects and preconditions, including actions in the stereotypical activity.</p>
+<ul>
+<li>In order to be able to evaluate the methodology, the authors had built a basic knowledge base with core information about restaurants and, whenever a scenario needed new information, they expanded the knowledge base with new actions and fluents.</li>
+</ul>
+<p>To simplify the first attempt to use a theory of intentions to reason about stereotypical activities, the authors made the following assumptions:</p>
+<ul>
+<li>there is only one customer that wants to dine</li>
+<li>there is only one waiter</li>
+<li>there is only one cook</li>
+<li>there is only one ordered dish</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Answer-Set-Programming/" rel="tag"># Answer Set Programming</a>
+          
+            <a href="/tags/Reading-Notes/" rel="tag"># Reading Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/30/Linear-Algebra-Review/" rel="next" title="Linear Algebra Review">
+                <i class="fa fa-chevron-left"></i> Linear Algebra Review
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/31/Derivation-and-Proof-Trees/" rel="prev" title="Derivation and Proof Trees">
+                Derivation and Proof Trees <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">157</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper"><span class="nav-number">1.</span> <span class="nav-text">Paper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-concept-of-a-script-to-model-stereotypical-activities"><span class="nav-number">2.1.</span> <span class="nav-text">What is the concept of a script to model stereotypical activities?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-problem-the-authors-want-to-solve"><span class="nav-number">2.2.</span> <span class="nav-text">What is the problem the authors want to solve?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-did-this-paper-do"><span class="nav-number">2.3.</span> <span class="nav-text">What did this paper do?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Literature-Review"><span class="nav-number">2.3.1.</span> <span class="nav-text">Literature Review</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Story-Understanding"><span class="nav-number">3.1.</span> <span class="nav-text">Story Understanding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restaurant-Narratives"><span class="nav-number">3.2.</span> <span class="nav-text">Restaurant Narratives.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity-Recognition"><span class="nav-number">3.3.</span> <span class="nav-text">Activity Recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preliminary-Theory-of-Intentions"><span class="nav-number">4.</span> <span class="nav-text">Preliminary: Theory of Intentions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methodology"><span class="nav-number">5.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumptions"><span class="nav-number">5.1.</span> <span class="nav-text">Assumptions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
