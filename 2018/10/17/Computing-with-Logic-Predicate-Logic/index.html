@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TODO,Prolog," />
+  <meta name="keywords" content="Prolog,Doubt," />
 
 
 
@@ -95,18 +95,32 @@
 
 
 
-<meta name="description" content="The Alphabet of Predicate Logic Variables Constants (identifiers, numbers etc.) Functors (identifiers with arity &amp;gt; 0; e.g. date/3) Predicate symbols (identifiers with arity &amp;gt;= 0; e.g. append/3)">
-<meta name="keywords" content="TODO,Prolog">
+<meta name="description" content="The Alphabet of Predicate Logic">
+<meta name="keywords" content="Prolog,Doubt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Predicate Logic (Part 1)">
+<meta property="og:title" content="Predicate Logic">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="The Alphabet of Predicate Logic Variables Constants (identifiers, numbers etc.) Functors (identifiers with arity &amp;gt; 0; e.g. date/3) Predicate symbols (identifiers with arity &amp;gt;= 0; e.g. append/3)">
+<meta property="og:description" content="The Alphabet of Predicate Logic">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-22T21:43:42.771Z">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/1.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/2.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/3.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/4.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/5.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/6.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/7.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/8.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/9.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/10.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/11.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/12.png">
+<meta property="og:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/13.png">
+<meta property="og:updated_time" content="2018-11-02T01:22:11.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Predicate Logic (Part 1)">
-<meta name="twitter:description" content="The Alphabet of Predicate Logic Variables Constants (identifiers, numbers etc.) Functors (identifiers with arity &amp;gt; 0; e.g. date/3) Predicate symbols (identifiers with arity &amp;gt;= 0; e.g. append/3)">
+<meta name="twitter:title" content="Predicate Logic">
+<meta name="twitter:description" content="The Alphabet of Predicate Logic">
+<meta name="twitter:image" content="http://liamwahahaha.github.io/2018/10/17/Computing-with-Logic-Predicate-Logic/1.png">
 
 
 
@@ -141,7 +155,7 @@
 
 
 
-  <title>Predicate Logic (Part 1) | Liam's Blog</title>
+  <title>Predicate Logic | Liam's Blog</title>
   
 
 
@@ -311,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Predicate Logic (Part 1)</h1>
+          <h1 class="post-title" itemprop="name headline">Predicate Logic</h1>
         
 
         <div class="post-meta">
@@ -339,8 +353,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-22T17:43:42-04:00">
-                2018-10-22
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-01T21:22:11-04:00">
+                2018-11-01
               </time>
             
           </span>
@@ -376,6 +390,17 @@
 
                 
                 
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/Predicate-Logic/" itemprop="url" rel="index">
+                    <span itemprop="name">Predicate Logic</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -406,38 +431,20 @@
       
 
       
-        <h3 id="The-Alphabet-of-Predicate-Logic"><a href="#The-Alphabet-of-Predicate-Logic" class="headerlink" title="The Alphabet of Predicate Logic"></a>The Alphabet of Predicate Logic</h3><ul>
-<li>Variables</li>
-<li>Constants (identifiers, numbers etc.)</li>
-<li>Functors (identifiers with arity &gt; 0; e.g. date/3)</li>
-<li>Predicate symbols (identifiers with arity &gt;= 0; e.g. append/3)</li>
-<li>Connectives</li>
-<li>Quantifiers</li>
-<li>Auxiliary symbols such as parentheses and comma</li>
-<li>Terms (T) over an alphabet A is the smallest set such that:<ul>
-<li>TODO</li>
-</ul>
-</li>
-</ul>
-<h3 id="Bound-and-Free-Variables"><a href="#Bound-and-Free-Variables" class="headerlink" title="Bound and Free Variables"></a>Bound and Free Variables</h3><h3 id="Interpretation"><a href="#Interpretation" class="headerlink" title="Interpretation"></a>Interpretation</h3><ul>
-<li>An <strong>interpretation</strong> I of an alphabet is<ul>
-<li>a non-empty domain D, and</li>
-<li>a mapping that associates：<ul>
-<li>each constant $c \in A$ with an element $c_I \in D$</li>
-<li>each n-ary functor $f \in A$ with an function $f_I: D^n \rightarrow D$</li>
-<li>each n-ary predicate symbol $p \in A$ with an relation $p_I \subequal D^n$ </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Valuation"><a href="#Valuation" class="headerlink" title="Valuation"></a>Valuation</h3><ul>
-<li>Terms are given a meaning with respect to a <strong>valuation</strong>:<ul>
-<li>Given an interpretation I and valuation $\phi$, the meaning of a term </li>
-</ul>
-</li>
-</ul>
-
+        <h3 id="The-Alphabet-of-Predicate-Logic"><a href="#The-Alphabet-of-Predicate-Logic" class="headerlink" title="The Alphabet of Predicate Logic"></a>The Alphabet of Predicate Logic</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/1.png">
+<a id="more"></a>
+<h3 id="Predicate-Logic-Formulae"><a href="#Predicate-Logic-Formulae" class="headerlink" title="Predicate Logic Formulae"></a>Predicate Logic Formulae</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/2.png">
+<h3 id="Bound-and-Free-Variables"><a href="#Bound-and-Free-Variables" class="headerlink" title="Bound and Free Variables"></a>Bound and Free Variables</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/3.png">
+<h3 id="Interpretation"><a href="#Interpretation" class="headerlink" title="Interpretation"></a>Interpretation</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/4.png">
+<h3 id="Valuation"><a href="#Valuation" class="headerlink" title="Valuation"></a>Valuation</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/5.png">
+<h3 id="Semantics-of-Terms"><a href="#Semantics-of-Terms" class="headerlink" title="Semantics of Terms"></a>Semantics of Terms</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/6.png">
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/7.png">
+<h3 id="Semantics-of-Well-Formed-Formulae"><a href="#Semantics-of-Well-Formed-Formulae" class="headerlink" title="Semantics of Well-Formed Formulae"></a>Semantics of Well-Formed Formulae</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/8.png">
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/9.png">
+<img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/10.png">
+<img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/11.png">
+<h3 id="Interpretations-and-Consequences"><a href="#Interpretations-and-Consequences" class="headerlink" title="Interpretations and Consequences"></a>Interpretations and Consequences</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/12.png">
+<h3 id="Logical-Consequence"><a href="#Logical-Consequence" class="headerlink" title="Logical Consequence"></a>Logical Consequence</h3><img src="/2018/10/17/Computing-with-Logic-Predicate-Logic/13.png">
       
     </div>
     
@@ -454,9 +461,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TODO/" rel="tag"># TODO</a>
-          
             <a href="/tags/Prolog/" rel="tag"># Prolog</a>
+          
+            <a href="/tags/Doubt/" rel="tag"># Doubt</a>
           
         </div>
       
@@ -558,7 +565,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">157</span>
+                <span class="site-state-item-count">158</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -569,7 +576,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-count">114</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -580,7 +587,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -615,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Alphabet-of-Predicate-Logic"><span class="nav-number">1.</span> <span class="nav-text">The Alphabet of Predicate Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bound-and-Free-Variables"><span class="nav-number">2.</span> <span class="nav-text">Bound and Free Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretation"><span class="nav-number">3.</span> <span class="nav-text">Interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valuation"><span class="nav-number">4.</span> <span class="nav-text">Valuation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Alphabet-of-Predicate-Logic"><span class="nav-number">1.</span> <span class="nav-text">The Alphabet of Predicate Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicate-Logic-Formulae"><span class="nav-number">2.</span> <span class="nav-text">Predicate Logic Formulae</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bound-and-Free-Variables"><span class="nav-number">3.</span> <span class="nav-text">Bound and Free Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretation"><span class="nav-number">4.</span> <span class="nav-text">Interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valuation"><span class="nav-number">5.</span> <span class="nav-text">Valuation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantics-of-Terms"><span class="nav-number">6.</span> <span class="nav-text">Semantics of Terms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">6.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantics-of-Well-Formed-Formulae"><span class="nav-number">7.</span> <span class="nav-text">Semantics of Well-Formed Formulae</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Examples"><span class="nav-number">7.1.</span> <span class="nav-text">Examples</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretations-and-Consequences"><span class="nav-number">8.</span> <span class="nav-text">Interpretations and Consequences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-Consequence"><span class="nav-number">9.</span> <span class="nav-text">Logical Consequence</span></a></li></ol></div>
             
 
           </div>
