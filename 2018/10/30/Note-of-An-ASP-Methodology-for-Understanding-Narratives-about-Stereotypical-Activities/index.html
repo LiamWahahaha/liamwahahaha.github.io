@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Answer Set Programming,Reading Notes," />
+  <meta name="keywords" content="Doubt,Answer Set Programming,Reading Notes," />
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
-<meta name="keywords" content="Answer Set Programming,Reading Notes">
+<meta name="description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities">
+<meta name="keywords" content="Doubt,Answer Set Programming,Reading Notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities">
 <meta property="og:url" content="http://liamwahahaha.github.io/2018/10/30/Note-of-An-ASP-Methodology-for-Understanding-Narratives-about-Stereotypical-Activities/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
+<meta property="og:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-31T19:55:01.325Z">
+<meta property="og:updated_time" content="2018-11-04T00:04:22.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reading Note: An ASP Methodology for Understanding Narratives about Stereotypical Activities">
-<meta name="twitter:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities IntroductionWhat is the concept of a script to model stereotypical activities?A fixed sequence of actions that are a">
+<meta name="twitter:description" content="PaperAn ASP Methodology for Understanding Narratives about Stereotypical Activities">
 
 
 
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-10-31T15:55:01-04:00">
-                2018-10-31
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-03T20:04:22-04:00">
+                2018-11-03
               </time>
             
           </span>
@@ -358,7 +358,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Prolog/" itemprop="url" rel="index">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
                     <span itemprop="name">Prolog</span>
                   </a>
                 </span>
@@ -407,6 +418,7 @@
 
       
         <h2 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h2><p>An ASP Methodology for Understanding Narratives about Stereotypical Activities</p>
+<a id="more"></a>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="What-is-the-concept-of-a-script-to-model-stereotypical-activities"><a href="#What-is-the-concept-of-a-script-to-model-stereotypical-activities" class="headerlink" title="What is the concept of a script to model stereotypical activities?"></a>What is the concept of a script to model stereotypical activities?</h3><p>A fixed sequence of actions that are <strong>always</strong> executed in a specific order.</p>
 <h3 id="What-is-the-problem-the-authors-want-to-solve"><a href="#What-is-the-problem-the-authors-want-to-solve" class="headerlink" title="What is the problem the authors want to solve?"></a>What is the problem the authors want to solve?</h3><p>One of their goals in this work is to understand what parts of the AIA architecture can be adopted to their purpose of modeling the reasoning of a narrative reader and how.</p>
 <h3 id="What-did-this-paper-do"><a href="#What-did-this-paper-do" class="headerlink" title="What did this paper do?"></a>What did this paper do?</h3><ul>
@@ -554,6 +566,92 @@
 <li>there is only one cook</li>
 <li>there is only one ordered dish</li>
 </ul>
+<h3 id="Methodology-1"><a href="#Methodology-1" class="headerlink" title="Methodology"></a>Methodology</h3><p>For each in put text $t$ and set of questions $\bold{Q}$, the authors construct a logic program $\Pi(t, \bold{Q})$ (simply $\Pi(t), \text{if } \bold{Q}\text{ is empty}$). Its answer sets represent models of the narrative and answers to questions in $\bold{Q}$.</p>
+<p>The core of the commonsense knowledge base has two parts:</p>
+<h4 id="The-pre-defined-part"><a href="#The-pre-defined-part" class="headerlink" title="The pre-defined part"></a><u>The pre-defined part</u></h4><p>This part consists of the following items:</p>
+<ol>
+<li>The knowledge base, with a core describing <code>sorts</code>, <code>fluents</code>, <code>actions</code>, and some pre-defined objects relevant to the stereotypical activity of focus</li>
+<li>The ASP theory of intentions $TI$</li>
+<li>A module encoding stereotypical activities as $TI$ activities for each character</li>
+<li>A reasoning module, encoding<ul>
+<li>a mapping of time points on the story time line into points on the reasoning time line</li>
+<li>reasoning components adapted from the $AIA$ architecture to reflect a reader’s reasoning process and expected to allow reasoning about serendipitous achievement of goals, decisions to stop futile activities, and diagnosis</li>
+<li>a question answering component</li>
+</ul>
+</li>
+</ol>
+<h4 id="Th-input-dependent-part"><a href="#Th-input-dependent-part" class="headerlink" title="Th input-dependent part"></a><u>Th input-dependent part</u></h4><p>This part, a logic form obtained by translating the English text $t$ and questions in $\bold{Q}$ into ASP facts, consists of the following:</p>
+<ol>
+<li>Facts defining objects mentioned in the text $t$ as instances of relevant sorts in knowledge base</li>
+<li>Observations about the values of fluents and the occurrences of actions at different points on the story time line</li>
+<li>Default information about the values of fluents in the initial situation</li>
+<li>Facts encoding each question in $\bold{Q}$</li>
+</ol>
+<h4 id="The-core-of-knowledge-base"><a href="#The-core-of-knowledge-base" class="headerlink" title="The core of knowledge base"></a>The core of knowledge base</h4><p>Defines knowledge related to the restaurant environment. It includes:</p>
+<ul>
+<li><p>A hierarchy of sorts with main sorts:</p>
+<ul>
+<li>person, has subsorts:<ul>
+<li>customer</li>
+<li>waiter</li>
+<li>cook</li>
+</ul>
+</li>
+<li><p>thing, has subsorts:</p>
+<ul>
+<li>food</li>
+<li>menu</li>
+<li>bill</li>
+</ul>
+</li>
+<li><p>restaurant</p>
+</li>
+<li>location</li>
+</ul>
+</li>
+</ul>
+<h4 id="Predifined-instances-of-sorts-are-used"><a href="#Predifined-instances-of-sorts-are-used" class="headerlink" title="Predifined instances of sorts are used"></a>Predifined instances of sorts are used</h4><ul>
+<li><p>instances of location</p>
+<ul>
+<li>entrance</li>
+<li>kt (kitchen)</li>
+<li>ct (counter)</li>
+<li>outside</li>
+<li>t (table)</li>
+</ul>
+</li>
+<li><p>m, instance of menu</p>
+</li>
+<li><p>b, instance of bill</p>
+</li>
+</ul>
+<h4 id="The-core-actions-and-fluents-in-the-restaurant-related-core-of-KB"><a href="#The-core-actions-and-fluents-in-the-restaurant-related-core-of-KB" class="headerlink" title="The core actions and fluents in the restaurant-related core of KB"></a>The core actions and fluents in the restaurant-related core of KB</h4><table>
+<thead>
+<tr>
+<th>Actions</th>
+<th>Fluents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>go(<strong>c</strong>,<strong>r</strong>), greet(<strong>w</strong>, <strong>c</strong>), move(<strong>p</strong>, <strong>l1</strong>, <strong>l2</strong>), lead_to(<strong>w</strong>, <strong>c</strong>, <strong>t</strong>), sit(<strong>c</strong>), pick_up(<strong>p</strong>, <strong>t</strong>, <strong>l</strong>), put_down(<strong>p</strong>, <strong>t</strong>, <strong>l</strong>), order(<strong>c</strong>, <strong>f</strong>, <strong>w</strong>), request(<strong>p1</strong>, <strong>t</strong>, <strong>p2</strong>), prepare(<strong>ck</strong>, <strong>f</strong>), eat(<strong>c</strong>, <strong>f</strong>), pay(<strong>c</strong>), stand_up(<strong>c</strong>), leave(<strong>c</strong>), make_unavailable(<strong>f</strong>, <strong>r</strong>), interference</td>
+<td>hungry(<strong>c</strong>), open(<strong>r</strong>), at_loc(<strong>t</strong>, <strong>l</strong>), in(<strong>c</strong>, <strong>r</strong>), welcomed(<strong>c</strong>), standing_by(<strong>p</strong>, <strong>l</strong>), sitting(<strong>c</strong>), hoding(<strong>p</strong>, <strong>l</strong>), menu_read(<strong>c</strong>), informed(<strong>p1</strong>, <strong>t</strong>, <strong>p2</strong>), available(<strong>f</strong>, <strong>r</strong>), food_perpared(<strong>ck</strong>, <strong>f</strong>), served(<strong>c</strong>), bill_generated(<strong>c</strong>), paid(<strong>b</strong>), order_transimitted(<strong>c</strong>), done_with_payment(<strong>c</strong>), satiated_and_out(<strong>c</strong>), served_and_billed(<strong>c</strong>), done_with_request(<strong>ck</strong>, <strong>w</strong>)</td>
+</tr>
+</tbody>
+</table>
+<p>Where:</p>
+<ul>
+<li><strong>c</strong> for a customer</li>
+<li><strong>w</strong> for a waiter</li>
+<li><strong>ck</strong> for a cook</li>
+<li><strong>f</strong> for a food</li>
+<li><strong>r</strong> for a restaurant</li>
+<li><strong>t1</strong> and <strong>t2</strong> for things</li>
+<li><strong>l</strong>, <strong>l1</strong> and <strong>l2</strong> for locations</li>
+<li><strong>p</strong>, <strong>p1</strong> and <strong>p2</strong> for persons</li>
+</ul>
+<h4 id="How-to-denote-the-agent-performing-each-action"><a href="#How-to-denote-the-agent-performing-each-action" class="headerlink" title="How to denote the agent performing each action"></a>How to denote the agent performing each action</h4><p>They denote the agent performing each action <strong>a</strong> by using the static actor(<strong>a</strong>, <strong>p</strong>). Each action has a unique actor, except lead_to(<strong>w</strong>, <strong>c</strong>, <strong>t</strong>) in which both <strong>w</strong> and <strong>c</strong> (waiter and customer) are considered actors.</p>
+<h4 id="Doubt-All-fluents-are-inertial-except…"><a href="#Doubt-All-fluents-are-inertial-except…" class="headerlink" title="(Doubt)All fluents are inertial except…"></a>(Doubt)All fluents are inertial except…</h4><p>First, what does the inertial mean? It means the fluent normally maintain their previous values unless changed by an action, except <code>order_transmitted</code>, <code>done_with_payment</code>, <code>satiated_and_out</code>, <code>served_and_billed</code>, <code>done_with_request</code> are defined-positive fluents, i.e., their positive value is completely defined in terms of other fluents; otherwise their default value is false.</p>
 
       
     </div>
@@ -571,6 +669,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Doubt/" rel="tag"># Doubt</a>
+          
             <a href="/tags/Answer-Set-Programming/" rel="tag"># Answer Set Programming</a>
           
             <a href="/tags/Reading-Notes/" rel="tag"># Reading Notes</a>
@@ -586,8 +686,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/Linear-Algebra-Review/" rel="next" title="Linear Algebra Review">
-                <i class="fa fa-chevron-left"></i> Linear Algebra Review
+              <a href="/2018/10/25/Validating-Models/" rel="next" title="Validating Models">
+                <i class="fa fa-chevron-left"></i> Validating Models
               </a>
             
           </div>
@@ -675,7 +775,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-count">161</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -686,7 +786,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">114</span>
+                <span class="site-state-item-count">122</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -732,7 +832,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper"><span class="nav-number">1.</span> <span class="nav-text">Paper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-concept-of-a-script-to-model-stereotypical-activities"><span class="nav-number">2.1.</span> <span class="nav-text">What is the concept of a script to model stereotypical activities?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-problem-the-authors-want-to-solve"><span class="nav-number">2.2.</span> <span class="nav-text">What is the problem the authors want to solve?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-did-this-paper-do"><span class="nav-number">2.3.</span> <span class="nav-text">What did this paper do?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Literature-Review"><span class="nav-number">2.3.1.</span> <span class="nav-text">Literature Review</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Story-Understanding"><span class="nav-number">3.1.</span> <span class="nav-text">Story Understanding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restaurant-Narratives"><span class="nav-number">3.2.</span> <span class="nav-text">Restaurant Narratives.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity-Recognition"><span class="nav-number">3.3.</span> <span class="nav-text">Activity Recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preliminary-Theory-of-Intentions"><span class="nav-number">4.</span> <span class="nav-text">Preliminary: Theory of Intentions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methodology"><span class="nav-number">5.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumptions"><span class="nav-number">5.1.</span> <span class="nav-text">Assumptions</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper"><span class="nav-number">1.</span> <span class="nav-text">Paper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-concept-of-a-script-to-model-stereotypical-activities"><span class="nav-number">2.1.</span> <span class="nav-text">What is the concept of a script to model stereotypical activities?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-problem-the-authors-want-to-solve"><span class="nav-number">2.2.</span> <span class="nav-text">What is the problem the authors want to solve?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-did-this-paper-do"><span class="nav-number">2.3.</span> <span class="nav-text">What did this paper do?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Literature-Review"><span class="nav-number">2.3.1.</span> <span class="nav-text">Literature Review</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Story-Understanding"><span class="nav-number">3.1.</span> <span class="nav-text">Story Understanding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restaurant-Narratives"><span class="nav-number">3.2.</span> <span class="nav-text">Restaurant Narratives.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity-Recognition"><span class="nav-number">3.3.</span> <span class="nav-text">Activity Recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preliminary-Theory-of-Intentions"><span class="nav-number">4.</span> <span class="nav-text">Preliminary: Theory of Intentions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methodology"><span class="nav-number">5.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumptions"><span class="nav-number">5.1.</span> <span class="nav-text">Assumptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology-1"><span class="nav-number">5.2.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-pre-defined-part"><span class="nav-number">5.2.1.</span> <span class="nav-text">The pre-defined part</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Th-input-dependent-part"><span class="nav-number">5.2.2.</span> <span class="nav-text">Th input-dependent part</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-core-of-knowledge-base"><span class="nav-number">5.2.3.</span> <span class="nav-text">The core of knowledge base</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Predifined-instances-of-sorts-are-used"><span class="nav-number">5.2.4.</span> <span class="nav-text">Predifined instances of sorts are used</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-core-actions-and-fluents-in-the-restaurant-related-core-of-KB"><span class="nav-number">5.2.5.</span> <span class="nav-text">The core actions and fluents in the restaurant-related core of KB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-denote-the-agent-performing-each-action"><span class="nav-number">5.2.6.</span> <span class="nav-text">How to denote the agent performing each action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Doubt-All-fluents-are-inertial-except…"><span class="nav-number">5.2.7.</span> <span class="nav-text">(Doubt)All fluents are inertial except…</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
