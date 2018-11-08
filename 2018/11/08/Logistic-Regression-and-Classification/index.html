@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TODO,Data Science," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Classification ProblemsOften we are given collections of examples labeled by class:  male/female democrat/republican spam/non-spam (ham) cancer/benign  Classification assigns a babel to an input recor">
+<meta name="keywords" content="TODO,Data Science">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logistic Regression and Classification">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/11/08/Logistic-Regression-and-Classification/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Classification ProblemsOften we are given collections of examples labeled by class:  male/female democrat/republican spam/non-spam (ham) cancer/benign  Classification assigns a babel to an input recor">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-08T14:50:00.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logistic Regression and Classification">
+<meta name="twitter:description" content="Classification ProblemsOften we are given collections of examples labeled by class:  male/female democrat/republican spam/non-spam (ham) cancer/benign  Classification assigns a babel to an input recor">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/11/08/Logistic-Regression-and-Classification/"/>
+
+
+
+
+
+  <title>Logistic Regression and Classification | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/08/Logistic-Regression-and-Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Logistic Regression and Classification</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-08T08:34:31-05:00">
+                2018-11-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-08T09:50:00-05:00">
+                2018-11-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Classification-Problems"><a href="#Classification-Problems" class="headerlink" title="Classification Problems"></a>Classification Problems</h2><p>Often we are given collections of examples labeled by class:</p>
+<ul>
+<li>male/female</li>
+<li>democrat/republican</li>
+<li>spam/non-spam (ham)</li>
+<li>cancer/benign</li>
+</ul>
+<p>Classification assigns a babel to an input record.</p>
+<a id="more"></a>
+<h2 id="Regression-for-Classification"><a href="#Regression-for-Classification" class="headerlink" title="Regression for Classification"></a>Regression for Classification</h2><p>We could use linear regression to build from annotated examples by converting the class names to numbers:</p>
+<ul>
+<li>male=0/female=1</li>
+<li>democrat=0/republican=1</li>
+<li>spam=1/non-spam=0</li>
+<li>cancer=1/benign=0</li>
+</ul>
+<p>Zero/one works for binary classifiers. By convention the ‘positive’ class gets 1 and the ‘negative’ one 0.</p>
+<h2 id="Class-Labels-from-Regression-Lines"><a href="#Class-Labels-from-Regression-Lines" class="headerlink" title="Class Labels from Regression Lines"></a>Class Labels from Regression Lines</h2><p>The regression line will cut through these classes, even through a separator exists.</p>
+<p>Adding very +/- examples shifts the line but hurts the boundary.</p>
+<h2 id="Decision-Boundaries"><a href="#Decision-Boundaries" class="headerlink" title="Decision Boundaries"></a>Decision Boundaries</h2><p>Ideally, our two classes will be well-separated in feature space, so a line can partition them.</p>
+<p><code>Logistic regression</code> is a method to find the best separating line for a given training set.</p>
+<h2 id="Non-Linear-Decision-Boundaries"><a href="#Non-Linear-Decision-Boundaries" class="headerlink" title="Non-Linear Decision Boundaries"></a>Non-Linear Decision Boundaries</h2><p>Logistic regression can find non-linear boundaries if seeded with non-linear features.</p>
+<p>To get separating circles, we need to explicitly add features like $x^2$ and $x_1*x_2$.</p>
+<h2 id="The-Logit-Function"><a href="#The-Logit-Function" class="headerlink" title="The Logit Function"></a>The Logit Function</h2><p>We want to a way to take a real variable and convert it to a probability:<br>$$<br>f(x)=\frac{1}{1+e^{-cx}}<br>$$</p>
+<ul>
+<li>$f(0)=\frac{1}{2}$</li>
+<li>$f(\infin)=1$</li>
+<li>$f(-\infin)= 0$</li>
+</ul>
+<p>Logit can give the probability of x being in a particular class.</p>
+<h2 id="Logit-for-Classification"><a href="#Logit-for-Classification" class="headerlink" title="Logit for Classification"></a>Logit for Classification</h2><p>To extend logit to m variables, and set the threshold and steepness parameters, fit<br>$$<br>h(x, w)=w_0 +\sum_{i=1}^{m-1}w_i\cdot x_i<br>$$<br>Plug into logit to get a classifier:<br>$$<br>f(x) = \frac{1}{1+e^{-h(x,w)}}<br>$$</p>
+<h2 id="Scoring-for-Logistic-Regression"><a href="#Scoring-for-Logistic-Regression" class="headerlink" title="Scoring for Logistic Regression"></a>Scoring for Logistic Regression</h2><p>Assume each of our n training examples are labeled as to being in either class 0 or 1.</p>
+<p>We seek to identify the coefficients w that give high probability on positive (class 1) items, and low probability on negative (class 0) items.</p>
+<p>We need a cost function to value a probability p for an item of class c.</p>
+<h2 id="Costs-for-Positive-Negative-Cases"><a href="#Costs-for-Positive-Negative-Cases" class="headerlink" title="Costs for Positive/Negative Cases"></a>Costs for Positive/Negative Cases</h2><p>We want zero error for the best probability, and increasing cost as the class prediction gets more and more wrong.</p>
+<h2 id="Logarithms-of-Probabilities"><a href="#Logarithms-of-Probabilities" class="headerlink" title="Logarithms of Probabilities"></a>Logarithms of Probabilities</h2><p>Observe that log(1) = 0. Thus it gives proper cost for correct predictions of positive items.</p>
+<p>Observe that $\log (0)\rightarrow -\infin$ the cost function:<br>$$<br>cost(x_i, 1) = -\log(f(x_i))<br>$$<br>For negative instances, the cost function is:<br>$$<br>cost(x_i, 0)=-\log(1-f(x_i))<br>$$</p>
+<h2 id="Cost-Loss-Function"><a href="#Cost-Loss-Function" class="headerlink" title="Cost/Loss Function"></a>Cost/Loss Function</h2><p>We can use the zero/one labels as indicator variables to compute the loss function:<br>$$<br>\begin{align<em>}<br>J(w)&amp;=\frac{1}{n}\sum_{i=1}^ncost(f(x_i,w), y_i)\<br>&amp;=-\frac{1}{n}[\sum_{i=1}^n(y_i\log f(x_i,w)+(1-y_i)\log(1-f(x_i, w))]<br>\end{align</em>}<br>$$<br>This works because the class indicator variables are 0 and 1.</p>
+<h2 id="Logistic-Regression-via-Gradient-Descent"><a href="#Logistic-Regression-via-Gradient-Descent" class="headerlink" title="Logistic Regression via Gradient Descent"></a>Logistic Regression via Gradient Descent</h2><p>The loss function here is convex, so we can find the parameters which best fit it by gradient descent.</p>
+<p>Thus we can find the best linear separator between two classes (linear in the possibly non-linear features).</p>
+<h2 id="Issues-in-Logistic-Classification"><a href="#Issues-in-Logistic-Classification" class="headerlink" title="Issues in Logistic Classification"></a>Issues in Logistic Classification</h2><ul>
+<li>Balanced training class sizes</li>
+<li>Multi-class classification</li>
+<li>Hierarchical classification</li>
+<li>Partition functions</li>
+</ul>
+<h3 id="Balanced-Training-Classes"><a href="#Balanced-Training-Classes" class="headerlink" title="Balanced Training Classes"></a>Balanced Training Classes</h3><p>Consider the optimal separating line for grossly unbalanced class sizes, say 1 positive example vs. 1,000,000 negative examples.</p>
+<p>The best scoring line from logistic regression will try to be very far from the cluster instead of the midpoint between them.</p>
+<p>Use equal numbers of positive and negative examples.</p>
+<h4 id="Ways-to-Balance-Classes"><a href="#Ways-to-Balance-Classes" class="headerlink" title="Ways to Balance Classes"></a>Ways to Balance Classes</h4><ul>
+<li>Work harder to find members of the minority class.</li>
+<li>Discard elements from the bigger class.</li>
+<li>Weigh the minority class more heavily, but beware of overfitting.</li>
+<li>Replicate members of the smaller class, ideally with random perturbation.</li>
+</ul>
+<h3 id="Multi-class-Classification"><a href="#Multi-class-Classification" class="headerlink" title="Multi-class Classification"></a>Multi-class Classification</h3><p>Classification tasks are not always binary.</p>
+<p>Is a given movie a comedy, drama, action, documentary, etc.?</p>
+<h4 id="Encoding-Multi-classes-Bad-Idea"><a href="#Encoding-Multi-classes-Bad-Idea" class="headerlink" title="Encoding Multi-classes: Bad Idea"></a>Encoding Multi-classes: Bad Idea</h4><p>It is natural to represent multiple classes by distinct numbers: blond=0, brown=1, red=2.</p>
+<p>But unless the ordering of the classes reflect an increasing scale, the numbering is meaningless.</p>
+<p>Claaes on a Likert scale are ordinal.</p>
+<p>4 stars - 3 stars - 2 stars - 1 star</p>
+<h4 id="One-Versus-All-Classifiers"><a href="#One-Versus-All-Classifiers" class="headerlink" title="One Versus All Classifiers"></a>One Versus All Classifiers</h4><p>We can build multi-class classifiers by build multi-class classifiers by building multiple independent binary classifiers.</p>
+<p>Select the class of highest probability as the predicted label.</p>
+<h4 id="The-Chanllenges-of-Many-Classes"><a href="#The-Chanllenges-of-Many-Classes" class="headerlink" title="The Chanllenges of Many Classes"></a>The Chanllenges of Many Classes</h4><p>Multi-class classification gets much harder as the number of classes increase.</p>
+<p>The monkey is right only 1/k times for k classes.</p>
+<ul>
+<li>With many available classes, certain mistakes are more acceptable than others.</li>
+<li>The actual population sizes of rare classes can easily become vanishingly small.</li>
+</ul>
+<h3 id="Hierarchical-Classification"><a href="#Hierarchical-Classification" class="headerlink" title="Hierarchical Classification"></a>Hierarchical Classification</h3><p>Grouping classes by similarity and building a taxonomy reduces the effective number of classes. </p>
+<p>Imagenet has 27 categories (e.g. animal, appliance, food, furniture) on top of 21,841 subcategories.</p>
+<p>Classify from top-down in tree.</p>
+<h3 id="Bayesian-Priors"><a href="#Bayesian-Priors" class="headerlink" title="Bayesian Priors"></a>Bayesian Priors</h3><p>Having honest estimates for the probability distribution of classes is essential to avod domination by rare classes (‘rock stars’)<br>$$<br>P(A|B)=\frac{P(B|A)P(A)}{P(B)}<br>$$<br>Here A is the given class, and B is the event your classifier returned a guess of class A.</p>
+<h3 id="Partition-Functions"><a href="#Partition-Functions" class="headerlink" title="Partition Functions"></a>Partition Functions</h3><p>There is no reason why independent binary classifiers yield probabilities which sum to 1.</p>
+<p>To get real probabilities for Bayes theorem:<br>$$<br>T=\sum_{i=1}^cF_i(x)<br>$$<br>and<br>$$<br>P(c)=\frac{F_c(x)}{T}<br>$$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/07/Logic-Programming-and-Prolog-Chapter-2-Notes-Part2/" rel="next" title="Logic-Programming-and-Prolog-Chapter-2-Notes-Part2">
+                <i class="fa fa-chevron-left"></i> Logic-Programming-and-Prolog-Chapter-2-Notes-Part2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-Problems"><span class="nav-number">1.</span> <span class="nav-text">Classification Problems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression-for-Classification"><span class="nav-number">2.</span> <span class="nav-text">Regression for Classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Labels-from-Regression-Lines"><span class="nav-number">3.</span> <span class="nav-text">Class Labels from Regression Lines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Boundaries"><span class="nav-number">4.</span> <span class="nav-text">Decision Boundaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-Linear-Decision-Boundaries"><span class="nav-number">5.</span> <span class="nav-text">Non-Linear Decision Boundaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Logit-Function"><span class="nav-number">6.</span> <span class="nav-text">The Logit Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logit-for-Classification"><span class="nav-number">7.</span> <span class="nav-text">Logit for Classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scoring-for-Logistic-Regression"><span class="nav-number">8.</span> <span class="nav-text">Scoring for Logistic Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Costs-for-Positive-Negative-Cases"><span class="nav-number">9.</span> <span class="nav-text">Costs for Positive/Negative Cases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logarithms-of-Probabilities"><span class="nav-number">10.</span> <span class="nav-text">Logarithms of Probabilities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cost-Loss-Function"><span class="nav-number">11.</span> <span class="nav-text">Cost/Loss Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-Regression-via-Gradient-Descent"><span class="nav-number">12.</span> <span class="nav-text">Logistic Regression via Gradient Descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Issues-in-Logistic-Classification"><span class="nav-number">13.</span> <span class="nav-text">Issues in Logistic Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Balanced-Training-Classes"><span class="nav-number">13.1.</span> <span class="nav-text">Balanced Training Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ways-to-Balance-Classes"><span class="nav-number">13.1.1.</span> <span class="nav-text">Ways to Balance Classes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-class-Classification"><span class="nav-number">13.2.</span> <span class="nav-text">Multi-class Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Encoding-Multi-classes-Bad-Idea"><span class="nav-number">13.2.1.</span> <span class="nav-text">Encoding Multi-classes: Bad Idea</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-Versus-All-Classifiers"><span class="nav-number">13.2.2.</span> <span class="nav-text">One Versus All Classifiers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Chanllenges-of-Many-Classes"><span class="nav-number">13.2.3.</span> <span class="nav-text">The Chanllenges of Many Classes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchical-Classification"><span class="nav-number">13.3.</span> <span class="nav-text">Hierarchical Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bayesian-Priors"><span class="nav-number">13.4.</span> <span class="nav-text">Bayesian Priors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-Functions"><span class="nav-number">13.5.</span> <span class="nav-text">Partition Functions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

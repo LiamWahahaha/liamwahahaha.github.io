@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data Science," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Issues with Clsed Form Solution">
+<meta name="keywords" content="Data Science">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradient Descent Search and Regularization">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/11/06/Gradient-Descent-Search-and-Regularization/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Issues with Clsed Form Solution">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-06T14:52:00.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gradient Descent Search and Regularization">
+<meta name="twitter:description" content="Issues with Clsed Form Solution">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/11/06/Gradient-Descent-Search-and-Regularization/"/>
+
+
+
+
+
+  <title>Gradient Descent Search and Regularization | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/06/Gradient-Descent-Search-and-Regularization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Gradient Descent Search and Regularization</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-06T09:10:22-05:00">
+                2018-11-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-06T09:52:00-05:00">
+                2018-11-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Issues-with-Clsed-Form-Solution"><a href="#Issues-with-Clsed-Form-Solution" class="headerlink" title="Issues with Clsed Form Solution"></a>Issues with Clsed Form Solution</h2><a id="more"></a>
+<h2 id="Regression-as-Parameter-Fitting"><a href="#Regression-as-Parameter-Fitting" class="headerlink" title="Regression as Parameter Fitting"></a>Regression as Parameter Fitting</h2><p>We seek coefficients that minimize the sum of squared error of the points over all possible coefficients.<br>$$<br>J(w_0, w_1) = \frac{1}{2n}\sum_{i=1}^n(y_i-f(x_i))^2<br>$$<br>Here the regression line is:<br>$$<br>f(x) = w_0 + w_1x<br>$$</p>
+<h2 id="Lines-in-Parameter-Space"><a href="#Lines-in-Parameter-Space" class="headerlink" title="Lines in Parameter Space"></a>Lines in Parameter Space</h2><p>The error function $J(w_0, w_1)$ is convex, making it easy to find the single local/global minima.</p>
+<h2 id="Gradient-Descent-Search"><a href="#Gradient-Descent-Search" class="headerlink" title="Gradient Descent Search"></a>Gradient Descent Search</h2><p>A space with only one local/global minima is called <code>convex</code>.</p>
+<p>When a search space is convex, it is easy to find the minima: just keep walking down.</p>
+<p>The fastest direction down is defined by the slope or tangent at the current point.</p>
+<p>Gravity will take it down.</p>
+<h2 id="The-Fastest-Way-Down"><a href="#The-Fastest-Way-Down" class="headerlink" title="The Fastest Way Down"></a>The Fastest Way Down</h2><p>The direction down at a point is given by its derivative, which specified by its tangent line:</p>
+<p>This could be approximately computed by finding the point $(x+dx, y(x+dx))$ and fitting the line with $(x, y(x))$</p>
+<h2 id="Partial-Derivatives"><a href="#Partial-Derivatives" class="headerlink" title="Partial Derivatives"></a>Partial Derivatives</h2><p>The symbolic way of computing the gradient requires computing the partial derivative of the objective function:<br>$$<br>\begin{align<em>}<br>\frac{\part}{\part w_j}&amp;=\frac{2}{\part w_j}\frac{1}{2n}\sum_{i=1}^n(f(x_i)-b_i)^2\<br>&amp;=\frac{2}{\part w_j}\frac{1}{2n}\sum_{i=1}^n(w_0 + (w_1x_i) - b_i)^2<br>\end{align</em>}<br>$$</p>
+<h2 id="Gradient-Descent-for-Regression"><a href="#Gradient-Descent-for-Regression" class="headerlink" title="Gradient Descent for Regression"></a>Gradient Descent for Regression</h2><h3 id="Gradient-descent-algorithm"><a href="#Gradient-descent-algorithm" class="headerlink" title="Gradient descent algorithm"></a>Gradient descent algorithm</h3><p>$$<br>\begin{align<em>}<br>&amp;\text{repeat until convergence } {\<br>&amp;\quad\theta_j := \theta_j - \alpha \frac{\part}{\part\theta_j}J(\theta_0, \theta_1)\<br>&amp;\quad \text{(for j = 1 and j = 0)}\<br>&amp;}<br>\end{align</em>}<br>$$</p>
+<h3 id="Linear-Regression-Model"><a href="#Linear-Regression-Model" class="headerlink" title="Linear Regression Model"></a>Linear Regression Model</h3><h2 id="Which-Functions-are-Convex"><a href="#Which-Functions-are-Convex" class="headerlink" title="Which Functions are Convex"></a>Which Functions are Convex</h2><h2 id="Getting-Trapped-in-Local-Optima"><a href="#Getting-Trapped-in-Local-Optima" class="headerlink" title="Getting Trapped in Local Optima"></a>Getting Trapped in Local Optima</h2><h2 id="Effect-of-Learning-Rate-Step-Size"><a href="#Effect-of-Learning-Rate-Step-Size" class="headerlink" title="Effect of Learning Rate/Step Size"></a>Effect of Learning Rate/Step Size</h2><h2 id="What-is-the-Right-Learning-Rate"><a href="#What-is-the-Right-Learning-Rate" class="headerlink" title="What is the Right Learning Rate?"></a>What is the Right Learning Rate?</h2><h2 id="Stochastic-Gradient-Descent"><a href="#Stochastic-Gradient-Descent" class="headerlink" title="Stochastic Gradient Descent"></a>Stochastic Gradient Descent</h2><h2 id="Too-Many-Features"><a href="#Too-Many-Features" class="headerlink" title="Too Many Features?"></a>Too Many Features?</h2><p>Providing a rich set of features to regression is good, but remember Occam’s Razor: ‘The simplest explanation is best.’</p>
+<p>Ideally our regression would select the most important variables and fit them, but our objective function only tires to minimize sum of squares error.</p>
+<h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><p>The trick is to add terms to the objective function seeking to keep coefficients small:<br>$$</p>
+<p>$$<br>We pay a penalty proportional to the sum of squares of the coefficients, thus ignoring sign.</p>
+<p>This rewards us for setting coefficients to zero.</p>
+<h2 id="Interpreting-Penalizing-Coefficients"><a href="#Interpreting-Penalizing-Coefficients" class="headerlink" title="Interpreting/Penalizing Coefficients"></a>Interpreting/Penalizing Coefficients</h2><p>When variables has mean zero, its coefficient magnitude is a measure of value to the objective function.</p>
+<p>Penalizing the sum of squared coefficients is ridge regression or Tikhonov regularization.</p>
+<p>Penalizing the absolute value of the coefficients ($L_1\text{ metric vs. }L_2$)</p>
+<h2 id="What-is-the-Right-Lambda"><a href="#What-is-the-Right-Lambda" class="headerlink" title="What is the Right Lambda?"></a>What is the Right Lambda?</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/05/Logic-Programming-and-Prolog-Chapter-2-Notes/" rel="next" title="Logic, Programming and Prolog - Chapter 2 Notes">
+                <i class="fa fa-chevron-left"></i> Logic, Programming and Prolog - Chapter 2 Notes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/07/Better Regression Models/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Issues-with-Clsed-Form-Solution"><span class="nav-number">1.</span> <span class="nav-text">Issues with Clsed Form Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression-as-Parameter-Fitting"><span class="nav-number">2.</span> <span class="nav-text">Regression as Parameter Fitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lines-in-Parameter-Space"><span class="nav-number">3.</span> <span class="nav-text">Lines in Parameter Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent-Search"><span class="nav-number">4.</span> <span class="nav-text">Gradient Descent Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Fastest-Way-Down"><span class="nav-number">5.</span> <span class="nav-text">The Fastest Way Down</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Partial-Derivatives"><span class="nav-number">6.</span> <span class="nav-text">Partial Derivatives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent-for-Regression"><span class="nav-number">7.</span> <span class="nav-text">Gradient Descent for Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent-algorithm"><span class="nav-number">7.1.</span> <span class="nav-text">Gradient descent algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression-Model"><span class="nav-number">7.2.</span> <span class="nav-text">Linear Regression Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-Functions-are-Convex"><span class="nav-number">8.</span> <span class="nav-text">Which Functions are Convex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Trapped-in-Local-Optima"><span class="nav-number">9.</span> <span class="nav-text">Getting Trapped in Local Optima</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Effect-of-Learning-Rate-Step-Size"><span class="nav-number">10.</span> <span class="nav-text">Effect of Learning Rate/Step Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-the-Right-Learning-Rate"><span class="nav-number">11.</span> <span class="nav-text">What is the Right Learning Rate?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stochastic-Gradient-Descent"><span class="nav-number">12.</span> <span class="nav-text">Stochastic Gradient Descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Too-Many-Features"><span class="nav-number">13.</span> <span class="nav-text">Too Many Features?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization"><span class="nav-number">14.</span> <span class="nav-text">Regularization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpreting-Penalizing-Coefficients"><span class="nav-number">15.</span> <span class="nav-text">Interpreting/Penalizing Coefficients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-the-Right-Lambda"><span class="nav-number">16.</span> <span class="nav-text">What is the Right Lambda?</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
