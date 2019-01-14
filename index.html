@@ -294,6 +294,751 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/29/Topics-in-Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/Topics-in-Machine-Learning/" itemprop="url">Topics in Machine Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-29T08:36:44-05:00">
+                2018-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-29T09:53:39-05:00">
+                2018-11-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="The-World-of-Many-Weak-Features"><a href="#The-World-of-Many-Weak-Features" class="headerlink" title="The World of Many Weak Features"></a>The World of Many Weak Features</h2><p>Often we have many relatively weak features to apply to a classification problem.</p>
+<p>In Text classification problems, we often have the frequency of each word in documents of positive and negative classes: e.g. the frequency of <code>sale</code> in spam and real email.</p>
+<h3 id="Bayesian-Classifiers"><a href="#Bayesian-Classifiers" class="headerlink" title="Bayesian Classifiers"></a>Bayesian Classifiers</h3><p>To classify a vector $X = (x_1, …, x_n)$ into one of $m$ classes, we can use Bayes Theorem:<br>$$<br>p(C_i|X)=\frac{p(C^i)p(X|C_i)}{p(X)}<br>$$<br>This reduces decisions about the class given the input to the input given the class.</p>
+<h3 id="Identifying-the-Most-Probable-Class"><a href="#Identifying-the-Most-Probable-Class" class="headerlink" title="Identifying the Most Probable Class"></a>Identifying the Most Probable Class</h3><p>Argmax is the class with the highest probability:<br>$$<br>C(X)=\max_{i=1}^m\frac{p(C_i)p(X|C_i)}{p(X)}=\max_{i=1}^mp(C_i)p(X|C_i)<br>$$<br>$p(C_i)$ is the prior probability of class $i$</p>
+<p>$p(X)$ is the probability of seeing input $X$ over all classes. This is dicey, but can be ignored for classification because it constant.</p>
+<h3 id="Independence-and-Naive-Bayes"><a href="#Independence-and-Naive-Bayes" class="headerlink" title="Independence and Naive Bayes"></a>Independence and Naive Bayes</h3><p>What is $p(X|C)$, where $X$ is a complex feature vector?</p>
+<p>If $(a, b)$ are independent, then $p(ab) = p(a)p(b)$ this calculation is much simpler than factoring in correlations and interactions of multiple factors, but:</p>
+<p>What’s the probability of having two size 9 feet?</p>
+<h3 id="Complete-Naive-Bayes-Formulation"><a href="#Complete-Naive-Bayes-Formulation" class="headerlink" title="Complete Naive Bayes Formulation"></a>Complete Naive Bayes Formulation</h3><p>We seek the argmax of:<br>$$<br>C(X) = \max_{i=i}^mp(C_i)p(X|C_i)=\max_{i=1}^mp(C_i)\Pi_{j=1}^np(x_j|C_i)<br>$$<br>Multiplying many probabilities is bad, so:<br>$$<br>C(X)=\max_{i=1}^m(\log(p(C_i)) + \sum_{j=1}^n\log(p(x_j|C_i)))<br>$$</p>
+<h2 id="Dealing-with-Zero-Counts"><a href="#Dealing-with-Zero-Counts" class="headerlink" title="Dealing with Zero Counts"></a>Dealing with Zero Counts</h2><p>You may never have seen it before, but what is the probability my next word is defenestrate?</p>
+<p>Observed counts do not accurately capture the frequency of rare events, for which there is typically a long tail.</p>
+<p>Laplace asked: <code>What is the probability the sun will rise tomorrow?</code></p>
+<h4 id="1-Discounting"><a href="#1-Discounting" class="headerlink" title="+1 Discounting"></a>+1 Discounting</h4><p>Discounting is a statistical technique to adjust counts for yet-as-unseen events. The simplest technique is add one discounting, where we add one to the frequency all outcomes, including unseen. Thus after seeing 5 reds and 3 greens,<br>$$<br>p(new-color) = \frac{1}{(5+1)+(3+1)+(0+1)} = \frac{1}{11}<br>$$</p>
+<h2 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering"></a>Feature Engineering</h2><p>Domain-dependent data cleaning is important:</p>
+<ul>
+<li>Z-scores and normalization</li>
+<li>Creating bell-shaped distributions</li>
+<li>Imputing missing values</li>
+<li>Dimension reduction, like SVD</li>
+<li>Explicit incorporation of non-linear combinations like products and ratios</li>
+</ul>
+<h2 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h2><p>The hottest area of machine learning today involves large, deep neural network architectures.</p>
+<h3 id="Basic-Principles-of-Deep-Learning"><a href="#Basic-Principles-of-Deep-Learning" class="headerlink" title="Basic Principles of Deep Learning"></a>Basic Principles of Deep Learning</h3><ul>
+<li>That the weight of each edge is a distinct parameter means large networks exploits large training sets.</li>
+<li>The depth of the networks means they can build up hierarchical representations of features: e.g. pixels, edges, regions, objects</li>
+<li>Toolkits like TensorFlow make it easy to build DL models <strong><u>if</u></strong> you have the data</li>
+</ul>
+<h3 id="Node-Computations"><a href="#Node-Computations" class="headerlink" title="Node Computations"></a>Node Computations</h3><p>Each node in the network typically computes a nonlinear function Phi(v) of a weighted input sum:<br>$$<br>v_j = \beta + \sum_iw_ix_i<br>$$<br>The beta term is the bias, the activation in the absence of input.</p>
+<p>Many dot products implies matrix multiplication!</p>
+<h3 id="Non-Linearity"><a href="#Non-Linearity" class="headerlink" title="Non-Linearity"></a>Non-Linearity</h3><p>The logit and RELU functions make good candidates for Phi. Linear function like addition cannot exploit depth, because hidden layers add no power.</p>
+<h3 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h3><p>NNs are trained by a stochastic gradient descent-like algorithm, with changes for each training example pushed down to lower levels. The non-linear functions result in a non-convex optimization function, but this generally produces good results.</p>
+<h3 id="Word-Embeddings"><a href="#Word-Embeddings" class="headerlink" title="Word Embeddings"></a>Word Embeddings</h3><p>One NN application I have found particularly useful is <u>word2vec</u>, constructing 100 dimensional word representations from text corpora.</p>
+<p>The goal is to try to predict missing words by context: We would <em>**</em> to improve</p>
+<p>Thus large volumes of training data can be construction from text without supervision.</p>
+<h3 id="Graph-Embeddings-DeepWalk"><a href="#Graph-Embeddings-DeepWalk" class="headerlink" title="Graph Embeddings (DeepWalk)"></a>Graph Embeddings (DeepWalk)</h3><p>Networks based on similarity or links define very sparse feature vectors.</p>
+<p>Random walks on networks (sequences of vertices) look like sentences (sequences of words).</p>
+<p>Thus we can use word2vec to train network representations.</p>
+<h2 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h2><p>SVMs are an important way to build non-linear classifiers.</p>
+<p>They work by seeking maximum margin linear separators between the two classes.</p>
+<h3 id="Optimization-Problem"><a href="#Optimization-Problem" class="headerlink" title="Optimization Problem"></a>Optimization Problem</h3><p>Optimize the coefficient size $||w||$ subject to the constraints $y_i(\bold{w} \cdot \bold{x_i} - b)\geq 1$ for all i = 1, …, n.</p>
+<p>only a few points touch the boundary of the separating channel. Near-vertical lines are closer than horizontal lines even b +/- 1 are 2 apart, hence minimizing on $||w||$.</p>
+<h3 id="SVMs-vs-Logistic-Regression"><a href="#SVMs-vs-Logistic-Regression" class="headerlink" title="SVMs vs. Logistic Regression"></a>SVMs vs. Logistic Regression</h3><p>Both methods find separating planes, but different ones.</p>
+<p>LR values all points, but SVM only the points at the boundary.</p>
+<h3 id="Projecting-to-Higher-Dimensions"><a href="#Projecting-to-Higher-Dimensions" class="headerlink" title="Projecting to Higher Dimensions"></a>Projecting to Higher Dimensions</h3><p>Adding enough dimensions makes everything linearly separable.</p>
+<p>Here $(x, y)\rightarrow (x, y, x^2+y^2)$ does the job.</p>
+<p>Efficient solvers like LibSVM are available for this.</p>
+<h3 id="Projecting-to-Higher-Dimensions-1"><a href="#Projecting-to-Higher-Dimensions-1" class="headerlink" title="Projecting to Higher Dimensions"></a>Projecting to Higher Dimensions</h3><p>The non-linearity depends upon how space is projected to higher dimensions. The distance from all $n$ input points to the target creates an n-dimensional feature vector. </p>
+<p>Kernal functions give the power to use such features efficiently, without building the $n\times n$ matrix.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/22/Linear-and-Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/22/Linear-and-Logistic-Regression/" itemprop="url">Linear and Logistic Regression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-22T11:51:31-05:00">
+                2018-11-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-22T14:11:53-05:00">
+                2018-11-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>Linear regression has a beautiful theoretical foundation yet, in practice, this algebraic formulation is generally discarded in favor of faster, more heuristic optimization.</li>
+<li>Linear regression models are, by definition, linear. This provides an opportunity to witness the limitations of such models, as well as develop clever techniques to generalize to other forms.</li>
+<li>Linear regression simultaneously encourages model building with hundreds of variables, and regularization techniques to ensure that most of them will get ignored.</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/22/Linear-and-Logistic-Regression/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes-Part2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes-Part2/" itemprop="url">Logic, Programming and Prolog - Chapter 3 Notes Part 2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T11:18:25-05:00">
+                2018-11-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-13T17:02:24-05:00">
+                2018-11-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/SLD-Resolution/" itemprop="url" rel="index">
+                    <span itemprop="name">SLD-Resolution</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/SLD-Resolution/Unification/" itemprop="url" rel="index">
+                    <span itemprop="name">Unification</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Unification"><a href="#Unification" class="headerlink" title="Unification"></a>Unification</h2><p>One of the main ingredients in the inference mechanism is the process of making atomic formulas syntactically equivalent. This process, called <em>unification</em>, is a procedure that take two atomic formulas as input, and either shows how they can be instantiated to identical atoms or, reports a failure.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes-Part2/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes/" itemprop="url">Logic Programming and Prolog Chapter 3 Notes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T11:15:47-05:00">
+                2018-11-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-13T17:02:41-05:00">
+                2018-11-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
+                    <span itemprop="name">Prolog</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/SLD-Resolution/" itemprop="url" rel="index">
+                    <span itemprop="name">SLD-Resolution</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Languages/Prolog/SLD-Resolution/Informal-Introduction/" itemprop="url" rel="index">
+                    <span itemprop="name">Informal Introduction</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Informal-Introduction"><a href="#Informal-Introduction" class="headerlink" title="Informal Introduction"></a>Informal Introduction</h2><img src="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes/1.png">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/08/Logistic-Regression-and-Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -341,8 +1086,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-08T09:50:00-05:00">
-                2018-11-08
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-20T17:56:30-05:00">
+                2018-11-20
               </time>
             
           </span>
@@ -478,7 +1223,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/07/Logic-Programming-and-Prolog-Chapter-2-Notes-Part2/" itemprop="url">Logic-Programming-and-Prolog-Chapter-2-Notes-Part2</a></h1>
+                <a class="post-title-link" href="/2018/11/07/Logic-Programming-and-Prolog-Chapter-2-Notes-Part2/" itemprop="url">Logic, Programming and Prolog - Chapter 2 Notes Part2</a></h1>
         
 
         <div class="post-meta">
@@ -506,8 +1251,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-07T15:58:51-05:00">
-                2018-11-07
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-13T17:02:47-05:00">
+                2018-11-13
               </time>
             
           </span>
@@ -1015,8 +1760,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-05T20:20:21-05:00">
-                2018-11-05
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-13T17:02:49-05:00">
+                2018-11-13
               </time>
             
           </span>
@@ -1370,755 +2115,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/" itemprop="url">Logic, Programming and Prolog - Chapter 1 Notes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T14:18:43-04:00">
-                2018-11-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-05T19:45:30-05:00">
-                2018-11-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
-                    <span itemprop="name">Prolog</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/Preliminaries/" itemprop="url" rel="index">
-                    <span itemprop="name">Preliminaries</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/Preliminaries/Logic-Formulas/" itemprop="url" rel="index">
-                    <span itemprop="name">Logic Formulas</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/Preliminaries/Logic-Semantics-of-Formulas/" itemprop="url" rel="index">
-                    <span itemprop="name">Logic Semantics of Formulas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Logic-Formulas"><a href="#Logic-Formulas" class="headerlink" title="Logic Formulas"></a>Logic Formulas</h2><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><h4 id="In-declartative-form"><a href="#In-declartative-form" class="headerlink" title="In declartative form"></a>In declartative form</h4><p>(i) Every mother loves her children</p>
-<p>(ii) Mary is a mother and Tome is Mary’s child</p>
-<p>(iii) Mary loves Tom</p>
-<h4 id="In-formalized-form"><a href="#In-formalized-form" class="headerlink" title="In formalized form"></a>In formalized form</h4><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/1.png">
-<h3 id="What-is-a-declarative-sentence"><a href="#What-is-a-declarative-sentence" class="headerlink" title="What is a declarative sentence?"></a>What is a declarative sentence?</h3><p>A declarative sentence is a complete expression of natural language which is either true or false, as opposed to e.g. imperative or interrogative sentences (commands and questions). Only declarative sentences can be expressed in predicate logic.</p>
-<h3 id="What-is-the-principal-idea-of-logic-programming"><a href="#What-is-the-principal-idea-of-logic-programming" class="headerlink" title="What is the principal idea of logic programming"></a>What is the principal idea of logic programming</h3><p>To describe possibly infinite relations on objects and to apply the programming system in order to draw conclusions.</p>
-<h3 id="What-does-the-alphabet-of-the-language-of-predicate-logic-consist-of"><a href="#What-does-the-alphabet-of-the-language-of-predicate-logic-consist-of" class="headerlink" title="What does the alphabet of the language of predicate logic consist of?"></a>What does the alphabet of the language of predicate logic consist of?</h3><ul>
-<li><p>variables:</p>
-<p>which will be written as alphanumeric identifiers beginning with capital letters(sometimes subscriped)</p>
-</li>
-<li><p>constants:</p>
-<p>which are numerals or alphanumeric identifiers beginning with lowercase letters</p>
-</li>
-<li><p>functors:</p>
-<p>which are alphanumeric identifiers beginning with lower-case letters and with an associated arity greater than 0</p>
-</li>
-<li><p>predicate symbols:</p>
-<p>which are usually alphanumeric identifiers starting with lowercase letters and with an associated arity greater than or equal to 0</p>
-</li>
-<li><p>logical connectives:</p>
-<p>which are conjunction, negation, logical equivalence, implication and disjuction</p>
-</li>
-<li><p>quantifiers:</p>
-<p>which are universal and existential</p>
-</li>
-<li><p>auxiliary symbols like parentheses and commas</p>
-</li>
-</ul>
-<h3 id="Definition-Term"><a href="#Definition-Term" class="headerlink" title="Definition (Term)"></a><u>Definition (Term)</u></h3><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/2.png">
-<h3 id="Definition-Formulas"><a href="#Definition-Formulas" class="headerlink" title="Definition (Formulas)"></a><u>Definition (Formulas)</u></h3><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/3.png">
-<h2 id="Semantics-of-Formulas"><a href="#Semantics-of-Formulas" class="headerlink" title="Semantics of Formulas"></a>Semantics of Formulas</h2><p>The meaning of a logic formula is also defined relative to an ‘abstract world’ called an (algebraic) <em>structure</em> and is also either true or false.</p>
-<p>To define the meaning of formulas, a formal connection between the language and a structure must be established.</p>
-<h3 id="Definition-Interpretation"><a href="#Definition-Interpretation" class="headerlink" title="Definition (Interpretation)"></a><u>Definition (Interpretation)</u></h3><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/4.png">
-<h3 id="Definition-Semantics-of-terms"><a href="#Definition-Semantics-of-terms" class="headerlink" title="Definition (Semantics of terms)"></a><u>Definition (Semantics of terms)</u></h3><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/5.png">
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/6.png">
-<h3 id="Definition-Semantics-of-wff’s"><a href="#Definition-Semantics-of-wff’s" class="headerlink" title="Definition (Semantics of wff’s)"></a><u>Definition (Semantics of wff’s)</u></h3><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/7.png">
-<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h4><img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/family.png">
-<img src="/2018/11/03/Logic-Programming-and-Prolog-Chapter-1-Notes-and-Exercises/8.png">
-<p>### </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/03/Data-Science-Linear-Algebra/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/03/Data-Science-Linear-Algebra/" itemprop="url">Linear Algebra</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T10:29:32-04:00">
-                2018-11-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-03T14:04:01-04:00">
-                2018-11-03
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Science</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Linear-Algebra"><a href="#Linear-Algebra" class="headerlink" title="Linear Algebra"></a>Linear Algebra</h2><ul>
-<li>It is the language of data science.</li>
-<li>Many machine learning algorithms are best understood through linear algebra.</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/03/Data-Science-Linear-Algebra/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/01/Daily-Weekly-Monthly-Progress/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/01/Daily-Weekly-Monthly-Progress/" itemprop="url">Daily-Weekly-Monthly Progress</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-01T19:37:43-04:00">
-                2018-11-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-05T07:44:48-05:00">
-                2018-11-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <table>
-<thead>
-<tr>
-<th style="text-align:center">Date</th>
-<th style="text-align:left">Plan</th>
-<th style="text-align:left">Result</th>
-<th style="text-align:left">Quotes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">11.1</td>
-<td style="text-align:left"><u>Prolog</u><br><u>LeetCode * 1</u><br><u>Exercise</u></td>
-<td style="text-align:left"><u>(P) -&gt; Week 9</u><br><u>LeetCode * 1</u><br></td>
-<td style="text-align:left">Find the courage to apologize if you have hurt others; find the heart to forgive if others have hurt you.</td>
-</tr>
-<tr>
-<td style="text-align:center">11.2</td>
-<td style="text-align:left"><u>Data Science</u><br><u>Piano</u></td>
-<td style="text-align:left"><u>(D) Find Some Song</u><br><u>Piano(Day 4)</u></td>
-<td style="text-align:left">“Without music, life would be a mistake.” <br>― Friedrich Nietzsche, <a href="https://www.goodreads.com/work/quotes/19234046" target="_blank" rel="noopener">Twilight of the Idols</a></td>
-</tr>
-<tr>
-<td style="text-align:center">11.3</td>
-<td style="text-align:left"><u>Data Science</u> <br><u>Prolog</u><br><u>Prolog Final Project</u><br><u>Tensorflow</u><br><u>Piano</u></td>
-<td style="text-align:left"><u>(D)Linear Algebra(p.246)</u><br><u>(P)(p.10)</u> <br>(P-FP)<br>Piano<br></td>
-<td style="text-align:left">“If you tell the truth, you don’t have to remember anything.” <br>― Mark Twain</td>
-</tr>
-<tr>
-<td style="text-align:center">11.4</td>
-<td style="text-align:left">Morning Run<br>Piano<br>Advanced Project<br>Tensorflow<br>Data Science Final Project</td>
-<td style="text-align:left">Morning Run<br>Piano<br><br>(D-FP)<br></td>
-<td style="text-align:left">“Don’t walk in front of me… I may not follow<br>Don’t walk behind me… I may not lead<br>Walk beside me… just be my friend” </td>
-</tr>
-</tbody>
-</table>
-<p>― Albert Camus |</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/01/Daily-Weekly-Monthly-Progress/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/01/Analysis-of-Algorithms-Lecture-16/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/01/Analysis-of-Algorithms-Lecture-16/" itemprop="url">Analysis of Algorithms Lecture 16</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-01T16:13:39-04:00">
-                2018-11-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-01T16:16:14-04:00">
-                2018-11-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/Basic-Concepts/" itemprop="url" rel="index">
-                    <span itemprop="name">Basic Concepts</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/Basic-Concepts/Max-Flow/" itemprop="url" rel="index">
-                    <span itemprop="name">Max Flow</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <img src="/2018/11/01/Analysis-of-Algorithms-Lecture-16/1.png">
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/01/Analysis-of-Algorithms-Lecture-16/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2169,7 +2165,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">169</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2180,7 +2176,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2233,7 +2229,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

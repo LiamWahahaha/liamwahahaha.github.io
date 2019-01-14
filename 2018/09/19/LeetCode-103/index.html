@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="ProblemGiven a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between). ExampleGiven binary tre">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-19T11:42:35.699Z">
+<meta property="og:updated_time" content="2019-01-14T21:21:12.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode #103 Binary Tree Zigzag Level Order Traversal">
 <meta name="twitter:description" content="ProblemGiven a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between). ExampleGiven binary tre">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-09-19T07:42:35-04:00">
-                2018-09-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-01-14T16:21:12-05:00">
+                2019-01-14
               </time>
             
           </span>
@@ -402,8 +402,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
                   </a>
                 </span>
 
@@ -413,8 +413,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -491,7 +491,7 @@
 <a id="more"></a>
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><blockquote>
 <p>Method: Breadth-first Search</p>
-<p>Time Complexity: O(nlog n)</p>
+<p>Time Complexity: O(n)</p>
 <p>Space Complexity:O(n)</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># Definition for a binary tree node.</span><br><span class="line"># class TreeNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.left = None</span><br><span class="line">#         self.right = None</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def zigzagLevelOrder(self, root):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        bag = [root]</span><br><span class="line">        level_idx = 0</span><br><span class="line">        ret = []</span><br><span class="line"></span><br><span class="line">        while bag:</span><br><span class="line">            level_idx += 1</span><br><span class="line">            next_level_nodes = []</span><br><span class="line">            level_nodes = []</span><br><span class="line"></span><br><span class="line">            for node in bag:</span><br><span class="line">                if node:</span><br><span class="line">                    level_nodes.append(node.val)</span><br><span class="line">                    next_level_nodes.append(node.left)</span><br><span class="line">                    next_level_nodes.append(node.right)</span><br><span class="line">                    </span><br><span class="line">            if level_idx % 2 == 1:</span><br><span class="line">                ret.append(level_nodes)</span><br><span class="line">            else:</span><br><span class="line">                ret.append(level_nodes[::-1])</span><br><span class="line">            bag = next_level_nodes</span><br><span class="line">        </span><br><span class="line">        if ret[-1] == []:</span><br><span class="line">            ret.pop()</span><br><span class="line"></span><br><span class="line">        return ret</span><br></pre></td></tr></table></figure>
@@ -614,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">169</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -625,7 +625,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -694,7 +694,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

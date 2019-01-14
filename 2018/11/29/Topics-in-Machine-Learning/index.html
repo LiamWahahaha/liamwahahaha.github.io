@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data Science," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="The World of Many Weak FeaturesOften we have many relatively weak features to apply to a classification problem. In Text classification problems, we often have the frequency of each word in documents">
+<meta name="keywords" content="Data Science">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Topics in Machine Learning">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/11/29/Topics-in-Machine-Learning/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="The World of Many Weak FeaturesOften we have many relatively weak features to apply to a classification problem. In Text classification problems, we often have the frequency of each word in documents">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-29T14:53:39.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Topics in Machine Learning">
+<meta name="twitter:description" content="The World of Many Weak FeaturesOften we have many relatively weak features to apply to a classification problem. In Text classification problems, we often have the frequency of each word in documents">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/11/29/Topics-in-Machine-Learning/"/>
+
+
+
+
+
+  <title>Topics in Machine Learning | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/29/Topics-in-Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Topics in Machine Learning</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-29T08:36:44-05:00">
+                2018-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-29T09:53:39-05:00">
+                2018-11-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="The-World-of-Many-Weak-Features"><a href="#The-World-of-Many-Weak-Features" class="headerlink" title="The World of Many Weak Features"></a>The World of Many Weak Features</h2><p>Often we have many relatively weak features to apply to a classification problem.</p>
+<p>In Text classification problems, we often have the frequency of each word in documents of positive and negative classes: e.g. the frequency of <code>sale</code> in spam and real email.</p>
+<h3 id="Bayesian-Classifiers"><a href="#Bayesian-Classifiers" class="headerlink" title="Bayesian Classifiers"></a>Bayesian Classifiers</h3><p>To classify a vector $X = (x_1, …, x_n)$ into one of $m$ classes, we can use Bayes Theorem:<br>$$<br>p(C_i|X)=\frac{p(C^i)p(X|C_i)}{p(X)}<br>$$<br>This reduces decisions about the class given the input to the input given the class.</p>
+<h3 id="Identifying-the-Most-Probable-Class"><a href="#Identifying-the-Most-Probable-Class" class="headerlink" title="Identifying the Most Probable Class"></a>Identifying the Most Probable Class</h3><p>Argmax is the class with the highest probability:<br>$$<br>C(X)=\max_{i=1}^m\frac{p(C_i)p(X|C_i)}{p(X)}=\max_{i=1}^mp(C_i)p(X|C_i)<br>$$<br>$p(C_i)$ is the prior probability of class $i$</p>
+<p>$p(X)$ is the probability of seeing input $X$ over all classes. This is dicey, but can be ignored for classification because it constant.</p>
+<h3 id="Independence-and-Naive-Bayes"><a href="#Independence-and-Naive-Bayes" class="headerlink" title="Independence and Naive Bayes"></a>Independence and Naive Bayes</h3><p>What is $p(X|C)$, where $X$ is a complex feature vector?</p>
+<p>If $(a, b)$ are independent, then $p(ab) = p(a)p(b)$ this calculation is much simpler than factoring in correlations and interactions of multiple factors, but:</p>
+<p>What’s the probability of having two size 9 feet?</p>
+<h3 id="Complete-Naive-Bayes-Formulation"><a href="#Complete-Naive-Bayes-Formulation" class="headerlink" title="Complete Naive Bayes Formulation"></a>Complete Naive Bayes Formulation</h3><p>We seek the argmax of:<br>$$<br>C(X) = \max_{i=i}^mp(C_i)p(X|C_i)=\max_{i=1}^mp(C_i)\Pi_{j=1}^np(x_j|C_i)<br>$$<br>Multiplying many probabilities is bad, so:<br>$$<br>C(X)=\max_{i=1}^m(\log(p(C_i)) + \sum_{j=1}^n\log(p(x_j|C_i)))<br>$$</p>
+<h2 id="Dealing-with-Zero-Counts"><a href="#Dealing-with-Zero-Counts" class="headerlink" title="Dealing with Zero Counts"></a>Dealing with Zero Counts</h2><p>You may never have seen it before, but what is the probability my next word is defenestrate?</p>
+<p>Observed counts do not accurately capture the frequency of rare events, for which there is typically a long tail.</p>
+<p>Laplace asked: <code>What is the probability the sun will rise tomorrow?</code></p>
+<h4 id="1-Discounting"><a href="#1-Discounting" class="headerlink" title="+1 Discounting"></a>+1 Discounting</h4><p>Discounting is a statistical technique to adjust counts for yet-as-unseen events. The simplest technique is add one discounting, where we add one to the frequency all outcomes, including unseen. Thus after seeing 5 reds and 3 greens,<br>$$<br>p(new-color) = \frac{1}{(5+1)+(3+1)+(0+1)} = \frac{1}{11}<br>$$</p>
+<h2 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering"></a>Feature Engineering</h2><p>Domain-dependent data cleaning is important:</p>
+<ul>
+<li>Z-scores and normalization</li>
+<li>Creating bell-shaped distributions</li>
+<li>Imputing missing values</li>
+<li>Dimension reduction, like SVD</li>
+<li>Explicit incorporation of non-linear combinations like products and ratios</li>
+</ul>
+<h2 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h2><p>The hottest area of machine learning today involves large, deep neural network architectures.</p>
+<h3 id="Basic-Principles-of-Deep-Learning"><a href="#Basic-Principles-of-Deep-Learning" class="headerlink" title="Basic Principles of Deep Learning"></a>Basic Principles of Deep Learning</h3><ul>
+<li>That the weight of each edge is a distinct parameter means large networks exploits large training sets.</li>
+<li>The depth of the networks means they can build up hierarchical representations of features: e.g. pixels, edges, regions, objects</li>
+<li>Toolkits like TensorFlow make it easy to build DL models <strong><u>if</u></strong> you have the data</li>
+</ul>
+<h3 id="Node-Computations"><a href="#Node-Computations" class="headerlink" title="Node Computations"></a>Node Computations</h3><p>Each node in the network typically computes a nonlinear function Phi(v) of a weighted input sum:<br>$$<br>v_j = \beta + \sum_iw_ix_i<br>$$<br>The beta term is the bias, the activation in the absence of input.</p>
+<p>Many dot products implies matrix multiplication!</p>
+<h3 id="Non-Linearity"><a href="#Non-Linearity" class="headerlink" title="Non-Linearity"></a>Non-Linearity</h3><p>The logit and RELU functions make good candidates for Phi. Linear function like addition cannot exploit depth, because hidden layers add no power.</p>
+<h3 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h3><p>NNs are trained by a stochastic gradient descent-like algorithm, with changes for each training example pushed down to lower levels. The non-linear functions result in a non-convex optimization function, but this generally produces good results.</p>
+<h3 id="Word-Embeddings"><a href="#Word-Embeddings" class="headerlink" title="Word Embeddings"></a>Word Embeddings</h3><p>One NN application I have found particularly useful is <u>word2vec</u>, constructing 100 dimensional word representations from text corpora.</p>
+<p>The goal is to try to predict missing words by context: We would <em>**</em> to improve</p>
+<p>Thus large volumes of training data can be construction from text without supervision.</p>
+<h3 id="Graph-Embeddings-DeepWalk"><a href="#Graph-Embeddings-DeepWalk" class="headerlink" title="Graph Embeddings (DeepWalk)"></a>Graph Embeddings (DeepWalk)</h3><p>Networks based on similarity or links define very sparse feature vectors.</p>
+<p>Random walks on networks (sequences of vertices) look like sentences (sequences of words).</p>
+<p>Thus we can use word2vec to train network representations.</p>
+<h2 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h2><p>SVMs are an important way to build non-linear classifiers.</p>
+<p>They work by seeking maximum margin linear separators between the two classes.</p>
+<h3 id="Optimization-Problem"><a href="#Optimization-Problem" class="headerlink" title="Optimization Problem"></a>Optimization Problem</h3><p>Optimize the coefficient size $||w||$ subject to the constraints $y_i(\bold{w} \cdot \bold{x_i} - b)\geq 1$ for all i = 1, …, n.</p>
+<p>only a few points touch the boundary of the separating channel. Near-vertical lines are closer than horizontal lines even b +/- 1 are 2 apart, hence minimizing on $||w||$.</p>
+<h3 id="SVMs-vs-Logistic-Regression"><a href="#SVMs-vs-Logistic-Regression" class="headerlink" title="SVMs vs. Logistic Regression"></a>SVMs vs. Logistic Regression</h3><p>Both methods find separating planes, but different ones.</p>
+<p>LR values all points, but SVM only the points at the boundary.</p>
+<h3 id="Projecting-to-Higher-Dimensions"><a href="#Projecting-to-Higher-Dimensions" class="headerlink" title="Projecting to Higher Dimensions"></a>Projecting to Higher Dimensions</h3><p>Adding enough dimensions makes everything linearly separable.</p>
+<p>Here $(x, y)\rightarrow (x, y, x^2+y^2)$ does the job.</p>
+<p>Efficient solvers like LibSVM are available for this.</p>
+<h3 id="Projecting-to-Higher-Dimensions-1"><a href="#Projecting-to-Higher-Dimensions-1" class="headerlink" title="Projecting to Higher Dimensions"></a>Projecting to Higher Dimensions</h3><p>The non-linearity depends upon how space is projected to higher dimensions. The distance from all $n$ input points to the target creates an n-dimensional feature vector. </p>
+<p>Kernal functions give the power to use such features efficiently, without building the $n\times n$ matrix.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/22/Linear-and-Logistic-Regression/" rel="next" title="Linear and Logistic Regression">
+                <i class="fa fa-chevron-left"></i> Linear and Logistic Regression
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">127</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-World-of-Many-Weak-Features"><span class="nav-number">1.</span> <span class="nav-text">The World of Many Weak Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bayesian-Classifiers"><span class="nav-number">1.1.</span> <span class="nav-text">Bayesian Classifiers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Identifying-the-Most-Probable-Class"><span class="nav-number">1.2.</span> <span class="nav-text">Identifying the Most Probable Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Independence-and-Naive-Bayes"><span class="nav-number">1.3.</span> <span class="nav-text">Independence and Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complete-Naive-Bayes-Formulation"><span class="nav-number">1.4.</span> <span class="nav-text">Complete Naive Bayes Formulation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Zero-Counts"><span class="nav-number">2.</span> <span class="nav-text">Dealing with Zero Counts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Discounting"><span class="nav-number">2.0.1.</span> <span class="nav-text">+1 Discounting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-Engineering"><span class="nav-number">3.</span> <span class="nav-text">Feature Engineering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Learning"><span class="nav-number">4.</span> <span class="nav-text">Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Principles-of-Deep-Learning"><span class="nav-number">4.1.</span> <span class="nav-text">Basic Principles of Deep Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-Computations"><span class="nav-number">4.2.</span> <span class="nav-text">Node Computations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Linearity"><span class="nav-number">4.3.</span> <span class="nav-text">Non-Linearity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backpropagation"><span class="nav-number">4.4.</span> <span class="nav-text">Backpropagation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Word-Embeddings"><span class="nav-number">4.5.</span> <span class="nav-text">Word Embeddings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-Embeddings-DeepWalk"><span class="nav-number">4.6.</span> <span class="nav-text">Graph Embeddings (DeepWalk)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-Vector-Machines"><span class="nav-number">5.</span> <span class="nav-text">Support Vector Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Problem"><span class="nav-number">5.1.</span> <span class="nav-text">Optimization Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVMs-vs-Logistic-Regression"><span class="nav-number">5.2.</span> <span class="nav-text">SVMs vs. Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Projecting-to-Higher-Dimensions"><span class="nav-number">5.3.</span> <span class="nav-text">Projecting to Higher Dimensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Projecting-to-Higher-Dimensions-1"><span class="nav-number">5.4.</span> <span class="nav-text">Projecting to Higher Dimensions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

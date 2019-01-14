@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TODO,Data Science," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Summary Linear regression has a beautiful theoretical foundation yet, in practice, this algebraic formulation is generally discarded in favor of faster, more heuristic optimization. Linear regression">
+<meta name="keywords" content="TODO,Data Science">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear and Logistic Regression">
+<meta property="og:url" content="http://liamwahahaha.github.io/2018/11/22/Linear-and-Logistic-Regression/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="Summary Linear regression has a beautiful theoretical foundation yet, in practice, this algebraic formulation is generally discarded in favor of faster, more heuristic optimization. Linear regression">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-22T19:11:53.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linear and Logistic Regression">
+<meta name="twitter:description" content="Summary Linear regression has a beautiful theoretical foundation yet, in practice, this algebraic formulation is generally discarded in favor of faster, more heuristic optimization. Linear regression">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false,"display_updated":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liamwahahaha.github.io/2018/11/22/Linear-and-Logistic-Regression/"/>
+
+
+
+
+
+  <title>Linear and Logistic Regression | Liam's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/22/Linear-and-Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linear and Logistic Regression</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-22T11:51:31-05:00">
+                2018-11-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-22T14:11:53-05:00">
+                2018-11-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>Linear regression has a beautiful theoretical foundation yet, in practice, this algebraic formulation is generally discarded in favor of faster, more heuristic optimization.</li>
+<li>Linear regression models are, by definition, linear. This provides an opportunity to witness the limitations of such models, as well as develop clever techniques to generalize to other forms.</li>
+<li>Linear regression simultaneously encourages model building with hundreds of variables, and regularization techniques to ensure that most of them will get ignored.</li>
+</ul>
+<a id="more"></a>
+<h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><p>Given a collection of n points, find the line which best approximates or fits the points. There are many reasions why we might want to do this.</p>
+<ul>
+<li><p>One class of goals involves simplification and compression:</p>
+<p>we can replace a large set of noisy data points in the xy-plane by a tidy line that describes them.</p>
+</li>
+<li><p>This regression line is useful for visualization, by showing the underlying trend in the data and highlighting the location and magnitude of outliers.</p>
+</li>
+</ul>
+<h3 id="Linear-Regression-and-Duality"><a href="#Linear-Regression-and-Duality" class="headerlink" title="Linear Regression and Duality"></a>Linear Regression and Duality</h3><p>When solving linear systems, we seek the single point that lies on n given lines. In regression, we are instead given n points, and we seek the line that lies on ‘all’ points. There are two differences here:</p>
+<ul>
+<li>the interchange of points for lines</li>
+<li>finding the best fit under constraints verses a totally constrained problem</li>
+</ul>
+<p>By the duality transformation, lines are equivalent to points in another space.</p>
+<h3 id="Error-in-Linear-Regression"><a href="#Error-in-Linear-Regression" class="headerlink" title="Error in Linear Regression"></a>Error in Linear Regression</h3><p>The residual error is the difference between the predicted and actual values.</p>
+<p>Least squares regression minimizes the sum of the squares of the residuals of all points.</p>
+<p>This metric is chosen because</p>
+<ol>
+<li>squaring the residuals ignores the signs of the errors, so positive and negative residuals do not offset each other</li>
+<li>it leads to a surprisingly nice closed form for finding the coefficients of the best-fitting line</li>
+</ol>
+<h3 id="Finding-the-Optimal-Fit"><a href="#Finding-the-Optimal-Fit" class="headerlink" title="Finding the Optimal Fit"></a>Finding the Optimal Fit</h3><p>Linear regression seeks the line $y = f(x)$ which minimizes the sum of the squared errors over all the training points, i.e. the coefficient vector $w$ that minimizes<br>$$<br>\sum_{i=1}^n(y_i - f(x_i))^2, \text{ where } f(x) = w_0 + \sum_{i=1}^{m-1}w_ix_i<br>$$<br>Suppose we are trying to fit a set of n points, each of which is m dimensional. The first m-1 dimensions of each point is the feature vector $(x_1, …, x_{m-1})$ with the last value $y=x_m$ serving as the target or dependent variable.</p>
+<p>We can encode these n feature vectors as an $n\times (m-1)$ matrix. We can make it an $n\times m$ matrix $A$ by prepending a column of ones to the matrix. This column can be thought of as a ‘constant’ feature, one that when multiplied by the appropriate coefficient becomes the y-intercept of the fitted line. Further, the n target values can be nicely represented in an $n\times 1$ vector $b$.</p>
+<p>How can we find the coefficients of the best fitting line? The vector $w$ is given by:<br>$$<br>w=(A^TA)^{-1}A^Tb<br>$$<br>The dimensions of the term on the right are<br>$$<br>((m\times n)(n\times m))(m\times n)(n\times 1)\rightarrow (m\times 1)<br>$$<br>Consider the case of a single variable $x$, where we seek the best-fitting line of the form $y=w_0+w_1x$. The slope of this line is given by<br>$$<br>w_1=\sum_{i=1}^n\frac{(x_i-\bar x)(y_i-\bar y)}{\sum_{i=1}^n(x_i-\bar x)^2}=r_{xy}\frac{\sigma_x}{\sigma_y}, \text{ with } w_0 = \bar y - w_1\bar x<br>$$<br>The intercept follows since I goes through the x-mean and y-mean.</p>
+<h4 id="Connections-with-Correlation"><a href="#Connections-with-Correlation" class="headerlink" title="Connections with Correlation"></a>Connections with Correlation</h4><p>The connection with the correlation coefficient ($r_{xy}$) here is clear. </p>
+<ul>
+<li>If $x$ were uncorrelated with $y$, $w_1$ should be zero.</li>
+<li>If $x, y$ are perfectly correlated, we must scale $x$ to bring it into the right size range of $y$. This is the role of $\frac{\sigma_y}{\sigma_x}$</li>
+</ul>
+<h4 id="Where-Does-This-Come-from"><a href="#Where-Does-This-Come-from" class="headerlink" title="Where Does This Come from?"></a>Where Does This Come from?</h4><p>It should be clear that in the best-fitting line, we cannot change any of the coefficients $w$ and hope to make a better fit. This means that <strong>the error vector</strong> $(b-Aw)$ <strong>must be orthogonal to the vector for each variable</strong>, <strong>or else there would be a way to change the coefficient to fit it better.</strong></p>
+<p>Orthogonal vectors have dot products of zero. Since the ith column of $A^T$ has a zero dot product with the error vector, $(A^T)(b-Aw)=\bar 0$, where $\bar 0$ is a vector of all zeros. Straightforward algebra then yields<br>$$<br>w = (A^TA)^{-1}A^Tb<br>$$</p>
+<h2 id="Better-Regression-Models"><a href="#Better-Regression-Models" class="headerlink" title="Better Regression Models"></a>Better Regression Models</h2><p>There are several steps one can take which can lead to better regression models. Some of them involve manipulating the input data to increase the likelihood of an accurate model, but others require more conceptual issues of what our model should look like.</p>
+<p>To yield better models, there are some proper treatments of variables can do as follows:</p>
+<ul>
+<li>Removing outliers</li>
+<li>Fitting non-linear functions</li>
+<li>Feature/target scaling</li>
+<li>Collapsing highly correlated variables</li>
+</ul>
+<h3 id="Removing-Outliers"><a href="#Removing-Outliers" class="headerlink" title="Removing Outliers"></a>Removing Outliers</h3><p>Because of the quadratic weight of residuals, outlying points can greatly affect the fit. Identifying outlying points and removing them in a principled way can yield a more robust fit.</p>
+<p>It is important to convince yourself that these points really represent errors before deleting them. Otherwise, you will be left with an impressively linear fit that works well only on the examples you didn’t delete.</p>
+<h3 id="Fitting-Non-Linear-Functions"><a href="#Fitting-Non-Linear-Functions" class="headerlink" title="Fitting Non-Linear Functions"></a>Fitting Non-Linear Functions</h3><p>Linear relationships are easier to understand than non-linear ones, and grossly appropriate as a default assumption in the absence of better data. Many phenomena are linear in nature, with the dependent variable growing roughly proportionally with the input variables:</p>
+<ul>
+<li>Income grows roughly linearly with the amount of time worked.</li>
+<li>The price of a home grows roughly linearly with the size of the living area it contains.</li>
+<li>People’s weight increases roughly linearly with the amount of food eaten.</li>
+</ul>
+<p>Linear regression does great when it tries to fit data that in fact has an underlying linear relationship. But, generally speaking, jno interesting function is perfectly linear.</p>
+<p>Linear regression fits lines, not high-order curves. But we can fit quadratics by creating another variable with the value $x^2 $ to our data matrix. We can fit arbitrarily-complex functions by adding the right higher-order variables to our data matrix. However, explicit inclusion of all possible non-linear terms quickly becomes intractable.</p>
+<p>One must be judicious about which non-linear terms to consider for a role in the model. Indeed, one of the advantages of more powerful learning methods, like support vector machines, will be that they can incorporate non-linear terms without explicit enumeration.</p>
+<h3 id="Feature-and-Target-Scaling"><a href="#Feature-and-Target-Scaling" class="headerlink" title="Feature and Target Scaling"></a>Feature and Target Scaling</h3><p>In principle, linear regression can find the best linear model fitting any data set. But we should do whatever we can to help it find the right model. This generally involves preprocessing the data to optimize for expressibility, interpretability, and numerical stability.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>Suppose we wanted to build a model to predict the gross national product of countries in dollars, as a function of their population size $x_1$ and literacy rate $x_2$. Both factors seem like reasonable components of such a model. The problem is that these two features operate on entirely different scales: national populations vary from tens of thousands to over a billion people, while the fraction of people who can read is, by definition, between zero and one. One might imagine the resulting fitted model as looking somewhat like this:<br>$$<br>GDP = $10,000x_1+$10,000,000,000,000x_2<br>$$<br>This is very bad, for several reasons:</p>
+<ul>
+<li>Unreadable coefficients</li>
+<li>Numerical imprecision</li>
+<li>Inappropriate formulations</li>
+</ul>
+<h4 id="Feature-Scaling-Z-Scores"><a href="#Feature-Scaling-Z-Scores" class="headerlink" title="Feature Scaling: Z-Scores"></a>Feature Scaling: Z-Scores</h4><p>Let $\mu$ be the mean value of the given feature, and $\sigma$ the standard deviation. Then the Z-score of $x$ is $Z(x)=\frac{x-\mu}{\sigma}$. Using Z-scores in regression addresses the question of interpretability. Since all features will have similar means and variances, the magnitude of the coefficients will determine the relative importance of these factors towards the forecast.</p>
+<h4 id="Sublinear-Feature-Scaling"><a href="#Sublinear-Feature-Scaling" class="headerlink" title="Sublinear Feature Scaling"></a>Sublinear Feature Scaling</h4><p>Consider a linear model for predicting the number of years of education $y$ that a child will receive as a function of household income. Education levels can vary between 0 and 12+4+5=21 years, since we consider up to the possible completion of a Ph.D. A family’s income level x can vary between 0 and Bill Gates. But observe that no model of the form<br>$$<br>y = w_1x+w_0<br>$$<br>can possibly give sensible answers for ordinary kids and Bill Gates’ kids. Z-scores of such power law variables don’t help because they are just a linear transformation.</p>
+<p>When the features are likely power law distributed: there are many small poor countries compared to very few large rich ones. Any linear combination of normally-distributed variables cannot effectively realize a power law distributed target. The solution here is that trying to predict the logarithm of a power law target y.</p>
+<h3 id="Dealing-with-Highly-Correlated-Features"><a href="#Dealing-with-Highly-Correlated-Features" class="headerlink" title="Dealing with Highly-Correlated Features"></a>Dealing with Highly-Correlated Features</h3><p>It is great to have features that are highly correlated with the target: these enable us to build highly-predictive models. However, having multiple features which are highly correlated with each other can be asking for trouble.</p>
+<p>Perfectly correlated features provide no additional information for modeling.</p>
+<p>Identify them by computing the covariance matrix: either one can go with little loss.</p>
+<p>This motivates the problem of dimension reduction: e.g. singular value decomposition, principal component analysis.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Lecture 16</p>
+<p>Chapter 9-1, Chapter 9-2</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/10/Logic-Programming-and-Prolog-Chapter-3-Notes-Part2/" rel="next" title="Logic, Programming and Prolog - Chapter 3 Notes Part 2">
+                <i class="fa fa-chevron-left"></i> Logic, Programming and Prolog - Chapter 3 Notes Part 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/Topics-in-Machine-Learning/" rel="prev" title="Topics in Machine Learning">
+                Topics in Machine Learning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Liam's Personal Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">127</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">1.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.</span> <span class="nav-text">Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression-and-Duality"><span class="nav-number">2.1.</span> <span class="nav-text">Linear Regression and Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-in-Linear-Regression"><span class="nav-number">2.2.</span> <span class="nav-text">Error in Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finding-the-Optimal-Fit"><span class="nav-number">2.3.</span> <span class="nav-text">Finding the Optimal Fit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Connections-with-Correlation"><span class="nav-number">2.3.1.</span> <span class="nav-text">Connections with Correlation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Where-Does-This-Come-from"><span class="nav-number">2.3.2.</span> <span class="nav-text">Where Does This Come from?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Better-Regression-Models"><span class="nav-number">3.</span> <span class="nav-text">Better Regression Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-Outliers"><span class="nav-number">3.1.</span> <span class="nav-text">Removing Outliers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fitting-Non-Linear-Functions"><span class="nav-number">3.2.</span> <span class="nav-text">Fitting Non-Linear Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-and-Target-Scaling"><span class="nav-number">3.3.</span> <span class="nav-text">Feature and Target Scaling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">3.3.1.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Feature-Scaling-Z-Scores"><span class="nav-number">3.3.2.</span> <span class="nav-text">Feature Scaling: Z-Scores</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sublinear-Feature-Scaling"><span class="nav-number">3.3.3.</span> <span class="nav-text">Sublinear Feature Scaling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dealing-with-Highly-Correlated-Features"><span class="nav-number">3.4.</span> <span class="nav-text">Dealing with Highly-Correlated Features</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
