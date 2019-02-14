@@ -294,6 +294,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2019/01/28/Big-Data-Analytics-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/28/Big-Data-Analytics-1/" itemprop="url">Big Data Analytics Lecture 1 part1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-28T19:57:08-05:00">
+                2019-01-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-02-14T18:25:13-05:00">
+                2019-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Preliminaries/" itemprop="url" rel="index">
+                    <span itemprop="name">Preliminaries</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h1><p>Ideas and methods that will repeatedly apper:</p>
+<ul>
+<li>Bonferroni’s principle</li>
+<li>Normalization (TF.IDF)</li>
+<li>Power Laws</li>
+<li>Hash Functions</li>
+<li>IO Bounded (Secondary Storage)</li>
+<li>Unstructured Data</li>
+</ul>
+<hr>
+<ul>
+<li>Parallelism</li>
+<li>Functional Programming</li>
+</ul>
+<h2 id="Bonferroni’s-Principle-Doubt"><a href="#Bonferroni’s-Principle-Doubt" class="headerlink" title="Bonferroni’s Principle (Doubt)"></a>Bonferroni’s Principle (Doubt)</h2><p>If we are willing to view as an interesting feature of data something of which many instances can be expected to exist in random data, then we cannot rely on such features being significant. <strong>This observation limits our ability to mine data for features that are not sufficiently rare in practice.</strong> </p>
+<p>Roughly, calculating the probability of any of n findings being true requires n times the probability as testing for 1 finding. In brief, one can only look for so many patterns in the data before one finds something just by chance. (i.e. finding something that does <strong>not</strong> generalize)</p>
+<h3 id="Examples-of-How-to-Apply-Bonferroni’s-Principle"><a href="#Examples-of-How-to-Apply-Bonferroni’s-Principle" class="headerlink" title="Examples of How to Apply Bonferroni’s Principle"></a><a href="https://newonlinecourses.science.psu.edu/stat503/node/15/" target="_blank" rel="noopener">Examples of How to Apply Bonferroni’s Principle</a></h3><h3 id="Another-Example-of-Bonferroni’s-Principle-from-the-book-Mining-of-Massive-Datasets"><a href="#Another-Example-of-Bonferroni’s-Principle-from-the-book-Mining-of-Massive-Datasets" class="headerlink" title="Another Example of Bonferroni’s Principle(from the book: Mining of Massive Datasets)"></a>Another Example of Bonferroni’s Principle(from the book: Mining of Massive Datasets)</h3><p>Size of the problem and its assumptions:</p>
+<ol>
+<li>There are one billion people who might be evil-doers.</li>
+<li>Everyone goes to a hotel one day in 100.</li>
+<li>A hotel holds 100 people. Hence, there are 100,000 hotels - enough to hold the 1% of a billion people who visit a hotel on any given day.</li>
+<li>We shall examine hotel records for 1000 days.</li>
+</ol>
+<h3 id="Statistical-Limis-on-Data-Mining"><a href="#Statistical-Limis-on-Data-Mining" class="headerlink" title="Statistical Limis on Data Mining"></a>Statistical Limis on Data Mining</h3><ul>
+<li><p>Total Information Awareness (TIA)</p>
+<p>This program was intended to mine all the data it could find in order to track terrorist activity.</p>
+<p>What are the advantages and disadvantages of TIA?</p>
+<p>Pros:</p>
+<ul>
+<li>Find the terrorist</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Raise privacy violations</li>
+<li>May misjudge (Bonferroni’s principle)</li>
+</ul>
+</li>
+</ul>
+<h3 id="How-to-avoid-treating-random-occurrences-as-if-they-were-real"><a href="#How-to-avoid-treating-random-occurrences-as-if-they-were-real" class="headerlink" title="How to avoid treating random occurrences as if they were real?"></a>How to avoid treating random occurrences as if they were real?</h3><p>Calculate the expected number of occurrences of the events you are looking for, on the assumption that data is random. <strong>If this number is significantly larger than the number of real instances you hope to find, then you must expect almost anything you find to be bogus.</strong></p>
+<h2 id="Normalization-TF-IDF"><a href="#Normalization-TF-IDF" class="headerlink" title="Normalization (TF.IDF)"></a>Normalization (TF.IDF)</h2><h3 id="What-is-TF-IDF-and-why-do-we-need-to-use-it"><a href="#What-is-TF-IDF-and-why-do-we-need-to-use-it" class="headerlink" title="What is TF.IDF and why do we need to use it?"></a>What is TF.IDF and why do we need to use it?</h3><p>TF.IDF stands for Term Frequency times Inverse Document Frequency. It is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus.</p>
+<h3 id="How-to-calculate-it"><a href="#How-to-calculate-it" class="headerlink" title="How to calculate it?"></a>How to calculate it?</h3><ul>
+<li><p>Term frequency<br>$$<br>TF_{ij} = \frac{f_{ij}}{\max_k f_{kj}}, \text{where }f_{ij}\text{ is the frequency of term (word) i in document j}<br>$$<br>The most frequent term in document j gets a TF of 1, and other terms get fractions as their term frequency for this document.</p>
+</li>
+<li><p>Inverse document frequency</p>
+</li>
+</ul>
+<h3 id="When-to-use-it"><a href="#When-to-use-it" class="headerlink" title="When to use it?"></a>When to use it?</h3><p>It is often used as a weighting factor in searches of information retrieval, text mining, and user modeling.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www3.cs.stonybrook.edu/~has/CSE545/Slides/CSE545sp19(1" target="_blank" rel="noopener">lecture slide</a>1-30.pdf)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2019/01/23/LeetCode-872/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -404,17 +616,6 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
                     <span itemprop="name">Algorithms</span>
                   </a>
@@ -426,8 +627,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
-                    <span itemprop="name">Binary Tree</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -439,6 +640,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/Easy/" itemprop="url" rel="index">
                     <span itemprop="name">Easy</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">Binary Tree</span>
                   </a>
                 </span>
 
@@ -647,8 +859,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -658,8 +870,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -884,8 +1096,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -895,8 +1107,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -2111,166 +2323,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/07/Better Regression Models/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/07/Better Regression Models/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-07T10:51:26-05:00">
-                2018-11-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-07T10:51:26-05:00">
-                2018-11-07
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Better-Regression-Models"><a href="#Better-Regression-Models" class="headerlink" title="Better Regression Models"></a>Better Regression Models</h2><p>Proper treatment of variables yie,ds better models:</p>
-<ul>
-<li>Removing outliers</li>
-<li>Fitting nonlinear functions</li>
-<li>Feature/target scaling</li>
-<li>Collapsing highly correlated variables</li>
-</ul>
-<h2 id="Outliers-and-Linear-Regression"><a href="#Outliers-and-Linear-Regression" class="headerlink" title="Outliers and Linear Regression"></a>Outliers and Linear Regression</h2><p>Because of the quadratic weight of residuals, outlying points can greatly affect the fit.</p>
-<p>Identifying outlying points and removing them in a principled way can yield a more robust fit.</p>
-<h2 id="Fitting-Non-Linear-Functions"><a href="#Fitting-Non-Linear-Functions" class="headerlink" title="Fitting Non-Linear Functions"></a>Fitting Non-Linear Functions</h2><p>Linear regression fits lines, not high-order curves.</p>
-<p>But we can fit quadratics by creating another variable with the value $x^2$ to our data matrix.</p>
-<p>We can fit arbitrary polynomials (including square roots) and exponentials/logarithms by explicitly including the component variables in our data matrix: sqrt(x), log(x), $x^3$, 1/x.</p>
-<p>However explicit inclusion of all possible non-linear terms quickly becomes intractable.</p>
-<h2 id="Feature-Scaling-Z-scores"><a href="#Feature-Scaling-Z-scores" class="headerlink" title="Feature Scaling: Z-scores"></a>Feature Scaling: Z-scores</h2><p>Features over wide numerical ranges (say national population vs. fractions) require coefficients over wide scales to bring together.<br>$$<br>V = c_1 <em> 300,000,000 + c_2 </em> 0.02<br>$$<br>Fixed learning rates (step size) will over/under shoot over such a range, in gradient descent.</p>
-<p>Scale the features in your matrix to Z-scores.</p>
-<h2 id="Dominance-of-Power-Law-Features"><a href="#Dominance-of-Power-Law-Features" class="headerlink" title="Dominance of Power Law Features"></a>Dominance of Power Law Features</h2><p>Consider a linear model. for years of education, which ranges from 0 to 12+4+5=21<br>$$<br>Y=c_1*income + c_2<br>$$<br>No such model can gives sensible answers for both my kids and Bill Gates’ kids.</p>
-<p>Z-scores of such power law variables don’t help because they are just a linear transformation.</p>
-<h2 id="Feature-Scaling-Sublinear-Functions"><a href="#Feature-Scaling-Sublinear-Functions" class="headerlink" title="Feature Scaling: Sublinear Functions"></a>Feature Scaling: Sublinear Functions</h2><p>An enormous gap between the largest/smallest and median values means no coefficient can use the feature without blowup on big values.</p>
-<p>The key is to replace/augment such features x with sublinear functions like log(x) and sqrt(x).</p>
-<p>Z-scores of these variables will prove much more meaningful.</p>
-<h2 id="Small-Coefficients-Need-Small-Targets"><a href="#Small-Coefficients-Need-Small-Targets" class="headerlink" title="Small Coefficients Need Small Targets"></a>Small Coefficients Need Small Targets</h2><p>Trying to predict income from Z-scored variables will need large coefficients: how can you get to $100,000 from functions of -3 to +3?</p>
-<p>If your features are normally distributed, you can only do a good job regressing to a similarly distributed target.</p>
-<p>Taking logs of big targets can give better models.</p>
-<h2 id="Avoid-Highly-Correlated-Features"><a href="#Avoid-Highly-Correlated-Features" class="headerlink" title="Avoid Highly Correlated Features"></a>Avoid Highly Correlated Features</h2><p>Suppose you have two perfectly-correlated features (e.g. height in feet, height in meters).</p>
-<p>This is confusing (how should weight be distributed between them) but worse</p>
-<p>The rows in the covariance matrix are dependent $\because r_1=c\times r_2, \therefore w=(A^TA)^{-1}A^Tb$ requires inverting a singular matrix.</p>
-<h2 id="Punting-Highly-Correlated-Features"><a href="#Punting-Highly-Correlated-Features" class="headerlink" title="Punting Highly Correlated Features"></a>Punting Highly Correlated Features</h2><p>Perfectly correlated features provide no additional information for modeling.</p>
-<p>Identify them by computing the covariance matrix: either one can go with little loss.</p>
-<p>This motivates the problem of dimension reduction: e.g. singular value decomposition, principal component analysis.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2321,7 +2373,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">172</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2332,7 +2384,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-count">132</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2343,7 +2395,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
