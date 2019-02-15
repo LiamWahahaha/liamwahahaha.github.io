@@ -294,6 +294,250 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2019/02/14/Big-Data-Analytics-3-Part-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/14/Big-Data-Analytics-3-Part-1/" itemprop="url">Big Data Analytics Week 3 Part 1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T18:31:58-05:00">
+                2019-02-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-02-14T20:54:41-05:00">
+                2019-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/MapReduce/" itemprop="url" rel="index">
+                    <span itemprop="name">MapReduce</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MapReduce-Related-Concepts"><a href="#MapReduce-Related-Concepts" class="headerlink" title="MapReduce Related Concepts"></a>MapReduce Related Concepts</h2><h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li>Cluster Computing:<ul>
+<li>Compute nodes are processor chip, main memory, and disk.</li>
+<li>Cluster computing is a common architecture that has a cluster of compute nodes.</li>
+<li>Compute nodes are mounted in racks.</li>
+<li>Racks are connected by a high-speed network or switch.</li>
+</ul>
+</li>
+<li>Distributed File Systems:<ul>
+<li>In the distributed file system, files are composed of chunks of 64 MB, and each chunk is replicated several times on different compute nodes or racks.</li>
+</ul>
+</li>
+<li>MapReduce:<ul>
+<li>MapReduce can be a programming style or a programming system.</li>
+</ul>
+</li>
+<li>The Map Function:<ul>
+<li>This function is written by the programmer(user).</li>
+<li>It takes a collection of input objects and turns each into zero or more key-value pairs.</li>
+</ul>
+</li>
+<li>The Reduce Function:<ul>
+<li>A MapReduce programming system sorts all the key-value pairs produced by all the Map tasks, forms all the values associated with a given key into a list and distributes key-list pairs to Reduce tasks.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Distributed-File-Systems"><a href="#Distributed-File-Systems" class="headerlink" title="Distributed File Systems"></a>Distributed File Systems</h3><p><strong>Physical Organization of Compute Nodes</strong></p>
+<p>Cluster computing is one type of parallel-computing architecture. Compute nodes are stored on racks, perhaps 8~64 on a rack. The nodes on a single rack are connected by a network. There can be many racks of compute nodes, and racks are connected by another level of network or a switch.</p>
+<blockquote>
+<p><strong>DFS Implementations</strong></p>
+<p>There are several DFS that are used in practice. For example, the <strong>Google File System</strong> (GFS); <strong>Hadoop Distributed File System</strong> (HDFS), an open-source DFS used with Hadoop, an implementation of MapReduce; <strong>Colossus</strong>, an improved version of GFS.</p>
+</blockquote>
+<p><strong>Large-Scale File-System Organization</strong></p>
+<ul>
+<li>File should be large, i.e. with 100GB ~ 1TB size.</li>
+<li>Files are rarely updated.</li>
+</ul>
+<p>Files are divided into <em>chunks</em>, which are read typically 64 MB in size. Chunks are replicated, <strong>usually three times</strong>, at three different comput nodes. Moreover, the nodes holding copies of one chunk should be located on different racks.</p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>In brief, a MapReduce computation executes as follows:</p>
+<ol>
+<li>Some # of Map tasks each are given one or more chunks from a distributed file system. These Map tasks turn the chunk into a sequence of <em>key-value</em> pairs.</li>
+<li>The key-value pairs from each Map task are collected by a <em>master controller</em> and sorted by key. The keys are divided among all the Reduce tasks, so all key-value pairs with the same key wind up at the same Reduce task.</li>
+<li>The Reduce tasks work on one key at a time, and combine all the values associated with that key in some way.</li>
+</ol>
+<p><strong>The Map Tasks</strong></p>
+<ul>
+<li>We view input files for a Map task as consisting of <strong>elements</strong>, which can be any type: a tuple or a document.</li>
+<li>Technically, all inputs to Map tasks and outputs from Reduce tasks are of the key-value-pair form, but <strong>normally the keys of input elements are not relevant and we shall tend to ignore them</strong>.</li>
+<li>Insisting on this form for inputs and outputs is motivated by the desire to allow composition of several MapReduce processes.</li>
+</ul>
+<p><strong>Grouping by Key</strong></p>
+<ul>
+<li>As soon as the Map tasks have all completed successfully, the key-value pairs are grouped by key, and the values associated with each key are formed into a single list of values for that key.</li>
+<li>The grouping is performed by the sysem, regardless of what the Map and Reduce tasks do.</li>
+<li>The master controller process knows how many Reduce tasks there will be.</li>
+<li>Then the master controller picks a hash function that takes a key as argument and produces a bucket number from 0 to r - 1, where r is the number of Reduce tasks.</li>
+<li>To perform the grouping by key and distribution to the Reduce tasks, the master controller merges the files from each Map task that are destined for a particular Reduce task and feeds the merged file to that process as a sequence of key/list-of-values pairs.</li>
+</ul>
+<p><strong>The Reduce Tasks</strong></p>
+<ul>
+<li>We shall refer to the application of the Reduce function to a single key and its associated list of values as a reducer.</li>
+<li>A Reduce task receives one or more keys and their assoicated value lists. That is, a Reduce task executes one or more reducers.</li>
+<li>The outputs from all the Reduce tasks are merged into a single file.</li>
+</ul>
+<p><strong>Combiners</strong></p>
+<ul>
+<li>Sometimes, a Reduce function is associative and commutative.<ul>
+<li>The values to be combined can be combined in any order with the same result.</li>
+</ul>
+</li>
+<li>When the Reduce function is associative and commutative, we can push some of what the reducers do to the Map tasks.</li>
+</ul>
+<blockquote>
+<p><strong>Reducers, Reduce Tasks, Compute Nodes, and Skew</strong></p>
+<ul>
+<li>If we want maximum parallelism, then we chould use one Reduce task to execute each reducer, i.e., a single key and its associated value list.</li>
+<li>We could execute each Reduce task at a different compute node, so they would all execute in parallel.</li>
+</ul>
+</blockquote>
+<p><strong>Details of MapReduce Execution</strong></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2019/01/28/Big-Data-Analytics-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -313,7 +557,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/28/Big-Data-Analytics-1/" itemprop="url">Big Data Analytics Lecture 1 part1</a></h1>
+                <a class="post-title-link" href="/2019/01/28/Big-Data-Analytics-1/" itemprop="url">Big Data Analytics Week 1 part1</a></h1>
         
 
         <div class="post-meta">
@@ -341,7 +585,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-02-14T18:25:13-05:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-02-14T18:32:53-05:00">
                 2019-02-14
               </time>
             
@@ -605,6 +849,17 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
                     <span itemprop="name">Data Structures</span>
                   </a>
@@ -627,8 +882,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">Binary Tree</span>
                   </a>
                 </span>
 
@@ -640,17 +895,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Difficulties/Easy/" itemprop="url" rel="index">
                     <span itemprop="name">Easy</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Data-Structures/Binary-Tree/" itemprop="url" rel="index">
-                    <span itemprop="name">Binary Tree</span>
                   </a>
                 </span>
 
@@ -859,8 +1103,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -870,8 +1114,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
+                  <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -1085,6 +1329,17 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
+                    <span itemprop="name">Difficulties</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Data-Structures/" itemprop="url" rel="index">
                     <span itemprop="name">Data Structures</span>
                   </a>
@@ -1098,17 +1353,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/LeetCode/Algorithms/" itemprop="url" rel="index">
                     <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/Difficulties/" itemprop="url" rel="index">
-                    <span itemprop="name">Difficulties</span>
                   </a>
                 </span>
 
@@ -2132,197 +2376,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liamwahahaha.github.io/2018/11/07/Logic-Programming-and-Prolog-Chapter-2-Notes-Part2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/07/Logic-Programming-and-Prolog-Chapter-2-Notes-Part2/" itemprop="url">Logic, Programming and Prolog - Chapter 2 Notes Part2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-07T15:46:22-05:00">
-                2018-11-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-11-13T17:02:47-05:00">
-                2018-11-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/" itemprop="url" rel="index">
-                    <span itemprop="name">Prolog</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/The-Least-Herbrand-Model/" itemprop="url" rel="index">
-                    <span itemprop="name">The Least Herbrand Model</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Languages/Prolog/Construction-of-Least-Herbrand-Models/" itemprop="url" rel="index">
-                    <span itemprop="name">Construction of Least Herbrand Models</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="The-Least-Herbrand-Model"><a href="#The-Least-Herbrand-Model" class="headerlink" title="The Least Herbrand Model"></a>The Least Herbrand Model</h2><p>Definite programs can only express positive knowledge -  both facts and rules say which elements of a structure are in a relation, but they do not say when the relations do not hold. Moreover, every definite program has a well defined least model. Intuitively this model reflects all information expressed by the program and nothing more.</p>
-<h3 id="Definition-Herbrand-universe-Herbrand-base"><a href="#Definition-Herbrand-universe-Herbrand-base" class="headerlink" title="Definition (Herbrand universe, Herbrand base)"></a><u>Definition (Herbrand universe, Herbrand base)</u></h3><p>Let $\bold{A}$ be an alphabet containing at least one constant symbol. The set $\bold{U_A}$ of all ground terms constructed from functors and constants in $\bold{A}$ is called the Herbrand universe of $\bold{A}$. The set $\bold{B_A}$ of all ground, atomic formulas over $\bold{A}$ is called the Herbrand base of $\bold{A}$.</p>
-<p>The Herbrand universe and Herbrand base are often defined for a given program.</p>
-<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>Consider the following definite program $P$:<br>$$<br>odd(s(0)).\<br>odd(s(s(X)))\leftarrow odd(X).<br>$$<br>The program contains one constant (0) and one unary functor (s). Consequently the Herbrand universe looks as follows:<br>$$<br>\bold{U_P}={0, s(0), s(s(0)),s(s(s(0))),…}<br>$$<br>Since the program contains only one (unary) predicate symbol (odd) it has the following Herbrand base:<br>$$<br>\bold{B_P}={odd(0),odd(s(0)), odd(s(s(0))),…}<br>$$</p>
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p>Consider the following definite program $P$:</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2373,7 +2426,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">173</span>
+                <span class="site-state-item-count">174</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2384,7 +2437,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">132</span>
+                <span class="site-state-item-count">133</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2395,7 +2448,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
